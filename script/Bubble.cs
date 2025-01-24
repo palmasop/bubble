@@ -91,7 +91,7 @@ public partial class Bubble : Area2D
     {
         if (_capturedEnemy != null)
         {
-            _capturedEnemy.enemyAI.disabledMovement = true;
+            _capturedEnemy.enemyAI.disabledMovement = false;
             _capturedEnemy.SetProcess(true);
             _capturedEnemy.SetPhysicsProcess(true);
             _capturedEnemy = null;
