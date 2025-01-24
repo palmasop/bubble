@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://btimebe4h0gdl"]
+
+[ext_resource type="Script" path="res://script/Enemy.cs" id="1_4nj5t"]
+[ext_resource type="PackedScene" uid="uid://flxsagfb8nq8" path="res://scene/particles/explosion.tscn" id="2_06n6e"]
+[ext_resource type="Script" path="res://script/util/EnemyAI.cs" id="2_cwq5i"]
+[ext_resource type="Script" path="res://script/util/health/Health.cs" id="3_wytvs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a1jgi"]
+size = Vector2(15, 15)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xi1ap"]
+radius = 10.0499
+
+[node name="Fish" type="CharacterBody2D" node_paths=PackedStringArray("GFX")]
+script = ExtResource("1_4nj5t")
+type = 2
+dieEffect = ExtResource("2_06n6e")
+GFX = NodePath("GFX")
+
+[node name="EnemyAI" type="Node2D" parent="."]
+script = ExtResource("2_cwq5i")
+speed = 10.0
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="EnemyAI"]
+avoidance_enabled = true
+
+[node name="Health" type="Node2D" parent="."]
+script = ExtResource("3_wytvs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_a1jgi")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_xi1ap")
+
+[node name="GFX" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="GFX"]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+color = Color(0, 0.543701, 0.642407, 1)

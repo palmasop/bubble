@@ -1,13 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvy3limomku1x"]
+[gd_scene load_steps=5 format=3 uid="uid://cvy3limomku1x"]
 
 [ext_resource type="Script" path="res://script/Bubble.cs" id="1_skt06"]
 [ext_resource type="PackedScene" uid="uid://c746yoyx6jq0r" path="res://scene/bubble_gfx.tscn" id="2_b822a"]
+[ext_resource type="PackedScene" uid="uid://flxsagfb8nq8" path="res://scene/particles/explosion.tscn" id="2_pjft1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xo32p"]
 
 [node name="Bubble" type="Area2D"]
 script = ExtResource("1_skt06")
-Lifetime = 100.0
+explodeEffect = ExtResource("2_pjft1")
 
 [node name="Bubble GFX" parent="." instance=ExtResource("2_b822a")]
 

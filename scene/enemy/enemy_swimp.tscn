@@ -1,26 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://btimebe4h0gdl"]
+[gd_scene load_steps=7 format=3 uid="uid://dlaij1u1hsolb"]
 
-[ext_resource type="Script" path="res://script/Enemy.cs" id="1_4nj5t"]
-[ext_resource type="Script" path="res://script/util/EnemyAI.cs" id="2_cwq5i"]
-[ext_resource type="Script" path="res://script/util/health/Health.cs" id="3_wytvs"]
+[ext_resource type="Script" path="res://script/Enemy.cs" id="1_qeyyc"]
+[ext_resource type="Script" path="res://script/util/EnemyAI.cs" id="2_5w4ai"]
+[ext_resource type="PackedScene" uid="uid://flxsagfb8nq8" path="res://scene/particles/explosion.tscn" id="2_l3wur"]
+[ext_resource type="Script" path="res://script/util/health/Health.cs" id="3_xnl4k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1jgi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xi1ap"]
 radius = 18.0
 
-[node name="Enemy" type="CharacterBody2D"]
-script = ExtResource("1_4nj5t")
+[node name="Swimp" type="CharacterBody2D" node_paths=PackedStringArray("GFX")]
+script = ExtResource("1_qeyyc")
+type = 1
+dieEffect = ExtResource("2_l3wur")
+GFX = NodePath("GFX")
 
 [node name="EnemyAI" type="Node2D" parent="."]
-script = ExtResource("2_cwq5i")
+script = ExtResource("2_5w4ai")
+speed = 15.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="EnemyAI"]
 avoidance_enabled = true
-debug_enabled = true
 
 [node name="Health" type="Node2D" parent="."]
-script = ExtResource("3_wytvs")
+script = ExtResource("3_xnl4k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_a1jgi")
@@ -32,6 +36,7 @@ offset_left = -10.0
 offset_top = -10.0
 offset_right = 10.0
 offset_bottom = 10.0
+color = Color(1, 0.305882, 0.0980392, 1)
 
 [node name="Area2D" type="Area2D" parent="."]
 

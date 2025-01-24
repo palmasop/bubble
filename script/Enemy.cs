@@ -20,8 +20,7 @@ public partial class Enemy : CharacterBody2D, IDamageable
 
     [Export] protected int attackDamage;
     [Export] PackedScene dieEffect;
-
-    [Export] protected bool debug;
+    [Export] Node2D GFX;
 
     RandomNumberGenerator rng = new();
     public EnemyAI enemyAI { get; private set; }
@@ -35,6 +34,7 @@ public partial class Enemy : CharacterBody2D, IDamageable
         enemyAI = GetNodeOrNull<EnemyAI>("EnemyAI");
         health = GetNodeOrNull<Health>("Health");
         health.OnDie += Die;
+        health.OnChangeHealth += (int health) => GD.Print(Name, health);
     }
 
     public override void _ExitTree()

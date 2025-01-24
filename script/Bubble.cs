@@ -3,80 +3,139 @@ using System;
 
 public partial class Bubble : Area2D
 {
-    [Export] public float Lifetime { get; set; } = 3.0f;  // How long the bubble exists before self-destructing
-    [Export] private float floatSpeed = 100f; // Speed at which captured enemy floats up
+    [Signal] public delegate void OnHitEventHandler(Enemy body);
 
-    private float _timeAlive = 0.0f;
-    private Vector2 _velocity = Vector2.Zero;  // Added to handle movement
-    private Enemy _capturedEnemy = null;
-    private Vector2 _originalEnemyPosition;
+    [Export] PackedScene explodeEffect;
+
+    float lifetime { get; set; } = 3.0f;
+    float floatSpeed = 100f;
+    int damage;
+    bool isCapture;
+
+    float timeAlive = 0.0f;
+    Vector2 velocity = Vector2.Zero;
+    Enemy capturedEnemy = null;
 
     public override void _Ready()
     {
         AreaEntered += OnAreaEntered;
     }
 
-    public void Init(float lifetime, float speed, float scale)
+    public void Init(float lifetime, float speed, float scale, int damage, bool isCapture)
     {
-        Lifetime = lifetime;
-        _velocity = Vector2.Up * speed;
+        velocity = Vector2.Up * speed;
         Scale = Vector2.One * scale;
-
-        if (GetNode<CollisionShape2D>("CollisionShape2D") is CollisionShape2D collision)
-        {
-            collision.Scale = Vector2.One * scale;
-        }
+        this.lifetime = lifetime;
+        this.damage = damage;
+        this.isCapture = isCapture;
     }
 
     public override void _Process(double delta)
     {
-        if (_capturedEnemy != null)
+        if (capturedEnemy != null)
         {
-            _capturedEnemy.GlobalPosition = GlobalPosition;
-
-            _velocity = Vector2.Up * floatSpeed;
+            if (IsInstanceValid(capturedEnemy) && !capturedEnemy.IsQueuedForDeletion())
+            {
+                capturedEnemy.GlobalPosition = GlobalPosition;
+                velocity = Vector2.Up * floatSpeed;
+            }
+            else
+            {
+                capturedEnemy = null;
+                QueueFree();
+            }
         }
 
-        Position += _velocity * (float)delta;
+        Position += velocity * (float)delta;
 
-        _timeAlive += (float)delta;
-        if (_timeAlive >= Lifetime)
-        {
+        timeAlive += (float)delta;
+        if (timeAlive >= lifetime)
             Explode();
-        }
     }
 
     void Explode()
     {
         ReleaseCapturedEnemy();
+        DieEffect();
         QueueFree();
+    }
+
+    void DieEffect()
+    {
+        var node = (Node2D)explodeEffect.Instantiate();
+        node.GlobalPosition = GlobalPosition;
+        node.Scale = Scale;
+        GetTree().CurrentScene.AddChild(node);
     }
 
     public void OnAreaEntered(Area2D area)
     {
-        if (_capturedEnemy == null && area.GetParent() is Enemy enemy)
-            CaptureEnemy(enemy);
+        if (!HandleHitBubble(area))
+            HandleHitEnemey(area);
+    }
+
+    bool HandleHitBubble(Area2D area)
+    {
+        GD.Print(area.Name);
+        if (area is not Bubble bubble)
+            return false;
+        GD.Print("is bubble");
+
+        bubble.Explode();
+        Explode();
+        return true;
     }
 
 
+    void HandleHitEnemey(Area2D area)
+    {
+        if (area.GetParent() is not Enemy enemy)
+            return;
+
+        EmitSignal(SignalName.OnHit, enemy);
+
+        var enemySetting = BulletManager.Instance.GetEnemySettingsByEnemey(enemy.type);
+        var isCapture = this.isCapture && Scale.X > enemySetting.minCaptureSize;
+
+        if (!isCapture)
+        {
+            enemy.TakeDamage(damage);
+            Explode();
+            return;
+        }
+
+        if (capturedEnemy == null)
+            CaptureEnemy(enemy);
+    }
+
     void CaptureEnemy(Enemy enemy)
     {
-        _capturedEnemy = enemy;
-        _originalEnemyPosition = enemy.GlobalPosition;
+        capturedEnemy = enemy;
 
         enemy.enemyAI.disabledMovement = true;
         enemy.SetProcess(false);
         enemy.SetPhysicsProcess(false);
+
+        foreach (var child in enemy.GetChildren())
+        {
+            if (child is Area2D col)
+                col.Monitoring = false;
+        }
     }
 
     void ReleaseCapturedEnemy()
     {
-        if (_capturedEnemy != null)
+        if (capturedEnemy != null)
         {
-            _capturedEnemy.enemyAI.disabledMovement = false;
-            _capturedEnemy.SetProcess(true);
-            _capturedEnemy.SetPhysicsProcess(true);
-            _capturedEnemy = null;
+            capturedEnemy.enemyAI.disabledMovement = false;
+            capturedEnemy.SetProcess(true);
+            capturedEnemy.SetPhysicsProcess(true);
+            foreach (var child in capturedEnemy.GetChildren())
+            {
+                if (child is Area2D col)
+                    col.Monitoring = true;
+            }
+            capturedEnemy = null;
         }
     }
 

@@ -3,19 +3,23 @@ using System;
 
 public partial class BubbleGun : Node2D
 {
-	[Export]
-	public PackedScene BulletScene { get; set; }
+	[Export] public PackedScene BulletScene { get; set; }
 
 	[Export] Node2D shootPoint;
 
-	[Export]
-	public BubblePreview BubblePreview { get; set; }
+	[Export] public BubblePreview BubblePreview { get; set; }
 
-	[Export]
-	public BubbleSettings Settings { get; set; }
+	[Export] public BubbleSettings Settings { get; set; }
 
-	private float _currentCharge = 0.0f;
-	private bool _isCharging = false;
+	[ExportCategory("UI Display")]
+	[Export] TextureRect uiDisplay;
+	[Export] Label bulletDisplay;
+
+	float _currentCharge = 0.0f;
+	bool _isCharging = false;
+	BubbleSettings defaultSettings;
+
+	int bulletLeft;
 
 	public override void _Ready()
 	{
@@ -26,9 +30,10 @@ public partial class BubbleGun : Node2D
 		}
 
 		if (BubblePreview != null)
-		{
-			BubblePreview.Visible = false;  // Hide preview initially
-		}
+			BubblePreview.Visible = false;
+		defaultSettings = Settings;
+
+		ChangeGun(Settings);
 	}
 
 	public override void _Process(double delta)
@@ -43,41 +48,64 @@ public partial class BubbleGun : Node2D
 			{
 				_isCharging = true;
 				_currentCharge = Settings.MinBulletScale;
-				if (BubblePreview != null)
-				{
-					BubblePreview.Show();
-				}
+				BubblePreview?.Show();
 			}
 
 			_currentCharge = Mathf.Min(_currentCharge + Settings.ChargeRate * (float)delta, Settings.MaxBulletScale);
-
-			if (BubblePreview != null)
-			{
-				BubblePreview.UpdatePreview(_currentCharge);
-			}
+			BubblePreview?.UpdatePreview(_currentCharge);
 		}
 		else if (Input.IsActionJustReleased("shoot") && _isCharging)
 		{
-			if (BubblePreview != null)
-			{
-				BubblePreview.Hide();
-			}
+			BubblePreview?.Hide();
 			Shoot();
 			_isCharging = false;
 		}
 	}
 
-	private void Shoot()
+
+	void Shoot()
 	{
 		if (BulletScene == null || Settings == null) return;
 
-		Node2D bullet = BulletScene.Instantiate<Node2D>();
+		bulletLeft--;
+		UpdateBulletDisplay();
+		if (bulletLeft < 1)
+			ChangeGun(defaultSettings);
+
+		var bullet = BulletScene.Instantiate<Bubble>();
+		bullet.OnHit += BubbleOnHit;
 		GetTree().Root.AddChild(bullet);
 		bullet.GlobalPosition = shootPoint.GlobalPosition;
 
 		if (bullet is Bubble bubbleScript)
+			// bubbleScript.Init(Settings.BulletLifetime, Settings.ShootSpeed, _currentCharge, Settings.damage, bulletLeft < 0);
+			bubbleScript.Init(Settings.BulletLifetime, Settings.ShootSpeed, _currentCharge, Settings.damage, true);
+	}
+
+	void BubbleOnHit(Enemy enemy)
+	{
+		if (bulletLeft > 0)
+			return;
+		var setting = BulletManager.Instance.GetBubbleSettingsByEnemey(enemy.type);
+		ChangeGun(setting);
+	}
+
+	void ChangeGun(BubbleSettings bubbleSettings)
+	{
+		Settings = bubbleSettings;
+		bulletLeft = Settings.bullet;
+		UpdateBulletDisplay();
+		uiDisplay.Texture = bubbleSettings.displayTexture;
+	}
+
+	void UpdateBulletDisplay()
+	{
+		if (bulletLeft == -1)
 		{
-			bubbleScript.Init(Settings.BulletLifetime, Settings.ShootSpeed, _currentCharge);
+			bulletDisplay.Text = "";
+			return;
 		}
+
+		bulletDisplay.Text = bulletLeft.ToString();
 	}
 }

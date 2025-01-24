@@ -1,33 +1,60 @@
-[gd_scene load_steps=8 format=3 uid="uid://f41byasd15d1"]
+[gd_scene load_steps=13 format=3 uid="uid://f41byasd15d1"]
 
 [ext_resource type="Script" path="res://script/manager/BulletManager.cs" id="1_vsr76"]
 [ext_resource type="Script" path="res://script/EnemyConfig.cs" id="2_2adif"]
 [ext_resource type="Script" path="res://script/BubbleSettings.cs" id="2_2e1sr"]
+[ext_resource type="Texture2D" uid="uid://2hu01jp2ye4w" path="res://assets/BasicShape/Bullet_2.png" id="2_ncu5g"]
+[ext_resource type="Texture2D" uid="uid://hyxy0gaykh7v" path="res://assets/bubble.png" id="5_ctiyq"]
+[ext_resource type="Texture2D" uid="uid://b8o2bygre35n2" path="res://assets/BasicShape/ShockWave.png" id="6_3loqp"]
 
 [sub_resource type="Resource" id="Resource_hs0na"]
 script = ExtResource("2_2e1sr")
+displayTexture = ExtResource("2_ncu5g")
+bullet = 5
 BulletLifetime = 3.0
-MinBulletScale = 0.5
-MaxBulletScale = 3.0
+MinBulletScale = 3.0
+MaxBulletScale = 10.0
 ChargeRate = 2.0
+damage = 70
 
 [sub_resource type="Resource" id="Resource_yr6sh"]
 script = ExtResource("2_2adif")
 enemyType = 0
+minCaptureSize = 2.0
 bubbleSettings = SubResource("Resource_hs0na")
 
 [sub_resource type="Resource" id="Resource_8dcel"]
 script = ExtResource("2_2e1sr")
+displayTexture = ExtResource("5_ctiyq")
+bullet = 5
 BulletLifetime = 3.0
 MinBulletScale = 0.5
-MaxBulletScale = 3.0
+MaxBulletScale = 5.0
 ChargeRate = 2.0
+damage = 100
 
 [sub_resource type="Resource" id="Resource_ak7wd"]
 script = ExtResource("2_2adif")
 enemyType = 1
+minCaptureSize = 1.0
 bubbleSettings = SubResource("Resource_8dcel")
+
+[sub_resource type="Resource" id="Resource_054i6"]
+script = ExtResource("2_2e1sr")
+displayTexture = ExtResource("6_3loqp")
+bullet = 5
+BulletLifetime = 3.0
+MinBulletScale = 0.2
+MaxBulletScale = 3.0
+ChargeRate = 2.0
+damage = 70
+
+[sub_resource type="Resource" id="Resource_v4ymt"]
+script = ExtResource("2_2adif")
+enemyType = 2
+minCaptureSize = 0.8
+bubbleSettings = SubResource("Resource_054i6")
 
 [node name="BulletManager" type="Node2D"]
 script = ExtResource("1_vsr76")
-enemyConfigs = Array[Object]([SubResource("Resource_yr6sh"), SubResource("Resource_ak7wd")])
+enemyConfigs = Array[Object]([SubResource("Resource_yr6sh"), SubResource("Resource_ak7wd"), SubResource("Resource_v4ymt")])

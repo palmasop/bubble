@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://o62p1vrfchcy"]
+[gd_scene load_steps=7 format=3 uid="uid://o62p1vrfchcy"]
 
 [ext_resource type="Script" path="res://script/BubbleGun.cs" id="1_80qyq"]
 [ext_resource type="PackedScene" uid="uid://cvy3limomku1x" path="res://scene/bubble.tscn" id="2_p54bx"]
@@ -7,18 +7,24 @@
 
 [sub_resource type="Resource" id="Resource_37alx"]
 script = ExtResource("3_tks2a")
+bullet = -1
 BulletLifetime = 3.0
 MinBulletScale = 0.5
 MaxBulletScale = 3.0
 ChargeRate = 2.0
+damage = 10
 
-[node name="Bubble Gun" type="Node2D" node_paths=PackedStringArray("shootPoint", "BubblePreview")]
+[sub_resource type="ImageTexture" id="ImageTexture_qpyen"]
+
+[node name="Bubble Gun" type="Node2D" node_paths=PackedStringArray("shootPoint", "BubblePreview", "uiDisplay", "bulletDisplay")]
 position = Vector2(566, 588)
 script = ExtResource("1_80qyq")
 BulletScene = ExtResource("2_p54bx")
 shootPoint = NodePath("ShootPoint")
 BubblePreview = NodePath("ShootPoint/Bubble GFX")
 Settings = SubResource("Resource_37alx")
+uiDisplay = NodePath("CanvasLayer/HBoxContainer/TextureRect")
+bulletDisplay = NodePath("CanvasLayer/HBoxContainer/Label")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -6.0
@@ -39,3 +45,20 @@ position = Vector2(39, 1)
 
 [node name="Bubble GFX" parent="ShootPoint" instance=ExtResource("3_jgwwb")]
 position = Vector2(-1, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 396.0
+offset_top = 799.0
+offset_right = 472.0
+offset_bottom = 839.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("ImageTexture_qpyen")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "12"
