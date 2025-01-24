@@ -33,28 +33,27 @@ public partial class Bubble : Area2D
 
     public override void _Process(double delta)
     {
-        // If we have a captured enemy, move it with the bubble
         if (_capturedEnemy != null)
         {
             _capturedEnemy.GlobalPosition = GlobalPosition;
 
-            // Change velocity to float upward when carrying an enemy
             _velocity = Vector2.Up * floatSpeed;
         }
 
-        // Move the bubble
         Position += _velocity * (float)delta;
 
-        // Handle lifetime and cleanup
         _timeAlive += (float)delta;
         if (_timeAlive >= Lifetime)
         {
-            ReleaseCapturedEnemy();
-            QueueFree();
+            Explode();
         }
     }
 
-    void Explode
+    void Explode()
+    {
+        ReleaseCapturedEnemy();
+        QueueFree();
+    }
 
     public void OnAreaEntered(Area2D area)
     {
