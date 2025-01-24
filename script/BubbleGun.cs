@@ -9,29 +9,22 @@ public partial class BubbleGun : Node2D
 	[Export] Node2D shootPoint;
 
 	[Export]
-	public BubblePreview BubblePreview { get; set; }  // Reference to preview scene
-
-	[ExportGroup("Bullet Properties")]
-	[Export]
-	public float ShootSpeed = 400.0f;
+	public BubblePreview BubblePreview { get; set; }
 
 	[Export]
-	public float BulletLifetime = 3.0f;
-
-	[Export]
-	public float MinBulletScale = 0.5f;
-
-	[Export]
-	public float MaxBulletScale = 3.0f;
-
-	[Export]
-	public float ChargeRate = 2.0f;  // How fast the bubble grows
+	public BubbleSettings Settings { get; set; }
 
 	private float _currentCharge = 0.0f;
 	private bool _isCharging = false;
 
 	public override void _Ready()
 	{
+		if (Settings == null)
+		{
+			GD.PrintErr("BubbleSettings resource is not assigned!");
+			return;
+		}
+
 		if (BubblePreview != null)
 		{
 			BubblePreview.Visible = false;  // Hide preview initially
@@ -40,6 +33,8 @@ public partial class BubbleGun : Node2D
 
 	public override void _Process(double delta)
 	{
+		if (Settings == null) return;
+
 		LookAt(GetGlobalMousePosition());
 
 		if (Input.IsActionPressed("shoot"))
@@ -47,14 +42,14 @@ public partial class BubbleGun : Node2D
 			if (!_isCharging)
 			{
 				_isCharging = true;
-				_currentCharge = MinBulletScale;
+				_currentCharge = Settings.MinBulletScale;
 				if (BubblePreview != null)
 				{
 					BubblePreview.Show();
 				}
 			}
 
-			_currentCharge = Mathf.Min(_currentCharge + ChargeRate * (float)delta, MaxBulletScale);
+			_currentCharge = Mathf.Min(_currentCharge + Settings.ChargeRate * (float)delta, Settings.MaxBulletScale);
 
 			if (BubblePreview != null)
 			{
@@ -74,16 +69,15 @@ public partial class BubbleGun : Node2D
 
 	private void Shoot()
 	{
-		if (BulletScene == null) return;
+		if (BulletScene == null || Settings == null) return;
 
-		GD.Print("Shooting with scale: ", _currentCharge);  // Debug print
 		Node2D bullet = BulletScene.Instantiate<Node2D>();
 		GetTree().Root.AddChild(bullet);
 		bullet.GlobalPosition = shootPoint.GlobalPosition;
 
 		if (bullet is Bubble bubbleScript)
 		{
-			bubbleScript.Init(BulletLifetime, ShootSpeed, _currentCharge);
+			bubbleScript.Init(Settings.BulletLifetime, Settings.ShootSpeed, _currentCharge);
 		}
 	}
 }

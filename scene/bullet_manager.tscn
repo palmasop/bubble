@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://f41byasd15d1"]
+
+[ext_resource type="Script" path="res://script/manager/BulletManager.cs" id="1_vsr76"]
+[ext_resource type="Script" path="res://script/EnemyConfig.cs" id="2_2adif"]
+[ext_resource type="Script" path="res://script/BubbleSettings.cs" id="2_2e1sr"]
+
+[sub_resource type="Resource" id="Resource_hs0na"]
+script = ExtResource("2_2e1sr")
+BulletLifetime = 3.0
+MinBulletScale = 0.5
+MaxBulletScale = 3.0
+ChargeRate = 2.0
+
+[sub_resource type="Resource" id="Resource_yr6sh"]
+script = ExtResource("2_2adif")
+enemyType = 0
+bubbleSettings = SubResource("Resource_hs0na")
+
+[sub_resource type="Resource" id="Resource_8dcel"]
+script = ExtResource("2_2e1sr")
+BulletLifetime = 3.0
+MinBulletScale = 0.5
+MaxBulletScale = 3.0
+ChargeRate = 2.0
+
+[sub_resource type="Resource" id="Resource_ak7wd"]
+script = ExtResource("2_2adif")
+enemyType = 1
+bubbleSettings = SubResource("Resource_8dcel")
+
+[node name="BulletManager" type="Node2D"]
+script = ExtResource("1_vsr76")
+enemyConfigs = Array[Object]([SubResource("Resource_yr6sh"), SubResource("Resource_ak7wd")])

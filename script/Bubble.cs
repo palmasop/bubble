@@ -13,16 +13,13 @@ public partial class Bubble : Area2D
 
     public override void _Ready()
     {
-        // Connect the area entered signal if not already connected in editor
         AreaEntered += OnAreaEntered;
     }
 
     public void Init(float lifetime, float speed, float scale)
     {
-        GD.Print(lifetime, " ", speed, " ", scale);  // Debug print to verify values
-        // Set properties passed from the gun
         Lifetime = lifetime;
-        _velocity = Vector2.Up * speed;  // Store velocity for manual movement
+        _velocity = Vector2.Up * speed;
         Scale = Vector2.One * scale;
 
         if (GetNode<CollisionShape2D>("CollisionShape2D") is CollisionShape2D collision)
@@ -57,28 +54,13 @@ public partial class Bubble : Area2D
 
     public void OnAreaEntered(Area2D area)
     {
-        GD.Print(area.Name);
-        // Check if we hit an enemy and haven't captured one yet
         if (_capturedEnemy == null && area.GetParent() is Enemy enemy)
-        {
             CaptureEnemy(enemy);
-        }
     }
 
-    public void OnBodyEntered(Node2D body)
-    {
-        GD.Print(body.Name);
-        // Check if we hit an enemy and haven't captured one yet
-        if (_capturedEnemy == null && body is Enemy enemy)
-        {
-            CaptureEnemy(enemy);
-        }
-    }
 
     void CaptureEnemy(Enemy enemy)
     {
-        GD.Print(enemy.Name);
-
         _capturedEnemy = enemy;
         _originalEnemyPosition = enemy.GlobalPosition;
 

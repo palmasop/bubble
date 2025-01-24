@@ -16,6 +16,7 @@ public partial class Enemy : CharacterBody2D, IDamageable, IKnockbackable
 
     [Signal] public delegate void OnEnemyDieEventHandler(Enemy body);
 
+    [Export] public EnemyType type;
     [Export] protected PackedScene[] drops = Array.Empty<PackedScene>();
 
     [Export] protected int attackDamage;

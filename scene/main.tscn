@@ -29,5 +29,17 @@ shape = SubResource("RectangleShape2D_3ljdc")
 [node name="Enemy" parent="." instance=ExtResource("4_ahn62")]
 position = Vector2(170, 82)
 
+[node name="Enemy2" parent="." instance=ExtResource("4_ahn62")]
+position = Vector2(793, 222)
+type = 1
+
+[node name="ColorRect" type="ColorRect" parent="Enemy2"]
+offset_left = -19.0
+offset_top = -21.0
+offset_right = 21.0
+offset_bottom = 19.0
+color = Color(0, 1, 1, 1)
+
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_nbcjd")
