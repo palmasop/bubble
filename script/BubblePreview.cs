@@ -7,14 +7,4 @@ public partial class BubblePreview : Node2D
     {
         Scale = Vector2.One * scale;
     }
-
-    public void Show()
-    {
-        Visible = true;
-    }
-
-    public void Hide()
-    {
-        Visible = false;
-    }
 }
