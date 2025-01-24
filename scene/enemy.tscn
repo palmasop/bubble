@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://btimebe4h0gdl"]
+
+[ext_resource type="Script" path="res://script/Enemy.cs" id="1_4nj5t"]
+[ext_resource type="Script" path="res://script/util/EnemyAI.cs" id="2_cwq5i"]
+[ext_resource type="Script" path="res://script/util/health/Health.cs" id="3_wytvs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a1jgi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xi1ap"]
+radius = 18.0
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_4nj5t")
+
+[node name="EnemyAI" type="Node2D" parent="."]
+script = ExtResource("2_cwq5i")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="EnemyAI"]
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="Health" type="Node2D" parent="."]
+script = ExtResource("3_wytvs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_a1jgi")
+
+[node name="GFX" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="GFX"]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_xi1ap")

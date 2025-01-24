@@ -4,10 +4,29 @@
 [ext_resource type="PackedScene" uid="uid://cvy3limomku1x" path="res://scene/bubble.tscn" id="2_p54bx"]
 [ext_resource type="PackedScene" uid="uid://c746yoyx6jq0r" path="res://scene/bubble_gfx.tscn" id="3_jgwwb"]
 
-[node name="Bubble Gun" type="Node2D" node_paths=PackedStringArray("PreviewSprite")]
+[node name="Bubble Gun" type="Node2D" node_paths=PackedStringArray("shootPoint", "BubblePreview")]
 position = Vector2(566, 588)
 script = ExtResource("1_80qyq")
 BulletScene = ExtResource("2_p54bx")
-PreviewSprite = NodePath("Bubble GFX")
+shootPoint = NodePath("ShootPoint")
+BubblePreview = NodePath("ShootPoint/Bubble GFX")
 
-[node name="Bubble GFX" parent="." instance=ExtResource("3_jgwwb")]
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -6.0
+offset_top = -4.0
+offset_right = 39.0
+offset_bottom = 5.0
+color = Color(0.192181, 0.263396, 0.762688, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -6.0
+offset_top = -12.0
+offset_right = 3.0
+offset_bottom = 14.0
+color = Color(0.192181, 0.263396, 0.762688, 1)
+
+[node name="ShootPoint" type="Node2D" parent="."]
+position = Vector2(39, 1)
+
+[node name="Bubble GFX" parent="ShootPoint" instance=ExtResource("3_jgwwb")]
+position = Vector2(-1, 0)

@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="Bubble"
+run/main_scene="res://scene/main.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1242
+window/size/viewport_height=2688
 
 [dotnet]
 

@@ -1,17 +1,20 @@
 using Godot;
 using System;
 
-public partial class Bubble : RigidBody2D
+public partial class Bubble : Area2D
 {
-    [Export]
-    public float Lifetime { get; set; } = 3.0f;  // How long the bubble exists before self-destructing
-    
+    [Export] public float Lifetime { get; set; } = 3.0f;  // How long the bubble exists before self-destructing
+    [Export] private float floatSpeed = 100f; // Speed at which captured enemy floats up
+
     private float _timeAlive = 0.0f;
+    private Vector2 _velocity = Vector2.Zero;  // Added to handle movement
+    private Enemy _capturedEnemy = null;
+    private Vector2 _originalEnemyPosition;
 
     public override void _Ready()
     {
-        GravityScale = 0.0f;  // Disable gravity so it moves straight
-        LinearDamp = 0.0f;    // No air resistance
+        // Connect the area entered signal if not already connected in editor
+        AreaEntered += OnAreaEntered;
     }
 
     public void Init(float lifetime, float speed, float scale)
@@ -19,9 +22,9 @@ public partial class Bubble : RigidBody2D
         GD.Print(lifetime, " ", speed, " ", scale);  // Debug print to verify values
         // Set properties passed from the gun
         Lifetime = lifetime;
-        LinearVelocity = Vector2.Up * speed;
+        _velocity = Vector2.Up * speed;  // Store velocity for manual movement
         Scale = Vector2.One * scale;
-        
+
         if (GetNode<CollisionShape2D>("CollisionShape2D") is CollisionShape2D collision)
         {
             collision.Scale = Vector2.One * scale;
@@ -30,17 +33,74 @@ public partial class Bubble : RigidBody2D
 
     public override void _Process(double delta)
     {
+        // If we have a captured enemy, move it with the bubble
+        if (_capturedEnemy != null)
+        {
+            _capturedEnemy.GlobalPosition = GlobalPosition;
+
+            // Change velocity to float upward when carrying an enemy
+            _velocity = Vector2.Up * floatSpeed;
+        }
+
+        // Move the bubble
+        Position += _velocity * (float)delta;
+
         // Handle lifetime and cleanup
         _timeAlive += (float)delta;
         if (_timeAlive >= Lifetime)
         {
-            // QueueFree();  // Remove the bubble when lifetime is exceeded
+            ReleaseCapturedEnemy();
+            QueueFree();
+        }
+    }
+
+    void Explode
+
+    public void OnAreaEntered(Area2D area)
+    {
+        GD.Print(area.Name);
+        // Check if we hit an enemy and haven't captured one yet
+        if (_capturedEnemy == null && area.GetParent() is Enemy enemy)
+        {
+            CaptureEnemy(enemy);
         }
     }
 
     public void OnBodyEntered(Node2D body)
     {
-        // When the bubble hits something, destroy it
-        QueueFree();
+        GD.Print(body.Name);
+        // Check if we hit an enemy and haven't captured one yet
+        if (_capturedEnemy == null && body is Enemy enemy)
+        {
+            CaptureEnemy(enemy);
+        }
+    }
+
+    void CaptureEnemy(Enemy enemy)
+    {
+        GD.Print(enemy.Name);
+
+        _capturedEnemy = enemy;
+        _originalEnemyPosition = enemy.GlobalPosition;
+
+        enemy.enemyAI.disabledMovement = true;
+        enemy.SetProcess(false);
+        enemy.SetPhysicsProcess(false);
+    }
+
+    void ReleaseCapturedEnemy()
+    {
+        if (_capturedEnemy != null)
+        {
+            _capturedEnemy.enemyAI.disabledMovement = true;
+            _capturedEnemy.SetProcess(true);
+            _capturedEnemy.SetPhysicsProcess(true);
+            _capturedEnemy = null;
+        }
+    }
+
+    public override void _ExitTree()
+    {
+        ReleaseCapturedEnemy();
     }
 }
