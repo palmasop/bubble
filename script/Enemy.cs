@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Godot;
 
 [Tool]
-public partial class Enemy : CharacterBody2D, IDamageable, IKnockbackable
+public partial class Enemy : CharacterBody2D, IDamageable
 {
     public static readonly List<Enemy> Enemies = new();
 
@@ -13,7 +13,6 @@ public partial class Enemy : CharacterBody2D, IDamageable, IKnockbackable
             enemy.health.Die();
     }
 
-
     [Signal] public delegate void OnEnemyDieEventHandler(Enemy body);
 
     [Export] public EnemyType type;
@@ -21,13 +20,8 @@ public partial class Enemy : CharacterBody2D, IDamageable, IKnockbackable
 
     [Export] protected int attackDamage;
     [Export] PackedScene dieEffect;
-    [Export] float knockbackDecay = 2000;
-    [Export] protected float knockbackForce = 500;
 
     [Export] protected bool debug;
-
-    Vector2 knockbackVelocity = Vector2.Zero;
-    bool isKnockedBack;
 
     RandomNumberGenerator rng = new();
     public EnemyAI enemyAI { get; private set; }
@@ -39,7 +33,6 @@ public partial class Enemy : CharacterBody2D, IDamageable, IKnockbackable
         Enemies.Add(this);
 
         enemyAI = GetNodeOrNull<EnemyAI>("EnemyAI");
-
         health = GetNodeOrNull<Health>("Health");
         health.OnDie += Die;
     }
@@ -50,8 +43,6 @@ public partial class Enemy : CharacterBody2D, IDamageable, IKnockbackable
         Enemies.Remove(this);
         health.OnDie -= Die;
     }
-
-    public override void _Process(double delta) { KnockbackUpdate(delta); }
 
     public void TakeDamage(int damage) { health.TakeDamage(damage); }
 
@@ -78,25 +69,6 @@ public partial class Enemy : CharacterBody2D, IDamageable, IKnockbackable
         var node = (Node2D)dropObj.Instantiate();
         node.GlobalPosition = GlobalPosition;
         GetTree().CurrentScene.AddChild(node);
-    }
-
-    public void Knockback(Vector2 force)
-    {
-        knockbackVelocity = force;
-        isKnockedBack = true;
-    }
-
-    void KnockbackUpdate(double delta)
-    {
-        if (!isKnockedBack) return;
-
-        knockbackVelocity = knockbackVelocity.MoveToward(Vector2.Zero, knockbackDecay * (float)delta);
-        Velocity = knockbackVelocity;
-        MoveAndSlide();
-
-        if (!(knockbackVelocity.Length() < 10)) return;
-        isKnockedBack = false;
-        knockbackVelocity = Vector2.Zero;
     }
 
     public override string[] _GetConfigurationWarnings()
