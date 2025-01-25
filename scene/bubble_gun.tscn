@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://o62p1vrfchcy"]
+[gd_scene load_steps=9 format=3 uid="uid://o62p1vrfchcy"]
 
 [ext_resource type="Script" path="res://script/BubbleGun.cs" id="1_80qyq"]
 [ext_resource type="PackedScene" uid="uid://cvy3limomku1x" path="res://scene/bubble.tscn" id="2_p54bx"]
 [ext_resource type="PackedScene" uid="uid://c746yoyx6jq0r" path="res://scene/bubble_gfx.tscn" id="3_jgwwb"]
 [ext_resource type="Script" path="res://script/BubbleSettings.cs" id="3_tks2a"]
 [ext_resource type="PackedScene" uid="uid://bjeo4oki3kbsq" path="res://scene/enemy/gfx/crab_gfx.tscn" id="5_cjgce"]
+[ext_resource type="Texture2D" uid="uid://ddg1783eqgbr2" path="res://assets/Bubble_Art/Mermaids.png" id="5_ge7if"]
 
 [sub_resource type="Resource" id="Resource_37alx"]
 script = ExtResource("3_tks2a")
@@ -29,6 +30,7 @@ uiDisplay = NodePath("CanvasLayer/HBoxContainer/Node2D")
 bulletDisplay = NodePath("CanvasLayer/HBoxContainer/Label")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_left = -6.0
 offset_top = -4.0
 offset_right = 39.0
@@ -36,11 +38,21 @@ offset_bottom = 5.0
 color = Color(0.192181, 0.263396, 0.762688, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
 offset_left = -6.0
 offset_top = -12.0
 offset_right = 3.0
 offset_bottom = 14.0
 color = Color(0.192181, 0.263396, 0.762688, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(47, -6)
+rotation = -1.5708
+scale = Vector2(4.10654, 4.15082)
+texture = ExtResource("5_ge7if")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
 
 [node name="ShootPoint" type="Node2D" parent="."]
 position = Vector2(39, 1)
