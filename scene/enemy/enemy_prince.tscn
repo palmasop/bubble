@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://c5r784i7765bd"]
+
+[ext_resource type="Script" path="res://script/Enemy.cs" id="1_1m6ky"]
+[ext_resource type="PackedScene" uid="uid://flxsagfb8nq8" path="res://scene/particles/explosion.tscn" id="2_sxp55"]
+[ext_resource type="Script" path="res://script/util/EnemyAI.cs" id="3_hyrcp"]
+[ext_resource type="Script" path="res://script/util/health/Health.cs" id="4_q26mm"]
+[ext_resource type="PackedScene" uid="uid://bjeo4oki3kbsq" path="res://scene/enemy/gfx/crab_gfx.tscn" id="5_7ml6c"]
+[ext_resource type="Script" path="res://script/EnemyGFXAnimation.cs" id="6_enoqg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a1jgi"]
+size = Vector2(35, 34)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xi1ap"]
+radius = 22.0
+
+[node name="Prince" type="CharacterBody2D"]
+script = ExtResource("1_1m6ky")
+attackDamage = 5
+dieEffect = ExtResource("2_sxp55")
+knockbackForce = 100.0
+
+[node name="EnemyAI" type="Node2D" parent="."]
+script = ExtResource("3_hyrcp")
+speed = 8.0
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="EnemyAI"]
+avoidance_enabled = true
+
+[node name="Health" type="Node2D" parent="."]
+script = ExtResource("4_q26mm")
+maxHealth = 2000
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_a1jgi")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_xi1ap")
+
+[node name="Prince GFX" parent="." instance=ExtResource("5_7ml6c")]
+script = ExtResource("6_enoqg")

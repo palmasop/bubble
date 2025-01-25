@@ -21,7 +21,7 @@ dieEffect = ExtResource("2_06n6e")
 
 [node name="EnemyAI" type="Node2D" parent="."]
 script = ExtResource("2_cwq5i")
-speed = 10.0
+speed = 20.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="EnemyAI"]
 avoidance_enabled = true
