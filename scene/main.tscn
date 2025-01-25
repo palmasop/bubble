@@ -1,11 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxb2m2lhpht5d"]
+[gd_scene load_steps=7 format=3 uid="uid://cxb2m2lhpht5d"]
 
 [ext_resource type="PackedScene" uid="uid://o62p1vrfchcy" path="res://scene/bubble_gun.tscn" id="1_p25kd"]
+[ext_resource type="PackedScene" uid="uid://q364g8ve7vdu" path="res://scene/enemy_spawner.tscn" id="1_qj3xk"]
 [ext_resource type="Script" path="res://script/Player.cs" id="2_5rovc"]
 [ext_resource type="Script" path="res://script/util/health/Health.cs" id="3_bgevy"]
-[ext_resource type="PackedScene" uid="uid://btimebe4h0gdl" path="res://scene/enemy/enemy_fish.tscn" id="4_ahn62"]
-[ext_resource type="PackedScene" uid="uid://43q5ci3tvt4p" path="res://scene/enemy/enemy_crab.tscn" id="4_j6ljv"]
-[ext_resource type="PackedScene" uid="uid://dlaij1u1hsolb" path="res://scene/enemy/enemy_swimp.tscn" id="6_kjfdp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ljdc"]
 
@@ -16,8 +14,14 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-7, -2, 1244, -2, 1241,
 
 [node name="Main" type="Node2D"]
 
+[node name="Enemy Spawner" parent="." instance=ExtResource("1_qj3xk")]
+position = Vector2(0, -94)
+spawnInterval = 0.1
+spawnAreaMin = Vector2(0, 0)
+spawnAreaMax = Vector2(480, 100)
+
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(0, 649)
+position = Vector2(594.999, 649)
 script = ExtResource("2_5rovc")
 
 [node name="Health" type="Node2D" parent="Player"]
@@ -33,21 +37,3 @@ position = Vector2(1, 0)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_nbcjd")
-
-[node name="Crab" parent="." instance=ExtResource("4_j6ljv")]
-position = Vector2(157, 223)
-
-[node name="Fish" parent="." instance=ExtResource("4_ahn62")]
-position = Vector2(344, 294)
-
-[node name="Swimp" parent="." instance=ExtResource("6_kjfdp")]
-position = Vector2(500, 213)
-
-[node name="Fish2" parent="." instance=ExtResource("4_ahn62")]
-position = Vector2(197, 122)
-
-[node name="Crab2" parent="." instance=ExtResource("4_j6ljv")]
-position = Vector2(697, 319)
-
-[node name="Swimp2" parent="." instance=ExtResource("6_kjfdp")]
-position = Vector2(41, 354)

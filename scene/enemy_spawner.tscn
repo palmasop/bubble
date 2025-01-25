@@ -1,0 +1,11 @@
+[gd_scene load_steps=5 format=3 uid="uid://q364g8ve7vdu"]
+
+[ext_resource type="Script" path="res://script/EnemySpawner.cs" id="1_wxn6y"]
+[ext_resource type="PackedScene" uid="uid://43q5ci3tvt4p" path="res://scene/enemy/enemy_crab.tscn" id="2_pdjdd"]
+[ext_resource type="PackedScene" uid="uid://btimebe4h0gdl" path="res://scene/enemy/enemy_fish.tscn" id="3_ytxno"]
+[ext_resource type="PackedScene" uid="uid://dlaij1u1hsolb" path="res://scene/enemy/enemy_swimp.tscn" id="4_5a64c"]
+
+[node name="Enemy Spawner" type="Node2D"]
+script = ExtResource("1_wxn6y")
+enemyScenes = [ExtResource("2_pdjdd"), ExtResource("3_ytxno"), ExtResource("4_5a64c")]
+spawnAreaMin = Vector2(100, 100)

@@ -46,12 +46,12 @@ public partial class Enemy : CharacterBody2D, IDamageable
 
     public override void _Process(double delta)
     {
+        if(Engine.IsEditorHint()) return;
         Player player = Player.GetClosetPlayer(this.GlobalPosition);
         if (this.GlobalPosition.DistanceTo(player.GlobalPosition) < 10) {
             player.TakeDamage(attackDamage);
             this.Die();
         }
-            
     }
 
     public void TakeDamage(int damage) { health.TakeDamage(damage); }
