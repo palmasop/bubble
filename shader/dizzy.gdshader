@@ -29,7 +29,8 @@ void fragment() {
 
 	// Distortion
 	vec2 selfUv = UV;
-	float areaStrength = pow(distance(selfUv, vec2(.5f, .5f)), distortionSoftness);
+	float areaStrength = pow(distance(selfUv, vec2(0.5f, 0.6f)), distortionSoftness);
+	//float areaStrength = 1.0;
 
     uv.x += distortionStrength * areaStrength * sin(TIME * distortionSpeed + uv.y * distortionFrequency.y);
     uv.y += distortionStrength * areaStrength * cos(TIME * distortionSpeed + uv.x * distortionFrequency.x);

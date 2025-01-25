@@ -20,10 +20,10 @@ fog_enabled = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ifxdj"]
 shader = ExtResource("6_7a2kq")
-shader_parameter/distortionStrength = 0.018
+shader_parameter/distortionStrength = 0.056
 shader_parameter/distortionSpeed = 2.0
 shader_parameter/distortionFrequency = Vector2(10, 10)
-shader_parameter/distortionSoftness = 2.0
+shader_parameter/distortionSoftness = 4.067
 shader_parameter/aberrationStrength = 1.0
 shader_parameter/vignetteCenter = Vector2(0.46, 0.57)
 shader_parameter/vignetteRadius = 0.588
@@ -51,7 +51,7 @@ spawnAreaMin = Vector2(0, 0)
 spawnAreaMax = Vector2(480, 100)
 
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(1282, 607)
+position = Vector2(1766, 607)
 script = ExtResource("2_5rovc")
 
 [node name="Health" type="Node2D" parent="Player"]
