@@ -12,7 +12,7 @@ public partial class BubbleGun : Node2D
 	[Export] public BubbleSettings Settings { get; set; }
 
 	[ExportCategory("UI Display")]
-	[Export] TextureRect uiDisplay;
+	[Export] Node2D uiDisplay;
 	[Export] Label bulletDisplay;
 
 	float _currentCharge = 0.0f;
@@ -95,7 +95,14 @@ public partial class BubbleGun : Node2D
 		Settings = bubbleSettings;
 		bulletLeft = Settings.bullet;
 		UpdateBulletDisplay();
-		uiDisplay.Texture = bubbleSettings.displayTexture;
+
+		foreach(var child in uiDisplay.GetChildren())
+			child.QueueFree();
+		var display = bubbleSettings.displayGFX?.Instantiate<Node2D>();
+		if(display == null )
+		return;
+		display.GlobalPosition = uiDisplay.GlobalPosition;
+		uiDisplay.AddChild(display);
 	}
 
 	void UpdateBulletDisplay()

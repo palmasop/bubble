@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://script/util/EnemyAI.cs" id="2_5w4ai"]
 [ext_resource type="PackedScene" uid="uid://flxsagfb8nq8" path="res://scene/particles/explosion.tscn" id="2_l3wur"]
 [ext_resource type="Script" path="res://script/util/health/Health.cs" id="3_xnl4k"]
-[ext_resource type="Texture2D" uid="uid://df3rb4gcfi5fs" path="res://assets/bubble_art/Enemies.png" id="5_1s0t4"]
+[ext_resource type="PackedScene" uid="uid://c220da5dkvpkr" path="res://scene/enemy/gfx/swimp_gfx.tscn" id="5_p68tj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1jgi"]
 
@@ -15,7 +15,7 @@ radius = 18.0
 script = ExtResource("1_qeyyc")
 type = 1
 dieEffect = ExtResource("2_l3wur")
-GFX = NodePath("GFX")
+GFX = NodePath("")
 
 [node name="EnemyAI" type="Node2D" parent="."]
 script = ExtResource("2_5w4ai")
@@ -35,12 +35,4 @@ shape = SubResource("RectangleShape2D_a1jgi")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_xi1ap")
 
-[node name="GFX" type="Node2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="GFX"]
-texture_filter = 1
-position = Vector2(-1, -1)
-scale = Vector2(1.61192, 1.65012)
-texture = ExtResource("5_1s0t4")
-region_enabled = true
-region_rect = Rect2(0.470837, 16.053, 15.5607, 16.2002)
+[node name="Swimp GFX" parent="." instance=ExtResource("5_p68tj")]

@@ -1,19 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://43q5ci3tvt4p"]
+[gd_scene load_steps=8 format=3 uid="uid://43q5ci3tvt4p"]
 
 [ext_resource type="Script" path="res://script/Enemy.cs" id="1_0iyj6"]
 [ext_resource type="PackedScene" uid="uid://flxsagfb8nq8" path="res://scene/particles/explosion.tscn" id="2_hgfqf"]
 [ext_resource type="Script" path="res://script/util/EnemyAI.cs" id="2_wvyav"]
 [ext_resource type="Script" path="res://script/util/health/Health.cs" id="3_kssaj"]
-[ext_resource type="Shader" path="res://shader/damage_flash.gdshader" id="5_vfmx6"]
-[ext_resource type="Texture2D" uid="uid://df3rb4gcfi5fs" path="res://assets/bubble_art/Enemies.png" id="6_0uvu4"]
+[ext_resource type="PackedScene" uid="uid://bjeo4oki3kbsq" path="res://scene/enemy/gfx/crab_gfx.tscn" id="5_canp3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1jgi"]
 size = Vector2(35, 34)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_baxye"]
-shader = ExtResource("5_vfmx6")
-shader_parameter/flash_color = Color(0.5, 0, 1, 1)
-shader_parameter/flash_modifier = 0.31
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xi1ap"]
 radius = 22.0
@@ -21,7 +15,7 @@ radius = 22.0
 [node name="Crab" type="CharacterBody2D" node_paths=PackedStringArray("GFX")]
 script = ExtResource("1_0iyj6")
 dieEffect = ExtResource("2_hgfqf")
-GFX = NodePath("GFX")
+GFX = NodePath("")
 
 [node name="EnemyAI" type="Node2D" parent="."]
 script = ExtResource("2_wvyav")
@@ -36,19 +30,9 @@ script = ExtResource("3_kssaj")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_a1jgi")
 
-[node name="GFX" type="Node2D" parent="."]
-material = SubResource("ShaderMaterial_baxye")
-
-[node name="Sprite2D" type="Sprite2D" parent="GFX"]
-texture_filter = 1
-position = Vector2(1.78814e-06, 9.53674e-07)
-scale = Vector2(2.625, 2.625)
-texture = ExtResource("6_0uvu4")
-region_enabled = true
-region_rect = Rect2(15, 16, 19, 16)
-
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_xi1ap")
+
+[node name="Crab GFX" parent="." instance=ExtResource("5_canp3")]

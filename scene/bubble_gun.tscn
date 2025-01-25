@@ -23,7 +23,7 @@ BulletScene = ExtResource("2_p54bx")
 shootPoint = NodePath("ShootPoint")
 BubblePreview = NodePath("ShootPoint/Bubble GFX")
 Settings = SubResource("Resource_37alx")
-uiDisplay = NodePath("CanvasLayer/HBoxContainer/TextureRect")
+uiDisplay = NodePath("CanvasLayer/HBoxContainer/Node2D")
 bulletDisplay = NodePath("CanvasLayer/HBoxContainer/Label")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -54,7 +54,10 @@ offset_top = 799.0
 offset_right = 472.0
 offset_bottom = 839.0
 
+[node name="Node2D" type="Node2D" parent="CanvasLayer/HBoxContainer"]
+
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+visible = false
 layout_mode = 2
 texture = SubResource("ImageTexture_qpyen")
 expand_mode = 2

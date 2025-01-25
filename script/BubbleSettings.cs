@@ -5,7 +5,7 @@ using Godot;
 public partial class BubbleSettings : Resource
 {
     public float ShootSpeed = 400.0f;
-    [Export] public Texture2D displayTexture;
+    [Export] public PackedScene displayGFX;
     [Export] public int bullet = 5;
     [Export] public float BulletLifetime = 3.0f;
 

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://flxsagfb8nq8" path="res://scene/particles/explosion.tscn" id="2_06n6e"]
 [ext_resource type="Script" path="res://script/util/EnemyAI.cs" id="2_cwq5i"]
 [ext_resource type="Script" path="res://script/util/health/Health.cs" id="3_wytvs"]
-[ext_resource type="Texture2D" uid="uid://df3rb4gcfi5fs" path="res://assets/bubble_art/Enemies.png" id="5_orr6u"]
+[ext_resource type="PackedScene" uid="uid://rwu50pt7owu" path="res://scene/enemy/gfx/fish_gfx.tscn" id="5_7f43x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1jgi"]
 size = Vector2(15, 15)
@@ -16,7 +16,7 @@ radius = 10.0499
 script = ExtResource("1_4nj5t")
 type = 2
 dieEffect = ExtResource("2_06n6e")
-GFX = NodePath("GFX")
+GFX = NodePath("")
 
 [node name="EnemyAI" type="Node2D" parent="."]
 script = ExtResource("2_cwq5i")
@@ -36,12 +36,4 @@ shape = SubResource("RectangleShape2D_a1jgi")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_xi1ap")
 
-[node name="GFX" type="Node2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="GFX"]
-texture_filter = 1
-position = Vector2(1, -1)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("5_orr6u")
-region_enabled = true
-region_rect = Rect2(32.3383, 15.0938, 16.3068, 17.266)
+[node name="Fish GFX" parent="." instance=ExtResource("5_7f43x")]
