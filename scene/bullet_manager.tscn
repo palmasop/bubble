@@ -1,15 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://b4i3u2kbahq2k"]
+[gd_scene load_steps=10 format=3 uid="uid://b4i3u2kbahq2k"]
 
 [ext_resource type="Script" path="res://script/manager/BulletManager.cs" id="1_vsr76"]
 [ext_resource type="Script" path="res://script/EnemyConfig.cs" id="2_2adif"]
 [ext_resource type="Script" path="res://script/BubbleSettings.cs" id="2_2e1sr"]
-[ext_resource type="PackedScene" uid="uid://bjeo4oki3kbsq" path="res://scene/enemy/gfx/crab_gfx.tscn" id="2_ufxi4"]
-[ext_resource type="PackedScene" uid="uid://c220da5dkvpkr" path="res://scene/enemy/gfx/swimp_gfx.tscn" id="5_ic3wu"]
-[ext_resource type="PackedScene" uid="uid://rwu50pt7owu" path="res://scene/enemy/gfx/fish_gfx.tscn" id="6_g5cau"]
 
 [sub_resource type="Resource" id="Resource_hs0na"]
 script = ExtResource("2_2e1sr")
-displayGFX = ExtResource("2_ufxi4")
 bullet = 5
 BulletLifetime = 3.0
 MinBulletScale = 3.0
@@ -25,7 +21,6 @@ bubbleSettings = SubResource("Resource_hs0na")
 
 [sub_resource type="Resource" id="Resource_8dcel"]
 script = ExtResource("2_2e1sr")
-displayGFX = ExtResource("5_ic3wu")
 bullet = 5
 BulletLifetime = 3.0
 MinBulletScale = 0.5
@@ -41,7 +36,6 @@ bubbleSettings = SubResource("Resource_8dcel")
 
 [sub_resource type="Resource" id="Resource_054i6"]
 script = ExtResource("2_2e1sr")
-displayGFX = ExtResource("6_g5cau")
 bullet = 5
 BulletLifetime = 3.0
 MinBulletScale = 0.2

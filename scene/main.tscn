@@ -17,7 +17,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-7, -2, 1244, -2, 1241,
 [node name="Main" type="Node2D"]
 
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(323, 649)
+position = Vector2(2088, 649)
 script = ExtResource("2_5rovc")
 
 [node name="Health" type="Node2D" parent="Player"]
