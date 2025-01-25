@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [Tool]
 public partial class WaveManager : Node2D
 {
-	[Export] TextureRect waveBackground;
+	[Export] Node2D waveBackground;
 	[Export] public NodePath[] waveSpawners; // Array of paths to EnemySpawner nodes
 	[Export] public float waveInterval = 10.0f; // Time between waves
 

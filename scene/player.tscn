@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bwi28b4qavp5e"]
+[gd_scene load_steps=14 format=3 uid="uid://bwi28b4qavp5e"]
 
 [ext_resource type="Script" path="res://script/Player.cs" id="1_rxkbi"]
 [ext_resource type="PackedScene" uid="uid://flxsagfb8nq8" path="res://scene/particles/explosion.tscn" id="2_cbgdb"]
@@ -9,13 +9,18 @@
 [ext_resource type="Script" path="res://script/util/health/DamageFlash.cs" id="5_jgi4y"]
 [ext_resource type="Script" path="res://script/ui/GameOverMenu.cs" id="6_7mltj"]
 [ext_resource type="PackedScene" uid="uid://1xinxumcen0r" path="res://scene/damageLabel.tscn" id="6_d8bhv"]
+[ext_resource type="Texture2D" uid="uid://cstmlkh5ys63j" path="res://assets/Bubble_Art/HealthBarUI.png" id="7_lqk75"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ljdc"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xksay"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h27ai"]
+texture = ExtResource("7_lqk75")
+region_rect = Rect2(0, 18, 160, 12)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qi5ak"]
-bg_color = Color(0.0544532, 0.933673, 0.789182, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ebpum"]
+texture = ExtResource("7_lqk75")
+texture_margin_top = 2.61155
+region_rect = Rect2(0, 0, 160, 15)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gameOverMenu")]
 position = Vector2(225, 666)
@@ -38,7 +43,7 @@ position = Vector2(1, 0)
 position = Vector2(33.6184, 0)
 script = ExtResource("5_6hwsm")
 health = NodePath("../Health")
-textColor = Color(0.0862745, 0, 0.976471, 1)
+textColor = Color(0.612556, 0, 0.299815, 1)
 floatSpeed = 100.0
 spawnAreaMin = Vector2(0, 0)
 spawnAreaMax = Vector2(0, 0)
@@ -56,8 +61,8 @@ offset_top = -50.0
 offset_right = 262.0
 offset_bottom = -23.0
 grow_vertical = 0
-theme_override_styles/background = SubResource("StyleBoxFlat_xksay")
-theme_override_styles/fill = SubResource("StyleBoxFlat_qi5ak")
+theme_override_styles/background = SubResource("StyleBoxTexture_h27ai")
+theme_override_styles/fill = SubResource("StyleBoxTexture_ebpum")
 show_percentage = false
 script = ExtResource("4_srf7l")
 health = NodePath("../../Health")

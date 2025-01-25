@@ -1,12 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://c746yoyx6jq0r"]
 
 [ext_resource type="Script" path="res://script/BubblePreview.cs" id="1_unplw"]
-[ext_resource type="Texture2D" uid="uid://r63bamk4ayda" path="res://assets/Bubble_Art/Bubble.png" id="2_m5fmm"]
+[ext_resource type="Texture2D" uid="uid://6fekkndiarxm" path="res://assets/Bubble_Art/Bubble.png" id="2_m5fmm"]
 
 [node name="Bubble GFX" type="Node2D"]
 script = ExtResource("1_unplw")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
 offset_left = -10.0
 offset_top = -10.0
 offset_right = 10.0

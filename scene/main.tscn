@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://cxb2m2lhpht5d"]
+[gd_scene load_steps=16 format=3 uid="uid://cxb2m2lhpht5d"]
 
 [ext_resource type="PackedScene" path="res://scene/enemy_spawner.tscn" id="1_qj3xk"]
 [ext_resource type="Texture2D" uid="uid://bygr1g8nclmbt" path="res://assets/Bubble_Art/Background.png" id="1_v8qlt"]
 [ext_resource type="Script" path="res://script/WaveManager.cs" id="2_6hu13"]
+[ext_resource type="Texture2D" uid="uid://cskpd4mkyd6rr" path="res://assets/Bubble_Art/Props.png" id="2_xhdbt"]
 [ext_resource type="PackedScene" uid="uid://dlaij1u1hsolb" path="res://scene/enemy/enemy_swimp.tscn" id="4_50k2g"]
 [ext_resource type="Shader" path="res://shader/dizzy.gdshader" id="6_7a2kq"]
 [ext_resource type="PackedScene" uid="uid://btimebe4h0gdl" path="res://scene/enemy/enemy_fish.tscn" id="6_lmx5n"]
@@ -38,19 +39,200 @@ gradient = SubResource("Gradient_r6bk3")
 
 [node name="Main" type="Node2D"]
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(0, -2673)
+
+[node name="Background" type="TextureRect" parent="Node2D"]
+texture_filter = 1
 offset_left = -7.0
-offset_top = -2672.0
+offset_top = 1.0
 offset_right = 4153.0
-offset_bottom = 859.0
+offset_bottom = 3532.0
 texture = ExtResource("1_v8qlt")
 stretch_mode = 4
 
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+modulate = Color(1, 1, 1, 0.364706)
+z_index = 1000
+texture_filter = 2
+position = Vector2(-9.00003, 348)
+rotation = 0.791499
+scale = Vector2(6.66667, 6.55556)
+texture = ExtResource("2_xhdbt")
+region_enabled = true
+region_rect = Rect2(0, 0, 18.9456, 18.1231)
+
+[node name="Sprite2D13" type="Sprite2D" parent="Node2D"]
+modulate = Color(1, 1, 1, 0.364706)
+z_index = 1000
+texture_filter = 2
+position = Vector2(618, 1073)
+rotation = -0.915228
+scale = Vector2(33.0581, 22.7042)
+texture = ExtResource("2_xhdbt")
+region_enabled = true
+region_rect = Rect2(0, 0, 18.9456, 18.1231)
+
+[node name="Sprite2D14" type="Sprite2D" parent="Node2D"]
+visible = false
+modulate = Color(1, 1, 1, 0.721569)
+z_index = 1000
+texture_filter = 2
+position = Vector2(-125, 954)
+rotation = -0.117724
+scale = Vector2(34.1775, 13.24)
+texture = ExtResource("2_xhdbt")
+region_enabled = true
+region_rect = Rect2(0, 0, 18.9456, 18.1231)
+
+[node name="Sprite2D15" type="Sprite2D" parent="Node2D"]
+modulate = Color(1, 1, 1, 0.686275)
+z_index = 1000
+texture_filter = 2
+position = Vector2(-629, 1100)
+rotation = -2.46232
+scale = Vector2(33.0581, 22.7042)
+texture = ExtResource("2_xhdbt")
+region_enabled = true
+region_rect = Rect2(0, 0, 18.9456, 18.1231)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
+modulate = Color(1, 1, 1, 0.364706)
+z_index = 1000
+texture_filter = 2
+position = Vector2(513, 546)
+rotation = -0.755698
+scale = Vector2(6.66667, 6.55556)
+texture = ExtResource("2_xhdbt")
+region_enabled = true
+region_rect = Rect2(27.8468, 1.37755, 36.3239, 46.8387)
+
+[node name="Sprite2D6" type="Sprite2D" parent="Node2D"]
+modulate = Color(1, 1, 1, 0.780392)
+z_index = 1000
+texture_filter = 2
+position = Vector2(-130, 2338)
+rotation = -2.20106
+scale = Vector2(17.39, 21.0305)
+texture = ExtResource("2_xhdbt")
+region_enabled = true
+region_rect = Rect2(27.8468, 1.37755, 36.3239, 46.8387)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Node2D"]
+modulate = Color(1, 1, 1, 0.686275)
+z_index = 1000
+texture_filter = 2
+position = Vector2(574, 930)
+rotation = -0.755698
+scale = Vector2(16.0789, 15.8109)
+texture = ExtResource("2_xhdbt")
+region_enabled = true
+region_rect = Rect2(140.642, 7.22091, 26.765, 21.9855)
+
+[node name="Sprite2D7" type="Sprite2D" parent="Node2D"]
+modulate = Color(1, 1, 1, 0.721569)
+z_index = 1000
+texture_filter = 2
+position = Vector2(529, 1958)
+rotation = -0.755698
+scale = Vector2(16.0789, 15.8109)
+texture = ExtResource("2_xhdbt")
+region_enabled = true
+region_rect = Rect2(140.642, 7.22091, 26.765, 21.9855)
+
+[node name="Sprite2D8" type="Sprite2D" parent="Node2D"]
+modulate = Color(1, 1, 1, 0.364706)
+z_index = 1000
+texture_filter = 2
+position = Vector2(514, 2759)
+rotation = -0.755698
+scale = Vector2(16.0789, 15.8109)
+texture = ExtResource("2_xhdbt")
+region_enabled = true
+region_rect = Rect2(140.642, 7.22091, 26.765, 21.9855)
+
+[node name="Sprite2D5" type="Sprite2D" parent="Node2D"]
+modulate = Color(1, 1, 1, 0.231373)
+z_index = 1000
+texture_filter = 2
+position = Vector2(-20, 1745)
+rotation = 0.695136
+scale = Vector2(16.0789, 15.8109)
+texture = ExtResource("2_xhdbt")
+region_enabled = true
+region_rect = Rect2(140.642, 7.22091, 26.765, 21.9855)
+
+[node name="Sprite2D16" type="Sprite2D" parent="Node2D"]
+visible = false
+modulate = Color(1, 1, 1, 0.407843)
+z_index = 1000
+texture_filter = 2
+position = Vector2(-74.0001, 1543)
+rotation = -0.349868
+scale = Vector2(16.0789, 15.8109)
+texture = ExtResource("2_xhdbt")
+region_enabled = true
+region_rect = Rect2(140.642, 7.22091, 26.765, 21.9855)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Node2D"]
+modulate = Color(1, 1, 1, 0.364706)
+z_index = 1000
+texture_filter = 2
+position = Vector2(36.5403, 658.405)
+rotation = 0.975715
+scale = Vector2(11.086, 10.9012)
+texture = ExtResource("2_xhdbt")
+region_enabled = true
+region_rect = Rect2(193.216, 11.8924, 15.2943, 21.0296)
+
+[node name="Sprite2D9" type="Sprite2D" parent="Node2D"]
+modulate = Color(1, 1, 1, 0.686275)
+z_index = 1000
+texture_filter = 2
+position = Vector2(-0.999977, 1150)
+rotation = 2.46698
+scale = Vector2(11.086, 10.9012)
+texture = ExtResource("2_xhdbt")
+region_enabled = true
+region_rect = Rect2(193.216, 11.8924, 15.2943, 21.0296)
+
+[node name="Sprite2D10" type="Sprite2D" parent="Node2D"]
+modulate = Color(1, 1, 1, 0.721569)
+z_index = 1000
+texture_filter = 2
+position = Vector2(490, 1724)
+rotation = 2.46698
+scale = Vector2(11.086, 10.9012)
+texture = ExtResource("2_xhdbt")
+region_enabled = true
+region_rect = Rect2(193.216, 11.8924, 15.2943, 21.0296)
+
+[node name="Sprite2D11" type="Sprite2D" parent="Node2D"]
+modulate = Color(1, 1, 1, 0.231373)
+z_index = 1000
+texture_filter = 2
+position = Vector2(36, 2571)
+rotation = 2.46698
+scale = Vector2(11.086, 10.9012)
+texture = ExtResource("2_xhdbt")
+region_enabled = true
+region_rect = Rect2(193.216, 11.8924, 15.2943, 21.0296)
+
+[node name="Sprite2D12" type="Sprite2D" parent="Node2D"]
+modulate = Color(1, 1, 1, 0.686275)
+z_index = 1000
+texture_filter = 2
+position = Vector2(13.0001, 3040)
+rotation = 1.59989
+scale = Vector2(11.086, 10.9012)
+texture = ExtResource("2_xhdbt")
+region_enabled = true
+region_rect = Rect2(193.216, 11.8924, 15.2943, 21.0296)
+
 [node name="Wave Spawner" type="Node2D" parent="." node_paths=PackedStringArray("waveBackground")]
 script = ExtResource("2_6hu13")
-waveBackground = NodePath("../Background")
+waveBackground = NodePath("../Node2D")
 waveSpawners = [NodePath("../Enemy Spawner"), NodePath("../Enemy Spawner2"), NodePath("../Enemy Spawner3"), NodePath("../Enemy Spawner4"), NodePath("../Enemy Spawner5"), NodePath("../Enemy Spawner6")]
-waveInterval = 5.0
 
 [node name="Enemy Spawner" parent="." instance=ExtResource("1_qj3xk")]
 position = Vector2(0, -94)
@@ -115,7 +297,6 @@ color = Color(0.080099, 0.0195188, 0.294703, 1)
 environment = SubResource("Environment_5mcnd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
 z_index = 4096
 material = SubResource("ShaderMaterial_ifxdj")
 position = Vector2(261.5, 455.875)
