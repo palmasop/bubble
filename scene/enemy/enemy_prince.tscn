@@ -19,7 +19,7 @@ script = ExtResource("1_1m6ky")
 type = 3
 attackDamage = 2
 dieEffect = ExtResource("2_sxp55")
-knockbackDecay = 0.0
+knockbackDecay = 5000.0
 knockbackForce = 0.0
 
 [node name="EnemyAI" type="Node2D" parent="."]
