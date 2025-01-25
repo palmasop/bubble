@@ -16,9 +16,6 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-7, -2, 1244, -2, 1241,
 
 [node name="Main" type="Node2D"]
 
-[node name="Bubble Gun" parent="." instance=ExtResource("1_p25kd")]
-position = Vector2(324, 649)
-
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(323, 649)
 script = ExtResource("2_5rovc")
@@ -28,6 +25,9 @@ script = ExtResource("3_bgevy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_3ljdc")
+
+[node name="Bubble Gun" parent="Player" instance=ExtResource("1_p25kd")]
+position = Vector2(1, 0)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 visible = false

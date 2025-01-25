@@ -13,6 +13,8 @@ public partial class Player : CharacterBody2D, IDamageable
 
     [Export] PackedScene dieEffect;
 
+    [Export] public int Speed { get; set; } = 400;
+
     Health health;
     Movement2D movement;
 
@@ -25,6 +27,18 @@ public partial class Player : CharacterBody2D, IDamageable
         health = GetNodeOrNull<Health>("Health");
         health.OnDie += () => EmitSignal(SignalName.OnPlayerDie, this);
         health.OnDie += Die;
+    }
+
+    public void GetInput()
+    {
+        Vector2 inputDirection = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+        Velocity = inputDirection * Speed;
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        GetInput();
+        MoveAndSlide();
     }
 
     void Die()
