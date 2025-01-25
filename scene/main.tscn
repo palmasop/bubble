@@ -25,6 +25,7 @@ script = ExtResource("3_bgevy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_3ljdc")
+disabled = true
 
 [node name="Bubble Gun" parent="Player" instance=ExtResource("1_p25kd")]
 position = Vector2(1, 0)
