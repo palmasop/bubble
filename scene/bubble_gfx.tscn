@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://script/BubblePreview.cs" id="1_unplw"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sgdav"]
-load_path = "res://.godot/imported/Bubble.png-a5ad2a5babba01de4c064ba219fdc9ca.ctex"
 
 [node name="Bubble GFX" type="Node2D"]
 script = ExtResource("1_unplw")
