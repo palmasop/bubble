@@ -87,6 +87,7 @@ public partial class BubbleGun : Node2D
 		if (bulletLeft > 0)
 			return;
 		var setting = BulletManager.Instance.GetBubbleSettingsByEnemey(enemy.type);
+		enemy.QueueFree();
 		ChangeGun(setting);
 	}
 
