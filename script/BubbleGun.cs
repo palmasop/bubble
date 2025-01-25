@@ -79,7 +79,7 @@ public partial class BubbleGun : Node2D
 
 		if (bullet is Bubble bubbleScript)
 			// bubbleScript.Init(Settings.BulletLifetime, Settings.ShootSpeed, _currentCharge, Settings.damage, bulletLeft < 0);
-			bubbleScript.Init(Settings.BulletLifetime, Settings.ShootSpeed, _currentCharge, Settings.damage, true);
+			bubbleScript.Init(Settings.BulletLifetime, Settings.ShootSpeed, _currentCharge, Settings.damage, true, Settings.displayGFX);
 	}
 
 	void BubbleOnHit(Enemy enemy)
@@ -103,6 +103,7 @@ public partial class BubbleGun : Node2D
 			return;
 		uiDisplay.AddChild(display);
 		display.GlobalPosition = uiDisplay.GlobalPosition;
+		BubblePreview.ChangePreview(bubbleSettings.displayGFX);
 	}
 
 	void UpdateBulletDisplay()

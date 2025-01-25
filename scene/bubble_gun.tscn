@@ -8,6 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_37alx"]
 script = ExtResource("3_tks2a")
+displayGFX = ExtResource("3_jgwwb")
 bullet = -1
 BulletLifetime = 3.0
 MinBulletScale = 0.5
