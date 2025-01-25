@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://43q5ci3tvt4p"]
+[gd_scene load_steps=9 format=3 uid="uid://43q5ci3tvt4p"]
 
 [ext_resource type="Script" path="res://script/Enemy.cs" id="1_0iyj6"]
 [ext_resource type="PackedScene" uid="uid://flxsagfb8nq8" path="res://scene/particles/explosion.tscn" id="2_hgfqf"]
 [ext_resource type="Script" path="res://script/util/EnemyAI.cs" id="2_wvyav"]
 [ext_resource type="Script" path="res://script/util/health/Health.cs" id="3_kssaj"]
 [ext_resource type="PackedScene" uid="uid://bjeo4oki3kbsq" path="res://scene/enemy/gfx/crab_gfx.tscn" id="5_canp3"]
+[ext_resource type="Script" path="res://script/EnemyGFXAnimation.cs" id="6_by2c4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1jgi"]
 size = Vector2(35, 34)
@@ -35,3 +36,4 @@ shape = SubResource("RectangleShape2D_a1jgi")
 shape = SubResource("CircleShape2D_xi1ap")
 
 [node name="Crab GFX" parent="." instance=ExtResource("5_canp3")]
+script = ExtResource("6_by2c4")

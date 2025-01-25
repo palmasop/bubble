@@ -47,12 +47,12 @@ color = Color(0.192181, 0.263396, 0.762688, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(47, -6)
+position = Vector2(45, -4)
 rotation = -1.5708
 scale = Vector2(4.10654, 4.15082)
 texture = ExtResource("5_ge7if")
 region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
+region_rect = Rect2(0, 16, 16, 16)
 
 [node name="ShootPoint" type="Node2D" parent="."]
 position = Vector2(39, 1)

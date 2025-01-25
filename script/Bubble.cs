@@ -112,6 +112,13 @@ public partial class Bubble : Area2D
             return;
         }
 
+        if (capturedEnemy != null)
+        {
+            Vector2 knockbackForce = (enemy.GlobalPosition - capturedEnemy.GlobalPosition).Normalized() * 1000;
+            GD.Print(knockbackForce);
+            enemy.Knockback(knockbackForce);
+        }
+
         if (capturedEnemy == null)
             CaptureEnemy(enemy);
     }

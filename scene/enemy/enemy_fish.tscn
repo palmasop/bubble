@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://btimebe4h0gdl"]
+[gd_scene load_steps=9 format=3 uid="uid://btimebe4h0gdl"]
 
 [ext_resource type="Script" path="res://script/Enemy.cs" id="1_4nj5t"]
 [ext_resource type="PackedScene" uid="uid://flxsagfb8nq8" path="res://scene/particles/explosion.tscn" id="2_06n6e"]
 [ext_resource type="Script" path="res://script/util/EnemyAI.cs" id="2_cwq5i"]
 [ext_resource type="Script" path="res://script/util/health/Health.cs" id="3_wytvs"]
 [ext_resource type="PackedScene" uid="uid://rwu50pt7owu" path="res://scene/enemy/gfx/fish_gfx.tscn" id="5_7f43x"]
+[ext_resource type="Script" path="res://script/EnemyGFXAnimation.cs" id="6_8acrt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1jgi"]
 size = Vector2(15, 15)
@@ -36,3 +37,4 @@ shape = SubResource("RectangleShape2D_a1jgi")
 shape = SubResource("CircleShape2D_xi1ap")
 
 [node name="Fish GFX" parent="." instance=ExtResource("5_7f43x")]
+script = ExtResource("6_8acrt")

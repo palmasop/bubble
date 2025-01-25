@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Godot;
 
 [Tool]
-public partial class Enemy : CharacterBody2D, IDamageable
+public partial class Enemy : CharacterBody2D, IDamageable, IKnockbackable
 {
     public static readonly List<Enemy> Enemies = new();
 
@@ -22,6 +22,12 @@ public partial class Enemy : CharacterBody2D, IDamageable
     [Export] PackedScene dieEffect;
     [Export] Node2D GFX;
 
+    [Export] float knockbackDecay = 2000;
+    [Export] protected float knockbackForce = 500;
+
+    Vector2 knockbackVelocity = Vector2.Zero;
+    bool isKnockedBack;
+
     RandomNumberGenerator rng = new();
     public EnemyAI enemyAI { get; private set; }
     public Health health { get; private set; }
@@ -34,7 +40,6 @@ public partial class Enemy : CharacterBody2D, IDamageable
         enemyAI = GetNodeOrNull<EnemyAI>("EnemyAI");
         health = GetNodeOrNull<Health>("Health");
         health.OnDie += Die;
-        health.OnChangeHealth += (int health) => GD.Print(Name, health);
     }
 
     public override void _ExitTree()
@@ -52,6 +57,7 @@ public partial class Enemy : CharacterBody2D, IDamageable
             player.TakeDamage(attackDamage);
             this.Die();
         }
+        KnockbackUpdate(delta);
     }
 
     public void TakeDamage(int damage) { health.TakeDamage(damage); }
@@ -89,5 +95,26 @@ public partial class Enemy : CharacterBody2D, IDamageable
             warnings.Add("Health node is missing");
 
         return warnings.ToArray();
+    }
+
+    public void Knockback(Vector2 force)
+    {
+        knockbackVelocity = force;
+        isKnockedBack = true;
+        enemyAI.disabledMovement = true;
+    }
+
+    void KnockbackUpdate(double delta)
+    {
+        if (!isKnockedBack) return;
+
+        knockbackVelocity = knockbackVelocity.MoveToward(Vector2.Zero, knockbackDecay * (float)delta);
+        Velocity = knockbackVelocity;
+        MoveAndSlide();
+
+        if (!(knockbackVelocity.Length() < 10)) return;
+        isKnockedBack = false;
+        knockbackVelocity = Vector2.Zero;
+        enemyAI.disabledMovement = false;
     }
 }
