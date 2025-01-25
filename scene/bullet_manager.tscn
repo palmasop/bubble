@@ -15,9 +15,9 @@ BulletLifetime = 3.0
 MinBulletScale = 3.0
 MaxBulletScale = 10.0
 ChargeRate = 2.0
-damage = 70
+damage = 0
 isChargable = false
-isCapturable = true
+isCapturable = false
 
 [sub_resource type="Resource" id="Resource_yr6sh"]
 script = ExtResource("2_2adif")
@@ -35,7 +35,7 @@ MaxBulletScale = 5.0
 ChargeRate = 2.0
 damage = 100
 isChargable = false
-isCapturable = true
+isCapturable = false
 
 [sub_resource type="Resource" id="Resource_ak7wd"]
 script = ExtResource("2_2adif")
@@ -53,7 +53,7 @@ MaxBulletScale = 3.0
 ChargeRate = 2.0
 damage = 70
 isChargable = false
-isCapturable = true
+isCapturable = false
 
 [sub_resource type="Resource" id="Resource_v4ymt"]
 script = ExtResource("2_2adif")
