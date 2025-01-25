@@ -105,7 +105,7 @@ public partial class Bubble : Area2D
         var enemySetting = BulletManager.Instance.GetEnemySettingsByEnemey(enemy.type);
         var isCapture = this.isCapture && Scale.X > enemySetting.minCaptureSize;
 
-        if (!isCapture)
+        if (!isCapture && !enemySetting.bubbleSettings.isCapturable)
         {
             enemy.TakeDamage(damage);
             Explode();

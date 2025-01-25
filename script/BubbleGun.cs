@@ -88,7 +88,7 @@ public partial class BubbleGun : Node2D
 
 		bulletLeft--;
 		UpdateBulletDisplay();
-		if (bulletLeft < 1)
+		if (bulletLeft < 0)
 			ChangeGun(defaultSettings);
 
 		var bullet = BulletScene.Instantiate<Bubble>();
