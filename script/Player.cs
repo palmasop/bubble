@@ -34,6 +34,14 @@ public partial class Player : CharacterBody2D, IDamageable
         // Make the player follow the cursor location on the x-axis
         Vector2 mousePosition = GetGlobalMousePosition();
         this.GlobalPosition = new Vector2(mousePosition.X, this.GlobalPosition.Y);
+
+        // Constrain the player's movement within the main scene boundaries
+        var mainSceneRect = GetViewportRect();
+
+        GlobalPosition = new Vector2(
+            Mathf.Clamp(GlobalPosition.X, mainSceneRect.Position.X, mainSceneRect.Position.X + mainSceneRect.Size.X),
+            Mathf.Clamp(GlobalPosition.Y, mainSceneRect.Position.Y, mainSceneRect.Position.Y + mainSceneRect.Size.Y)
+        );
     }
 
     public override void _PhysicsProcess(double delta)
