@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqjuoi4k5du4e"]
+
+[ext_resource type="Texture2D" uid="uid://rn7gywc23qwh" path="res://assets/Bubble_Art/Enemies.png" id="1_6bwbm"]
+
+[node name="Swimp GFX" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1, -1)
+scale = Vector2(1.61192, 1.65012)
+texture = ExtResource("1_6bwbm")
+region_enabled = true
+region_rect = Rect2(48.5926, 16.2842, 14.3238, 15.7427)

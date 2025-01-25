@@ -32,6 +32,8 @@ public partial class EnemySpawner : Node2D
 	private Vector2 _spawnAreaMax = new Vector2(800, 600); // Maximum corner of the spawn area
 
 	private float _timer = 0.0f;
+	private bool _isSpawning = false;
+	private int _spawnedEnemiesCount = 0;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -41,22 +43,25 @@ public partial class EnemySpawner : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(Engine.IsEditorHint()) {
-			return;
-		};
+		if (Engine.IsEditorHint() || !_isSpawning) return;
 
 		_timer += (float)delta;
 
-		if (_timer >= spawnInterval && Enemy.Enemies.Count < maxEnemies)
+		if (_timer >= spawnInterval && _spawnedEnemiesCount < maxEnemies)
 		{
 			SpawnEnemy();
 			_timer = 0.0f; // Reset the timer
 		}
 	}
 
+	public void StartSpawning()
+	{
+		_isSpawning = true;
+	}
+
 	private void SpawnEnemy()
 	{
-		if (enemyScenes.Length == 0) return; // Ensure there are enemy scenes to spawn
+		if (enemyScenes.Length == 0 || _spawnedEnemiesCount >= maxEnemies) return; // Ensure there are enemy scenes to spawn and maxEnemies is not reached
 
 		// Randomly select an enemy scene from the list
 		var randomIndex = GD.Randi() % (int)enemyScenes.Length; // Get a random index
@@ -64,6 +69,8 @@ public partial class EnemySpawner : Node2D
 		var enemy = (Enemy)enemyScene.Instantiate();
 		enemy.GlobalPosition = GetRandomSpawnPosition(); // Set a random spawn position
 		GetTree().CurrentScene.AddChild(enemy);
+
+		_spawnedEnemiesCount++; // Increment the spawned enemies count
 	}
 
 	private Vector2 GetRandomSpawnPosition()
