@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://rwu50pt7owu"]
 
-[ext_resource type="Texture2D" uid="uid://df3rb4gcfi5fs" path="res://assets/bubble_art/Enemies.png" id="1_hkbqt"]
+[ext_resource type="Texture2D" uid="uid://df3rb4gcfi5fs" path="res://assets/bubbleArt/Enemies.png" id="1_hkbqt"]
 
 [node name="Fish GFX" type="Node2D"]
 
