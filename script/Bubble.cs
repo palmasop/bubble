@@ -3,6 +3,8 @@ using System;
 
 public partial class Bubble : Projectile
 {
+    [Signal] public delegate void OnCaptureEventHandler(Node2D body);
+    [Signal] public delegate void OnReleaseCapturedEventHandler(Node2D body);
     [Export] float floatSpeed = 100f;
 
     Node2D captured = null;
@@ -58,8 +60,6 @@ public partial class Bubble : Projectile
     {
         var node = area.GetParent<Node2D>();
 
-        GD.Print(node?.Name, " ", captured?.Name);
-
         if (node == null || captured == null)
             return;
 
@@ -97,13 +97,16 @@ public partial class Bubble : Projectile
         if (capturable is not Node2D node)
             return;
         capturable.OnCapture();
+        EmitSignal(SignalName.OnCapture, node);
         captured = node;
     }
 
     void ReleaseCaptured()
     {
-        if (captured?.GetParent() is ICapturable capturable)
-            capturable.OnReleaseCapture();
+        if (captured?.GetParent() is not ICapturable capturable || capturable is not Node2D node)
+            return;
+        capturable.OnReleaseCapture();
+        EmitSignal(SignalName.OnReleaseCaptured, node);
     }
 
     public override void _ExitTree()
