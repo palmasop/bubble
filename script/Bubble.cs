@@ -6,25 +6,24 @@ public partial class Bubble : Projectile
     [Signal] public delegate void OnCaptureEventHandler(Node2D body);
     [Signal] public delegate void OnReleaseCapturedEventHandler(Node2D body);
     [Export] float floatSpeed = 100f;
+    [Export] float slowTime = 1;
+    Vector2 targetV;
 
     Node2D captured = null;
+
+    public override void Init(float lifetime, float speed, float scale, int damage, PackedScene display)
+    {
+        base.Init(lifetime, speed, scale, damage, display);
+        targetV = velocity / 10;
+    }
 
     public override void _Process(double delta)
     {
         base._Process(delta);
+
         if (captured != null)
-        {
-            if (IsInstanceValid(captured) && !captured.IsQueuedForDeletion())
-            {
-                captured.GlobalPosition = GlobalPosition;
-                velocity = Vector2.Up * floatSpeed;
-            }
-            else
-            {
-                captured = null;
-                QueueFree();
-            }
-        }
+            return;
+        velocity = velocity.Slerp(targetV, slowTime * (float)delta);
     }
 
     protected override void Explode()
@@ -99,14 +98,21 @@ public partial class Bubble : Projectile
         capturable.OnCapture();
         EmitSignal(SignalName.OnCapture, node);
         captured = node;
+        velocity = Vector2.Up * floatSpeed;
     }
 
     void ReleaseCaptured()
     {
-        if (captured?.GetParent() is not ICapturable capturable || capturable is not Node2D node)
+        if (captured == null || !IsInstanceValid(captured))
             return;
+
+        if (captured.GetParent() is not ICapturable capturable || capturable is not Node2D node)
+            return;
+
         capturable.OnReleaseCapture();
         EmitSignal(SignalName.OnReleaseCaptured, node);
+
+        captured = null;
     }
 
     public override void _ExitTree()

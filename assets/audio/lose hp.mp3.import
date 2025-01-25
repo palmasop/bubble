@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b1o58krw5s45s"
+path="res://.godot/imported/lose hp.mp3-a178b0a4d7cba2af600b3349179ba55e.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/lose hp.mp3"
+dest_files=["res://.godot/imported/lose hp.mp3-a178b0a4d7cba2af600b3349179ba55e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

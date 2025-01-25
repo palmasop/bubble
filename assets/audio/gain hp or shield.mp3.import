@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://8toheqqerk7w"
+path="res://.godot/imported/gain hp or shield.mp3-0bdcc104b0843937bf0352b2da9b1dab.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/gain hp or shield.mp3"
+dest_files=["res://.godot/imported/gain hp or shield.mp3-0bdcc104b0843937bf0352b2da9b1dab.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

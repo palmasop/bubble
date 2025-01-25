@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bnbn3imcbv31n"
+path="res://.godot/imported/spare 4.mp3-0f5f1cc99a3fb7cace3b666778779494.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/spare 4.mp3"
+dest_files=["res://.godot/imported/spare 4.mp3-0f5f1cc99a3fb7cace3b666778779494.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

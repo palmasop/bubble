@@ -21,7 +21,7 @@ public partial class Projectile : Area2D
         AreaEntered += HandleOnHit;
     }
 
-    public void Init(float lifetime, float speed, float scale, int damage, PackedScene display)
+    public virtual void Init(float lifetime, float speed, float scale, int damage, PackedScene display)
     {
         velocity = Vector2.Up * speed;
         Scale = Vector2.One * scale;

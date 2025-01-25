@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 BulletManager="*res://scene/bullet_manager.tscn"
+SoundManager="*res://scene/manager/sound/sound_manager.tscn"
 
 [display]
 
