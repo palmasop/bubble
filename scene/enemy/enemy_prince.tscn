@@ -14,10 +14,12 @@ radius = 22.0
 
 [node name="Prince" type="CharacterBody2D"]
 scale = Vector2(1.91, 1.91)
+motion_mode = 1
 script = ExtResource("1_1m6ky")
 type = 3
 attackDamage = 2
 dieEffect = ExtResource("2_sxp55")
+knockbackDecay = 0.0
 knockbackForce = 0.0
 
 [node name="EnemyAI" type="Node2D" parent="."]
