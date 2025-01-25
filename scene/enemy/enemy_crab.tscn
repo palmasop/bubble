@@ -12,10 +12,9 @@ size = Vector2(35, 34)
 [sub_resource type="CircleShape2D" id="CircleShape2D_xi1ap"]
 radius = 22.0
 
-[node name="Crab" type="CharacterBody2D" node_paths=PackedStringArray("GFX")]
+[node name="Crab" type="CharacterBody2D"]
 script = ExtResource("1_0iyj6")
 dieEffect = ExtResource("2_hgfqf")
-GFX = NodePath("")
 
 [node name="EnemyAI" type="Node2D" parent="."]
 script = ExtResource("2_wvyav")

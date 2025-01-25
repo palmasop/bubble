@@ -11,11 +11,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_xi1ap"]
 radius = 18.0
 
-[node name="Swimp" type="CharacterBody2D" node_paths=PackedStringArray("GFX")]
+[node name="Swimp" type="CharacterBody2D"]
 script = ExtResource("1_qeyyc")
 type = 1
 dieEffect = ExtResource("2_l3wur")
-GFX = NodePath("")
 
 [node name="EnemyAI" type="Node2D" parent="."]
 script = ExtResource("2_5w4ai")
