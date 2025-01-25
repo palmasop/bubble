@@ -15,7 +15,9 @@ radius = 22.0
 
 [node name="Crab" type="CharacterBody2D"]
 script = ExtResource("1_0iyj6")
+attackDamage = 5
 dieEffect = ExtResource("2_hgfqf")
+knockbackForce = 100.0
 
 [node name="EnemyAI" type="Node2D" parent="."]
 script = ExtResource("2_wvyav")
@@ -26,6 +28,7 @@ avoidance_enabled = true
 
 [node name="Health" type="Node2D" parent="."]
 script = ExtResource("3_kssaj")
+maxHealth = 150
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_a1jgi")

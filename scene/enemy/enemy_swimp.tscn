@@ -15,17 +15,20 @@ radius = 18.0
 [node name="Swimp" type="CharacterBody2D"]
 script = ExtResource("1_qeyyc")
 type = 1
+attackDamage = 3
 dieEffect = ExtResource("2_l3wur")
 
 [node name="EnemyAI" type="Node2D" parent="."]
 script = ExtResource("2_5w4ai")
 speed = 15.0
+pathfindingInterval = 0.2
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="EnemyAI"]
 avoidance_enabled = true
 
 [node name="Health" type="Node2D" parent="."]
 script = ExtResource("3_xnl4k")
+maxHealth = 50
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_a1jgi")
