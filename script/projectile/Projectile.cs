@@ -47,6 +47,11 @@ public partial class Projectile : Area2D
     void DieEffect()
     {
         var node = (Node2D)explodeEffect.Instantiate();
+        if (node is CpuParticles2D particles)
+        {
+            particles.ScaleAmountMin *= Scale.X;
+            particles.ScaleAmountMax *= Scale.X;
+        }
         node.GlobalPosition = GlobalPosition;
         node.Scale = Scale;
         GetTree().CurrentScene.AddChild(node);

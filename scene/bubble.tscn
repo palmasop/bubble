@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cvy3limomku1x"]
 
-[ext_resource type="Script" path="res://script/Bubble.cs" id="1_skt06"]
+[ext_resource type="Script" path="res://script/projectile/Bubble.cs" id="1_skt06"]
 [ext_resource type="PackedScene" uid="uid://c746yoyx6jq0r" path="res://scene/bubble_gfx.tscn" id="2_b822a"]
 [ext_resource type="PackedScene" uid="uid://flxsagfb8nq8" path="res://scene/particles/explosion.tscn" id="2_pjft1"]
 

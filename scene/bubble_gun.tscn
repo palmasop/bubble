@@ -9,6 +9,7 @@
 
 [sub_resource type="Resource" id="Resource_37alx"]
 script = ExtResource("3_tks2a")
+bulletScene = ExtResource("2_p54bx")
 displayGFX = ExtResource("3_jgwwb")
 bullet = -1
 BulletLifetime = 10.0
@@ -24,7 +25,6 @@ isCapturable = true
 [node name="Bubble Gun" type="Node2D" node_paths=PackedStringArray("shootPoint", "BubblePreview", "uiDisplay", "bulletDisplay")]
 position = Vector2(566, 588)
 script = ExtResource("1_80qyq")
-BulletScene = ExtResource("2_p54bx")
 shootPoint = NodePath("ShootPoint")
 BubblePreview = NodePath("ShootPoint/Bubble GFX")
 Settings = SubResource("Resource_37alx")

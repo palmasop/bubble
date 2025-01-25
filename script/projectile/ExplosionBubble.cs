@@ -1,65 +1,95 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
+[Tool]
 public partial class ExplosionBubble : Projectile
 {
-    [Export] float explosionRadius = 100f;
-    [Export] PackedScene explosionEffect;
-    [Export] Color debugColor = new Color(1, 0, 0, 0.5f);
-
-    public override void Explode()
+    [Export]
+    public float ExplosionRadius
     {
-        base.Explode();
-
-        if (explosionEffect != null)
+        get => _explosionRadius;
+        set
         {
-            var explosion = (Node2D)explosionEffect.Instantiate();
-            explosion.GlobalPosition = GlobalPosition;
-            GetParent().AddChild(explosion);
+            _explosionRadius = value;
+            QueueRedraw();
         }
-
-        DetectDamageableBodies();
-        QueueFree();
     }
 
-    private void DetectDamageableBodies()
+    [Export]
+    public Color DebugColor = new Color(1, 0, 0, 0.5f);
+
+    private float _explosionRadius = 100f;
+
+    Area2D _explosionArea;
+
+    List<IDamageable> _targets = new();
+
+    public override void _Ready()
     {
-        var explosionArea = new Area2D();
-        var collisionShape = new CircleShape2D { Radius = explosionRadius };
-        var shapeOwner = new CollisionShape2D();
-        shapeOwner.Shape = collisionShape;
-        explosionArea.AddChild(shapeOwner);
+        base._Ready();
+        SetupExplosionArea();
+    }
 
-        GetParent().AddChild(explosionArea);
-        explosionArea.GlobalPosition = GlobalPosition;
+    private void SetupExplosionArea()
+    {
+        _explosionArea = new Area2D();
 
-        var overlappingBodies = explosionArea.GetOverlappingBodies();
-
-        foreach (var body in overlappingBodies)
+        var collisionShape = new CollisionShape2D
         {
-            if (body is IDamageable damageable)
-            {
-                damageable.TakeDamage(damage);
-            }
-        }
+            Shape = new CircleShape2D { Radius = ExplosionRadius }
+        };
+        _explosionArea.AddChild(collisionShape);
 
-        explosionArea.QueueFree();
+        AddChild(_explosionArea);
+        _explosionArea.GlobalPosition = GlobalPosition;
+        _explosionArea.BodyEntered += AddTarget;
+        _explosionArea.BodyExited += RemoveTarget;
+        _explosionArea.AreaEntered += AddTarget;
+        _explosionArea.AreaExited += RemoveTarget;
+    }
+
+    private void AddTarget(Node2D body)
+    {
+        if (body.GetParent() is not IDamageable damageable)
+            return;
+        _targets.Add(damageable);
+    }
+
+    private void RemoveTarget(Node2D body)
+    {
+        if (body.GetParent() is not IDamageable damageable)
+            return;
+        _targets.Remove(damageable);
+    }
+
+    private void DetectAndApplyDamage()
+    {
+        foreach (var target in _targets)
+            target.TakeDamage(damage);
     }
 
     protected override void HandleOnHit(Area2D area)
     {
+        if (area.GetParent() is not IDamageable damageable)
+            return;
+
+        DetectAndApplyDamage();
         base.HandleOnHit(area);
         Explode();
     }
 
     public override void _Draw()
     {
-        DrawCircle(Vector2.Zero, explosionRadius, debugColor);
+        if (Engine.IsEditorHint())
+            DrawCircle(Vector2.Zero, ExplosionRadius, DebugColor);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
+        if (Engine.IsEditorHint())
+            return;
+
         base._Process(delta);
-        Update();
     }
 }

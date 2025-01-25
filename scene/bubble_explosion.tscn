@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://55dwaolg6t8u"]
+
+[ext_resource type="Script" path="res://script/projectile/ExplosionBubble.cs" id="1_d1ea4"]
+[ext_resource type="PackedScene" uid="uid://8e4ug3v4rbg2" path="res://scene/particles/explosionHeat.tscn" id="2_j2laf"]
+[ext_resource type="PackedScene" uid="uid://c746yoyx6jq0r" path="res://scene/bubble_gfx.tscn" id="3_v1ex1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xo32p"]
+
+[node name="Bubble" type="Area2D" node_paths=PackedStringArray("GFX")]
+script = ExtResource("1_d1ea4")
+ExplosionRadius = 20.0
+explodeEffect = ExtResource("2_j2laf")
+GFX = NodePath("Bubble GFX")
+
+[node name="Bubble GFX" parent="." instance=ExtResource("3_v1ex1")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xo32p")

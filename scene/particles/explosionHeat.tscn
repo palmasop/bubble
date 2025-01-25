@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://8e4ug3v4rbg2"]
+
+[ext_resource type="Script" path="res://script/util/particle/AutoStartParticle.cs" id="1_ricqc"]
+
+[sub_resource type="Gradient" id="Gradient_r11h5"]
+colors = PackedColorArray(0.764706, 0.333333, 0.054902, 0.866667, 1, 0.0196078, 0.0705882, 0.152941)
+
+[node name="explosion" type="CPUParticles2D"]
+emitting = false
+amount = 120
+lifetime = 0.2
+one_shot = true
+emission_shape = 1
+emission_sphere_radius = 30.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 48.19
+initial_velocity_max = 60.24
+damping_min = 40.0
+damping_max = 70.0
+scale_amount_min = 4.0
+scale_amount_max = 8.0
+color = Color(0.964706, 0, 0.0666667, 1)
+color_ramp = SubResource("Gradient_r11h5")
+script = ExtResource("1_ricqc")

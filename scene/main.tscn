@@ -99,7 +99,7 @@ spawnAreaMin = Vector2(0, 0)
 spawnAreaMax = Vector2(480, 100)
 
 [node name="Player" parent="." instance=ExtResource("8_bhipn")]
-position = Vector2(0, 602)
+position = Vector2(0, 638)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 visible = false

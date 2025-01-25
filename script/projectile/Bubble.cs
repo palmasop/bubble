@@ -70,7 +70,7 @@ public partial class Bubble : Projectile
 
         if (node is IKnockbackable knockbackable)
         {
-            Vector2 knockbackForce = (node.GlobalPosition - GlobalPosition).Normalized() * knockback;
+            Vector2 knockbackForce = (node.GlobalPosition - GlobalPosition).Normalized() * knockback * Scale.X / 2;
             knockbackable.Knockback(knockbackForce);
         }
     }

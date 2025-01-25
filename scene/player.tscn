@@ -14,7 +14,7 @@
 bg_color = Color(0.0544532, 0.933673, 0.789182, 1)
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(814.185, 602)
+position = Vector2(0, 602)
 script = ExtResource("1_rxkbi")
 
 [node name="Health" type="Node2D" parent="."]
