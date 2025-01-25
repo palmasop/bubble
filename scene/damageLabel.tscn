@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://1xinxumcen0r"]
 
-[ext_resource type="Script" path="res://script/util/health/DamageNumber.cs" id="1_ux3up"]
+[ext_resource type="Script" path="res://script/util/health/DamageNumber.cs" id="1_lcunw"]
 
 [node name="Label" type="Label"]
 texture_filter = 1
@@ -11,4 +11,4 @@ offset_bottom = 9.0
 text = "as"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("1_ux3up")
+script = ExtResource("1_lcunw")

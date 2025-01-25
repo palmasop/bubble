@@ -15,6 +15,10 @@ public partial class Player : CharacterBody2D, IDamageable
 
     [Export] public int Speed { get; set; } = 400;
 
+    //TODO: Make this a singleton
+
+    [Export] Control gameOverMenu;
+
     Health health;
     Movement2D movement;
 
@@ -27,6 +31,7 @@ public partial class Player : CharacterBody2D, IDamageable
         health = GetNodeOrNull<Health>("Health");
         health.OnDie += () => EmitSignal(SignalName.OnPlayerDie, this);
         health.OnDie += Die;
+        health.OnDie += () => gameOverMenu.Show();
     }
 
     public void GetInput()
@@ -46,6 +51,7 @@ public partial class Player : CharacterBody2D, IDamageable
 
     public override void _PhysicsProcess(double delta)
     {
+        if (Engine.IsEditorHint()) return;
         GetInput();
         MoveAndSlide();
     }

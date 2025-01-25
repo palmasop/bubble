@@ -38,6 +38,7 @@ public partial class DamageNumberAnimation : Node2D
 
     public override void _Ready()
     {
+        if (Engine.IsEditorHint()) return;
         health.OnTakeDamage += Initialize;
     }
 
@@ -53,7 +54,7 @@ public partial class DamageNumberAnimation : Node2D
         );
 
         DamageNumber damageNumber = label.Instantiate<DamageNumber>();
-        damageNumber.Init(velocity, textColor, fontSize, floatSpeed, fadeDuration, damageAmount.ToString(), position);
+        damageNumber.Init(velocity, textColor, fontSize, floatSpeed, fadeDuration, damageAmount.ToString(), GlobalPosition);
         GetTree().Root.AddChild(damageNumber);
     }
 

@@ -1,13 +1,10 @@
 using Godot;
 
-[Tool]
 public partial class DamageNumber : Label
 {
     [Export] private Color textColor = new Color(1, 0, 0);
     [Export] private float floatSpeed = 50.0f;
     [Export] private float fadeDuration = 0.5f;
-
-    [Export] PackedScene label;
 
     private Vector2 velocity;
     private float fadeTimer = 0f;
@@ -20,8 +17,6 @@ public partial class DamageNumber : Label
         this.fadeDuration = fadeDuration;
         Text = text;
         GlobalPosition = startPosition;
-
-        GD.Print(GlobalPosition);
     }
 
     public override void _Ready()

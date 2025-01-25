@@ -1,15 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjeo4oki3kbsq"]
+[gd_scene load_steps=2 format=3 uid="uid://bjeo4oki3kbsq"]
 
-[ext_resource type="Shader" path="res://shader/damage_flash.gdshader" id="1_3wkc5"]
 [ext_resource type="Texture2D" uid="uid://rn7gywc23qwh" path="res://assets/Bubble_Art/Enemies.png" id="2_yrwi3"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_baxye"]
-shader = ExtResource("1_3wkc5")
-shader_parameter/flash_color = Color(0.5, 0, 1, 1)
-shader_parameter/flash_modifier = 0.31
-
 [node name="Crab GFX" type="Node2D"]
-material = SubResource("ShaderMaterial_baxye")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

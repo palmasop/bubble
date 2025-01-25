@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwi28b4qavp5e"]
+[gd_scene load_steps=13 format=3 uid="uid://bwi28b4qavp5e"]
 
 [ext_resource type="Script" path="res://script/Player.cs" id="1_rxkbi"]
+[ext_resource type="PackedScene" uid="uid://flxsagfb8nq8" path="res://scene/particles/explosion.tscn" id="2_cbgdb"]
 [ext_resource type="Script" path="res://script/util/health/Health.cs" id="2_ye5d2"]
 [ext_resource type="PackedScene" uid="uid://o62p1vrfchcy" path="res://scene/bubble_gun.tscn" id="3_6xrxp"]
 [ext_resource type="Script" path="res://script/util/health/HealthBar.cs" id="4_srf7l"]
+[ext_resource type="Script" path="res://script/util/health/DamageNumberAnimation.cs" id="5_6hwsm"]
 [ext_resource type="Script" path="res://script/util/health/DamageFlash.cs" id="5_jgi4y"]
+[ext_resource type="Script" path="res://script/ui/GameOverMenu.cs" id="6_7mltj"]
+[ext_resource type="PackedScene" uid="uid://1xinxumcen0r" path="res://scene/damageLabel.tscn" id="6_d8bhv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ljdc"]
 
@@ -13,11 +17,14 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qi5ak"]
 bg_color = Color(0.0544532, 0.933673, 0.789182, 1)
 
-[node name="Player" type="CharacterBody2D"]
-position = Vector2(0, 602)
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gameOverMenu")]
+position = Vector2(225, 666)
 script = ExtResource("1_rxkbi")
+dieEffect = ExtResource("2_cbgdb")
+gameOverMenu = NodePath("CanvasLayer/GameOver")
 
 [node name="Health" type="Node2D" parent="."]
+position = Vector2(0, -8)
 script = ExtResource("2_ye5d2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -26,6 +33,17 @@ disabled = true
 
 [node name="Bubble Gun" parent="." instance=ExtResource("3_6xrxp")]
 position = Vector2(1, 0)
+
+[node name="TakeDamageNumber" type="Node2D" parent="." node_paths=PackedStringArray("health")]
+position = Vector2(33.6184, 0)
+script = ExtResource("5_6hwsm")
+health = NodePath("../Health")
+textColor = Color(0.0862745, 0, 0.976471, 1)
+floatSpeed = 100.0
+spawnAreaMin = Vector2(0, 0)
+spawnAreaMax = Vector2(0, 0)
+fontSize = 1.5
+label = ExtResource("6_d8bhv")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -63,3 +81,52 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="GameOver" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("restartButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_7mltj")
+restartButton = NodePath("Button")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.206329, 0.176784, 0.486597, 0.407843)
+
+[node name="Label" type="Label" parent="CanvasLayer/GameOver"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -151.0
+offset_top = 156.0
+offset_right = 153.0
+offset_bottom = 233.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 56
+text = "Game Over"
+
+[node name="Button" type="Button" parent="CanvasLayer/GameOver"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -175.0
+offset_right = 33.0
+offset_bottom = -144.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 36
+text = "Restart
+"
