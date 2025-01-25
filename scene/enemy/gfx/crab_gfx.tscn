@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bjeo4oki3kbsq"]
 
 [ext_resource type="Shader" path="res://shader/damage_flash.gdshader" id="1_3wkc5"]
-[ext_resource type="Texture2D" uid="uid://df3rb4gcfi5fs" path="res://assets/bubbleArt/Enemies.png" id="2_yrwi3"]
+[ext_resource type="Texture2D" uid="uid://rn7gywc23qwh" path="res://assets/Bubble_Art/Enemies.png" id="2_yrwi3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_baxye"]
 shader = ExtResource("1_3wkc5")
