@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cxb2m2lhpht5d"]
+[gd_scene load_steps=18 format=3 uid="uid://cxb2m2lhpht5d"]
 
 [ext_resource type="PackedScene" uid="uid://o62p1vrfchcy" path="res://scene/bubble_gun.tscn" id="1_p25kd"]
 [ext_resource type="PackedScene" uid="uid://q364g8ve7vdu" path="res://scene/enemy_spawner.tscn" id="1_qj3xk"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dlaij1u1hsolb" path="res://scene/enemy/enemy_swimp.tscn" id="4_50k2g"]
 [ext_resource type="Shader" path="res://shader/dizzy.gdshader" id="6_7a2kq"]
 [ext_resource type="PackedScene" uid="uid://btimebe4h0gdl" path="res://scene/enemy/enemy_fish.tscn" id="6_lmx5n"]
+[ext_resource type="PackedScene" uid="uid://c5r784i7765bd" path="res://scene/enemy/enemy_prince.tscn" id="7_fvuwg"]
 [ext_resource type="PackedScene" uid="uid://43q5ci3tvt4p" path="res://scene/enemy/enemy_crab.tscn" id="9_vhyqv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ljdc"]
@@ -50,7 +51,7 @@ texture = ExtResource("1_v8qlt")
 
 [node name="Wave Spawner" type="Node2D" parent="."]
 script = ExtResource("2_6hu13")
-waveSpawners = [NodePath("../Enemy Spawner"), NodePath("../Enemy Spawner2"), NodePath("../Enemy Spawner3"), NodePath("../Enemy Spawner4"), NodePath("../Enemy Spawner5")]
+waveSpawners = [NodePath("../Enemy Spawner"), NodePath("../Enemy Spawner2"), NodePath("../Enemy Spawner3"), NodePath("../Enemy Spawner4"), NodePath("../Enemy Spawner5"), NodePath("../Enemy Spawner6")]
 waveInterval = 5.0
 
 [node name="Enemy Spawner" parent="." instance=ExtResource("1_qj3xk")]
@@ -90,6 +91,14 @@ position = Vector2(0, -376)
 enemyScenes = [ExtResource("6_lmx5n")]
 spawnInterval = 1.0
 maxEnemies = 3
+spawnAreaMin = Vector2(0, 0)
+spawnAreaMax = Vector2(480, 100)
+
+[node name="Enemy Spawner6" parent="." instance=ExtResource("1_qj3xk")]
+position = Vector2(0, -376)
+enemyScenes = [ExtResource("7_fvuwg")]
+spawnInterval = 1.0
+maxEnemies = 1
 spawnAreaMin = Vector2(0, 0)
 spawnAreaMax = Vector2(480, 100)
 

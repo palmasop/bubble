@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5r784i7765bd"]
+[gd_scene load_steps=8 format=3 uid="uid://c5r784i7765bd"]
 
 [ext_resource type="Script" path="res://script/Enemy.cs" id="1_1m6ky"]
 [ext_resource type="PackedScene" uid="uid://flxsagfb8nq8" path="res://scene/particles/explosion.tscn" id="2_sxp55"]
 [ext_resource type="Script" path="res://script/util/EnemyAI.cs" id="3_hyrcp"]
 [ext_resource type="Script" path="res://script/util/health/Health.cs" id="4_q26mm"]
-[ext_resource type="PackedScene" uid="uid://bjeo4oki3kbsq" path="res://scene/enemy/gfx/crab_gfx.tscn" id="5_7ml6c"]
-[ext_resource type="Script" path="res://script/EnemyGFXAnimation.cs" id="6_enoqg"]
+[ext_resource type="PackedScene" uid="uid://bqjuoi4k5du4e" path="res://scene/enemy/gfx/prince_gfx.tscn" id="5_uaxar"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1jgi"]
 size = Vector2(35, 34)
@@ -14,10 +13,12 @@ size = Vector2(35, 34)
 radius = 22.0
 
 [node name="Prince" type="CharacterBody2D"]
+scale = Vector2(1.91, 1.91)
 script = ExtResource("1_1m6ky")
-attackDamage = 5
+type = 3
+attackDamage = 2
 dieEffect = ExtResource("2_sxp55")
-knockbackForce = 100.0
+knockbackForce = 0.0
 
 [node name="EnemyAI" type="Node2D" parent="."]
 script = ExtResource("3_hyrcp")
@@ -38,5 +39,6 @@ shape = SubResource("RectangleShape2D_a1jgi")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_xi1ap")
 
-[node name="Prince GFX" parent="." instance=ExtResource("5_7ml6c")]
-script = ExtResource("6_enoqg")
+[node name="Prince GFX" parent="." instance=ExtResource("5_uaxar")]
+position = Vector2(3, 2)
+scale = Vector2(1.53, 1.53)
