@@ -17,6 +17,7 @@ script = ExtResource("1_qeyyc")
 type = 1
 attackDamage = 3
 dieEffect = ExtResource("2_l3wur")
+Capturable = true
 
 [node name="EnemyAI" type="Node2D" parent="."]
 script = ExtResource("2_5w4ai")

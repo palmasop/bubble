@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Godot;
 
 [Tool]
-public partial class Enemy : CharacterBody2D, IDamageable, IKnockbackable
+public partial class Enemy : CharacterBody2D, IDamageable, IKnockbackable, ICapturable
 {
     public static readonly List<Enemy> Enemies = new();
 
@@ -32,6 +32,10 @@ public partial class Enemy : CharacterBody2D, IDamageable, IKnockbackable
     public EnemyAI enemyAI { get; private set; }
     public Health health { get; private set; }
 
+    [Export] public bool Capturable { get; set; }
+
+    [Export] public float minCaptureSize { get; set; } = 1;
+
     public override void _EnterTree()
     {
         base._EnterTree();
@@ -51,9 +55,10 @@ public partial class Enemy : CharacterBody2D, IDamageable, IKnockbackable
 
     public override void _Process(double delta)
     {
-        if(Engine.IsEditorHint()) return;
+        if (Engine.IsEditorHint()) return;
         Player player = Player.GetClosetPlayer(this.GlobalPosition);
-        if (this.GlobalPosition.DistanceTo(player.GlobalPosition) < 10) {
+        if (this.GlobalPosition.DistanceTo(player.GlobalPosition) < 10)
+        {
             player.TakeDamage(attackDamage);
             this.Die();
         }
@@ -116,5 +121,30 @@ public partial class Enemy : CharacterBody2D, IDamageable, IKnockbackable
         isKnockedBack = false;
         knockbackVelocity = Vector2.Zero;
         enemyAI.disabledMovement = false;
+    }
+
+    public void OnCapture()
+    {
+        enemyAI.disabledMovement = true;
+        SetProcess(false);
+        SetPhysicsProcess(false);
+
+        foreach (var child in GetChildren())
+        {
+            if (child is Area2D col)
+                col.Monitoring = false;
+        }
+    }
+
+    public void OnReleaseCapture()
+    {
+        enemyAI.disabledMovement = false;
+        SetProcess(true);
+        SetPhysicsProcess(true);
+        foreach (var child in GetChildren())
+        {
+            if (child is Area2D col)
+                col.Monitoring = true;
+        }
     }
 }

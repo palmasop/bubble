@@ -18,6 +18,7 @@ script = ExtResource("1_0iyj6")
 attackDamage = 5
 dieEffect = ExtResource("2_hgfqf")
 knockbackForce = 100.0
+Capturable = true
 
 [node name="EnemyAI" type="Node2D" parent="."]
 script = ExtResource("2_wvyav")

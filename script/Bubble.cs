@@ -1,85 +1,46 @@
 using Godot;
 using System;
 
-public partial class Bubble : Area2D
+public partial class Bubble : Projectile
 {
-    [Signal] public delegate void OnHitEventHandler(Enemy body);
+    [Export] float floatSpeed = 100f;
 
-    [Export] PackedScene explodeEffect;
-
-    float lifetime { get; set; } = 3.0f;
-    float floatSpeed = 100f;
-    int damage;
-    bool isCapture;
-
-    float timeAlive = 0.0f;
-    Vector2 velocity = Vector2.Zero;
-    Enemy capturedEnemy = null;
-
-   [Export] Node2D GFX;
-
-    public override void _Ready()
-    {
-        AreaEntered += OnAreaEntered;
-    }
-
-    public void Init(float lifetime, float speed, float scale, int damage, bool isCapture, PackedScene display)
-    {
-        velocity = Vector2.Up * speed;
-        Scale = Vector2.One * scale;
-        this.lifetime = lifetime;
-        this.damage = damage;
-        this.isCapture = isCapture;
-
-        foreach(var child in GFX.GetChildren())
-            child.QueueFree();
-        var displayGFX = display.Instantiate<Node2D>();
-        GFX.AddChild(displayGFX);
-        displayGFX.GlobalPosition = GFX.GlobalPosition;
-    }
+    Node2D captured = null;
 
     public override void _Process(double delta)
     {
-        if (capturedEnemy != null)
+        base._Process(delta);
+        if (captured != null)
         {
-            if (IsInstanceValid(capturedEnemy) && !capturedEnemy.IsQueuedForDeletion())
+            if (IsInstanceValid(captured) && !captured.IsQueuedForDeletion())
             {
-                capturedEnemy.GlobalPosition = GlobalPosition;
+                captured.GlobalPosition = GlobalPosition;
                 velocity = Vector2.Up * floatSpeed;
             }
             else
             {
-                capturedEnemy = null;
+                captured = null;
                 QueueFree();
             }
         }
-
-        Position += velocity * (float)delta;
-
-        timeAlive += (float)delta;
-        if (timeAlive >= lifetime)
-            Explode();
     }
 
-    void Explode()
+    protected override void Explode()
     {
-        ReleaseCapturedEnemy();
-        DieEffect();
-        QueueFree();
+        ReleaseCaptured();
+        base.Explode();
     }
 
-    void DieEffect()
+    protected override void HandleOnHit(Area2D area)
     {
-        var node = (Node2D)explodeEffect.Instantiate();
-        node.GlobalPosition = GlobalPosition;
-        node.Scale = Scale;
-        GetTree().CurrentScene.AddChild(node);
-    }
-
-    public void OnAreaEntered(Area2D area)
-    {
+        base.HandleOnHit(area);
+        if (area == captured)
+            return;
         if (!HandleHitBubble(area))
-            HandleHitEnemey(area);
+        {
+            HandleHitKnockback(area);
+            HandleHit(area);
+        }
     }
 
     bool HandleHitBubble(Area2D area)
@@ -93,66 +54,60 @@ public partial class Bubble : Area2D
     }
 
 
-    void HandleHitEnemey(Area2D area)
+    void HandleHitKnockback(Area2D area)
     {
-        if (area.GetParent() is not Enemy enemy)
+        var node = area.GetParent<Node2D>();
+
+        GD.Print(node?.Name, " ", captured?.Name);
+
+        if (node == null || captured == null)
             return;
 
-        EmitSignal(SignalName.OnHit, enemy);
-
-        var enemySetting = BulletManager.Instance.GetEnemySettingsByEnemey(enemy.type);
-        var isCapture = this.isCapture && Scale.X > enemySetting.minCaptureSize;
-
-        if (!isCapture && !enemySetting.bubbleSettings.isCapturable)
+        if (node is IKnockbackable knockbackable)
         {
-            enemy.TakeDamage(damage);
-            Explode();
-            return;
-        }
-
-        if (capturedEnemy != null)
-        {
-            Vector2 knockbackForce = (enemy.GlobalPosition - capturedEnemy.GlobalPosition).Normalized() * 1000;
-            enemy.Knockback(knockbackForce);
-        }
-
-        if (capturedEnemy == null)
-            CaptureEnemy(enemy);
-    }
-
-    void CaptureEnemy(Enemy enemy)
-    {
-        capturedEnemy = enemy;
-
-        enemy.enemyAI.disabledMovement = true;
-        enemy.SetProcess(false);
-        enemy.SetPhysicsProcess(false);
-
-        foreach (var child in enemy.GetChildren())
-        {
-            if (child is Area2D col)
-                col.Monitoring = false;
+            Vector2 knockbackForce = (node.GlobalPosition - captured.GlobalPosition).Normalized() * 500;
+            knockbackable.Knockback(knockbackForce);
         }
     }
 
-    void ReleaseCapturedEnemy()
+    void HandleHit(Area2D area)
     {
-        if (capturedEnemy != null)
+        var node = area.GetParent<Node2D>();
+
+        if (node is not IDamageable damageable)
+            return;
+
+        base.HandleOnHit(area);
+
+        if (captured != null)
+            return;
+
+        if (node is ICapturable capturable && capturable.Capturable && Scale.X > capturable.minCaptureSize)
         {
-            capturedEnemy.enemyAI.disabledMovement = false;
-            capturedEnemy.SetProcess(true);
-            capturedEnemy.SetPhysicsProcess(true);
-            foreach (var child in capturedEnemy.GetChildren())
-            {
-                if (child is Area2D col)
-                    col.Monitoring = true;
-            }
-            capturedEnemy = null;
+            Capture(capturable);
+            return;
         }
+
+        damageable.TakeDamage(damage);
+        Explode();
+    }
+
+    void Capture(ICapturable capturable)
+    {
+        if (capturable is not Node2D node)
+            return;
+        capturable.OnCapture();
+        captured = node;
+    }
+
+    void ReleaseCaptured()
+    {
+        if (captured?.GetParent() is ICapturable capturable)
+            capturable.OnReleaseCapture();
     }
 
     public override void _ExitTree()
     {
-        ReleaseCapturedEnemy();
+        ReleaseCaptured();
     }
 }

@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://cxb2m2lhpht5d"]
 
 [ext_resource type="PackedScene" uid="uid://o62p1vrfchcy" path="res://scene/bubble_gun.tscn" id="1_p25kd"]
-[ext_resource type="PackedScene" uid="uid://q364g8ve7vdu" path="res://scene/enemy_spawner.tscn" id="1_qj3xk"]
+[ext_resource type="PackedScene" path="res://scene/enemy_spawner.tscn" id="1_qj3xk"]
 [ext_resource type="Texture2D" uid="uid://bhj536j86ygrj" path="res://assets/Bubble_Art/Background.png" id="1_v8qlt"]
 [ext_resource type="Script" path="res://script/Player.cs" id="2_5rovc"]
 [ext_resource type="Script" path="res://script/util/health/Health.cs" id="3_bgevy"]

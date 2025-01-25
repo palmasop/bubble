@@ -11,7 +11,7 @@
 script = ExtResource("3_tks2a")
 displayGFX = ExtResource("3_jgwwb")
 bullet = -1
-BulletLifetime = 3.0
+BulletLifetime = 10.0
 MinBulletScale = 0.5
 MaxBulletScale = 3.0
 ChargeRate = 2.0
