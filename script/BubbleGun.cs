@@ -40,7 +40,7 @@ public partial class BubbleGun : Node2D
 	{
 		if (Settings == null) return;
 
-		LookAt(GetGlobalMousePosition());
+		Rotation = Mathf.Pi / 2; // Always point to the north
 
 		if (Input.IsActionPressed("shoot"))
 		{
