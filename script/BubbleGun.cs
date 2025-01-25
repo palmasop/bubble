@@ -99,10 +99,10 @@ public partial class BubbleGun : Node2D
 		foreach(var child in uiDisplay.GetChildren())
 			child.QueueFree();
 		var display = bubbleSettings.displayGFX?.Instantiate<Node2D>();
-		if(display == null )
-		return;
-		display.GlobalPosition = uiDisplay.GlobalPosition;
+		if(display == null)
+			return;
 		uiDisplay.AddChild(display);
+		display.GlobalPosition = uiDisplay.GlobalPosition;
 	}
 
 	void UpdateBulletDisplay()

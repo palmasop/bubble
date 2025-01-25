@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://o62p1vrfchcy"]
+[gd_scene load_steps=8 format=3 uid="uid://o62p1vrfchcy"]
 
 [ext_resource type="Script" path="res://script/BubbleGun.cs" id="1_80qyq"]
 [ext_resource type="PackedScene" uid="uid://cvy3limomku1x" path="res://scene/bubble.tscn" id="2_p54bx"]
 [ext_resource type="PackedScene" uid="uid://c746yoyx6jq0r" path="res://scene/bubble_gfx.tscn" id="3_jgwwb"]
 [ext_resource type="Script" path="res://script/BubbleSettings.cs" id="3_tks2a"]
+[ext_resource type="PackedScene" uid="uid://bjeo4oki3kbsq" path="res://scene/enemy/gfx/crab_gfx.tscn" id="5_cjgce"]
 
 [sub_resource type="Resource" id="Resource_37alx"]
 script = ExtResource("3_tks2a")
@@ -55,6 +56,9 @@ offset_right = 472.0
 offset_bottom = 839.0
 
 [node name="Node2D" type="Node2D" parent="CanvasLayer/HBoxContainer"]
+position = Vector2(-30, 15)
+
+[node name="Crab GFX" parent="CanvasLayer/HBoxContainer/Node2D" instance=ExtResource("5_cjgce")]
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
 visible = false
