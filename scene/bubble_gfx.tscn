@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c746yoyx6jq0r"]
 
 [ext_resource type="Script" path="res://script/BubblePreview.cs" id="1_unplw"]
-[ext_resource type="Texture2D" uid="uid://hyxy0gaykh7v" path="res://assets/bubble.png" id="2_mjrw7"]
+[ext_resource type="Texture2D" uid="uid://scq4y71a0p2l" path="res://assets/bubble_art/Bubble.png" id="2_sotxx"]
 
 [node name="Bubble GFX" type="Node2D"]
 script = ExtResource("1_unplw")
@@ -11,5 +11,5 @@ offset_left = -10.0
 offset_top = -10.0
 offset_right = 10.0
 offset_bottom = 10.0
-texture = ExtResource("2_mjrw7")
+texture = ExtResource("2_sotxx")
 expand_mode = 2

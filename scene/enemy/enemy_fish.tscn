@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://btimebe4h0gdl"]
+[gd_scene load_steps=8 format=3 uid="uid://btimebe4h0gdl"]
 
 [ext_resource type="Script" path="res://script/Enemy.cs" id="1_4nj5t"]
 [ext_resource type="PackedScene" uid="uid://flxsagfb8nq8" path="res://scene/particles/explosion.tscn" id="2_06n6e"]
 [ext_resource type="Script" path="res://script/util/EnemyAI.cs" id="2_cwq5i"]
 [ext_resource type="Script" path="res://script/util/health/Health.cs" id="3_wytvs"]
+[ext_resource type="Texture2D" uid="uid://df3rb4gcfi5fs" path="res://assets/bubble_art/Enemies.png" id="5_orr6u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1jgi"]
 size = Vector2(15, 15)
@@ -37,9 +38,10 @@ shape = SubResource("CircleShape2D_xi1ap")
 
 [node name="GFX" type="Node2D" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="GFX"]
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 8.0
-color = Color(0, 0.543701, 0.642407, 1)
+[node name="Sprite2D" type="Sprite2D" parent="GFX"]
+texture_filter = 1
+position = Vector2(1, -1)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_orr6u")
+region_enabled = true
+region_rect = Rect2(32.3383, 15.0938, 16.3068, 17.266)

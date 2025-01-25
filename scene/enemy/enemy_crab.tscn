@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://43q5ci3tvt4p"]
+[gd_scene load_steps=10 format=3 uid="uid://43q5ci3tvt4p"]
 
 [ext_resource type="Script" path="res://script/Enemy.cs" id="1_0iyj6"]
 [ext_resource type="PackedScene" uid="uid://flxsagfb8nq8" path="res://scene/particles/explosion.tscn" id="2_hgfqf"]
 [ext_resource type="Script" path="res://script/util/EnemyAI.cs" id="2_wvyav"]
 [ext_resource type="Script" path="res://script/util/health/Health.cs" id="3_kssaj"]
 [ext_resource type="Shader" path="res://shader/damage_flash.gdshader" id="5_vfmx6"]
+[ext_resource type="Texture2D" uid="uid://df3rb4gcfi5fs" path="res://assets/bubble_art/Enemies.png" id="6_0uvu4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1jgi"]
 size = Vector2(35, 34)
@@ -38,12 +39,13 @@ shape = SubResource("RectangleShape2D_a1jgi")
 [node name="GFX" type="Node2D" parent="."]
 material = SubResource("ShaderMaterial_baxye")
 
-[node name="ColorRect" type="ColorRect" parent="GFX"]
-offset_left = -18.0
-offset_top = -17.0
-offset_right = 18.0
-offset_bottom = 17.0
-color = Color(0.769273, 0.0768264, 0, 1)
+[node name="Sprite2D" type="Sprite2D" parent="GFX"]
+texture_filter = 1
+position = Vector2(1.78814e-06, 9.53674e-07)
+scale = Vector2(2.625, 2.625)
+texture = ExtResource("6_0uvu4")
+region_enabled = true
+region_rect = Rect2(15, 16, 19, 16)
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
