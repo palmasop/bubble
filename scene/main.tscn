@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxb2m2lhpht5d"]
+[gd_scene load_steps=13 format=3 uid="uid://cxb2m2lhpht5d"]
 
 [ext_resource type="PackedScene" uid="uid://o62p1vrfchcy" path="res://scene/bubble_gun.tscn" id="1_p25kd"]
 [ext_resource type="PackedScene" uid="uid://q364g8ve7vdu" path="res://scene/enemy_spawner.tscn" id="1_qj3xk"]
+[ext_resource type="Texture2D" uid="uid://bhj536j86ygrj" path="res://assets/Bubble_Art/Background.png" id="1_v8qlt"]
 [ext_resource type="Script" path="res://script/Player.cs" id="2_5rovc"]
 [ext_resource type="Script" path="res://script/util/health/Health.cs" id="3_bgevy"]
+[ext_resource type="Shader" path="res://shader/dizzy.gdshader" id="6_7a2kq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ljdc"]
 
@@ -12,7 +14,35 @@ vertices = PackedVector2Array(1231.01, 2689.87, -3.96875, 2675.11, 2.96875, 8, 1
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-7, -2, 1244, -2, 1241, 2700, -14, 2685)])
 
+[sub_resource type="Environment" id="Environment_5mcnd"]
+ambient_light_color = Color(0.161494, 0.0930708, 0.353267, 1)
+fog_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ifxdj"]
+shader = ExtResource("6_7a2kq")
+shader_parameter/distortionStrength = 0.018
+shader_parameter/distortionSpeed = 2.0
+shader_parameter/distortionFrequency = Vector2(10, 10)
+shader_parameter/distortionSoftness = 2.0
+shader_parameter/aberrationStrength = 1.0
+shader_parameter/vignetteCenter = Vector2(0.5, 0.5)
+shader_parameter/vignetteRadius = 0.689
+shader_parameter/vignetteSoftness = 0.457
+shader_parameter/vignetteColor = Vector4(0.05, 0, 0.1, 1)
+
+[sub_resource type="Gradient" id="Gradient_r6bk3"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_id6q8"]
+gradient = SubResource("Gradient_r6bk3")
+
 [node name="Main" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -26.0
+offset_top = -32.0
+offset_right = 512.0
+offset_bottom = 924.0
+texture = ExtResource("1_v8qlt")
 
 [node name="Enemy Spawner" parent="." instance=ExtResource("1_qj3xk")]
 position = Vector2(0, -94)
@@ -21,7 +51,7 @@ spawnAreaMin = Vector2(0, 0)
 spawnAreaMax = Vector2(480, 100)
 
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(0, 649)
+position = Vector2(1536, 674)
 script = ExtResource("2_5rovc")
 
 [node name="Health" type="Node2D" parent="Player"]
@@ -37,3 +67,17 @@ position = Vector2(1, 0)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_nbcjd")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
+color = Color(0.080099, 0.0195188, 0.294703, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5mcnd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 4096
+material = SubResource("ShaderMaterial_ifxdj")
+position = Vector2(261.5, 455.875)
+scale = Vector2(3.03516, 1058.25)
+texture = SubResource("GradientTexture1D_id6q8")

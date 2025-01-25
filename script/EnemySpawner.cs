@@ -42,7 +42,6 @@ public partial class EnemySpawner : Node2D
 	public override void _Process(double delta)
 	{
 		if(Engine.IsEditorHint()) {
-			// _Draw();
 			return;
 		};
 
@@ -77,7 +76,8 @@ public partial class EnemySpawner : Node2D
 
 	public override void _Draw()
 	{
-		GD.Print("HI");
+				if(!Engine.IsEditorHint()) return;
+
 		DrawRect(new Rect2(spawnAreaMin, spawnAreaMax - spawnAreaMin), new Color(1, 0, 0, 0.5f)); // Semi-transparent red
 	}
 }
