@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b44o6fonb27a1"
-path="res://.godot/imported/Bubbles.png-7536505f5caf3a0e98700f5aea923bb6.ctex"
+uid="uid://cnmmiui6hfkfa"
+path="res://.godot/imported/Background.png-9629520b4272a408ab43ca77dbdfcfe9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Bubble_Art/Bubbles.png"
-dest_files=["res://.godot/imported/Bubbles.png-7536505f5caf3a0e98700f5aea923bb6.ctex"]
+source_file="res://scene/enemy/Background.png"
+dest_files=["res://.godot/imported/Background.png-9629520b4272a408ab43ca77dbdfcfe9.ctex"]
 
 [params]
 

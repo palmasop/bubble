@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://bjeo4oki3kbsq"]
 
-[ext_resource type="Texture2D" uid="uid://rn7gywc23qwh" path="res://assets/Bubble_Art/Enemies.png" id="2_yrwi3"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j5vqr"]
+load_path = "res://.godot/imported/Enemies.png-7654e8f999e142970abf5727d4e8ea6b.ctex"
 
 [node name="Crab GFX" type="Node2D"]
 
@@ -8,6 +9,6 @@
 texture_filter = 1
 position = Vector2(1.78814e-06, 9.53674e-07)
 scale = Vector2(2.625, 2.625)
-texture = ExtResource("2_yrwi3")
+texture = SubResource("CompressedTexture2D_j5vqr")
 region_enabled = true
 region_rect = Rect2(15, 16, 19, 16)

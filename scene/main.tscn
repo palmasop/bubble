@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://cxb2m2lhpht5d"]
 
 [ext_resource type="PackedScene" path="res://scene/enemy_spawner.tscn" id="1_qj3xk"]
-[ext_resource type="Texture2D" uid="uid://bhj536j86ygrj" path="res://assets/Bubble_Art/Background.png" id="1_v8qlt"]
+[ext_resource type="Texture2D" uid="uid://bygr1g8nclmbt" path="res://assets/Bubble_Art/Background.png" id="1_v8qlt"]
 [ext_resource type="Script" path="res://script/WaveManager.cs" id="2_6hu13"]
 [ext_resource type="PackedScene" uid="uid://dlaij1u1hsolb" path="res://scene/enemy/enemy_swimp.tscn" id="4_50k2g"]
 [ext_resource type="Shader" path="res://shader/dizzy.gdshader" id="6_7a2kq"]
@@ -38,15 +38,17 @@ gradient = SubResource("Gradient_r6bk3")
 
 [node name="Main" type="Node2D"]
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -26.0
-offset_top = -32.0
-offset_right = 512.0
-offset_bottom = 924.0
+[node name="Background" type="TextureRect" parent="."]
+offset_left = -7.0
+offset_top = -2672.0
+offset_right = 4153.0
+offset_bottom = 859.0
 texture = ExtResource("1_v8qlt")
+stretch_mode = 4
 
-[node name="Wave Spawner" type="Node2D" parent="."]
+[node name="Wave Spawner" type="Node2D" parent="." node_paths=PackedStringArray("waveBackground")]
 script = ExtResource("2_6hu13")
+waveBackground = NodePath("../Background")
 waveSpawners = [NodePath("../Enemy Spawner"), NodePath("../Enemy Spawner2"), NodePath("../Enemy Spawner3"), NodePath("../Enemy Spawner4"), NodePath("../Enemy Spawner5"), NodePath("../Enemy Spawner6")]
 waveInterval = 5.0
 
@@ -113,6 +115,7 @@ color = Color(0.080099, 0.0195188, 0.294703, 1)
 environment = SubResource("Environment_5mcnd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 z_index = 4096
 material = SubResource("ShaderMaterial_ifxdj")
 position = Vector2(261.5, 455.875)

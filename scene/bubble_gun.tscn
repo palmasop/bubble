@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://c746yoyx6jq0r" path="res://scene/bubble_gfx.tscn" id="3_jgwwb"]
 [ext_resource type="Script" path="res://script/BubbleSettings.cs" id="3_tks2a"]
 [ext_resource type="PackedScene" uid="uid://bjeo4oki3kbsq" path="res://scene/enemy/gfx/crab_gfx.tscn" id="5_cjgce"]
-[ext_resource type="Texture2D" uid="uid://ddg1783eqgbr2" path="res://assets/Bubble_Art/Mermaids.png" id="5_ge7if"]
 
 [sub_resource type="Resource" id="Resource_37alx"]
 script = ExtResource("3_tks2a")
@@ -19,6 +18,9 @@ ChargeRate = 2.0
 damage = 10
 isChargable = true
 isCapturable = true
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2yi1l"]
+load_path = "res://.godot/imported/Mermaids.png-d0a4d8b51b718ca7ea06f0b2dcecdb67.ctex"
 
 [sub_resource type="ImageTexture" id="ImageTexture_qpyen"]
 
@@ -52,7 +54,7 @@ texture_filter = 1
 position = Vector2(45, -4)
 rotation = -1.5708
 scale = Vector2(4.10654, 4.15082)
-texture = ExtResource("5_ge7if")
+texture = SubResource("CompressedTexture2D_2yi1l")
 region_enabled = true
 region_rect = Rect2(0, 16, 16, 16)
 
