@@ -17,6 +17,7 @@ MaxBulletScale = 3.0
 ChargeRate = 2.0
 damage = 10
 isChargable = true
+isCapturable = true
 
 [sub_resource type="ImageTexture" id="ImageTexture_qpyen"]
 
