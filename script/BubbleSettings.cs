@@ -15,4 +15,5 @@ public partial class BubbleSettings : Resource
 
     [Export] public float ChargeRate = 2.0f;
     [Export] public int damage = 70;
+    [Export] public bool isChargable = true;
 }

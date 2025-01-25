@@ -15,6 +15,9 @@ public partial class BubbleGun : Node2D
 	[Export] Node2D uiDisplay;
 	[Export] Label bulletDisplay;
 
+	[Export] public float ShootInterval = 0.5f; // Interval between each shoot in seconds
+	private float _timeSinceLastShoot = 0.0f;
+
 	float _currentCharge = 0.0f;
 	bool _isCharging = false;
 	BubbleSettings defaultSettings;
@@ -42,26 +45,42 @@ public partial class BubbleGun : Node2D
 
 		Rotation = Mathf.Pi / 2; // Always point to the north
 
-		if (Input.IsActionPressed("shoot"))
+		_timeSinceLastShoot += (float)delta;
+
+		if (Input.IsActionPressed("shoot") && _timeSinceLastShoot >= ShootInterval)
 		{
 			if (!_isCharging)
 			{
-				_isCharging = true;
+				_isCharging = Settings.isChargable;
 				_currentCharge = Settings.MinBulletScale;
-				BubblePreview?.Show();
+				if (Settings.isChargable)
+				{
+					BubblePreview?.Show();
+				}
+				else
+				{
+					Shoot();
+					_timeSinceLastShoot = 0.0f; // Reset the shoot timer
+				}
 			}
 
-			_currentCharge = Mathf.Min(_currentCharge + Settings.ChargeRate * (float)delta, Settings.MaxBulletScale);
-			BubblePreview?.UpdatePreview(_currentCharge);
+			if (Settings.isChargable)
+			{
+				_currentCharge = Mathf.Min(_currentCharge + Settings.ChargeRate * (float)delta, Settings.MaxBulletScale);
+				BubblePreview?.UpdatePreview(_currentCharge);
+			}
 		}
 		else if (Input.IsActionJustReleased("shoot") && _isCharging)
 		{
-			BubblePreview?.Hide();
-			Shoot();
+			if (Settings.isChargable)
+			{
+				BubblePreview?.Hide();
+				Shoot();
+				_timeSinceLastShoot = 0.0f; // Reset the shoot timer
+			}
 			_isCharging = false;
 		}
 	}
-
 
 	void Shoot()
 	{
@@ -78,7 +97,6 @@ public partial class BubbleGun : Node2D
 		bullet.GlobalPosition = shootPoint.GlobalPosition;
 
 		if (bullet is Bubble bubbleScript)
-			// bubbleScript.Init(Settings.BulletLifetime, Settings.ShootSpeed, _currentCharge, Settings.damage, bulletLeft < 0);
 			bubbleScript.Init(Settings.BulletLifetime, Settings.ShootSpeed, _currentCharge, Settings.damage, true, Settings.displayGFX);
 	}
 
