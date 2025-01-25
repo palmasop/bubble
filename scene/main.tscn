@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://cxb2m2lhpht5d"]
 
 [ext_resource type="PackedScene" uid="uid://o62p1vrfchcy" path="res://scene/bubble_gun.tscn" id="1_p25kd"]
-[ext_resource type="PackedScene" path="res://scene/enemy_spawner.tscn" id="1_qj3xk"]
+[ext_resource type="PackedScene" uid="uid://q364g8ve7vdu" path="res://scene/enemy_spawner.tscn" id="1_qj3xk"]
 [ext_resource type="Texture2D" uid="uid://bhj536j86ygrj" path="res://assets/Bubble_Art/Background.png" id="1_v8qlt"]
 [ext_resource type="Script" path="res://script/Player.cs" id="2_5rovc"]
 [ext_resource type="Script" path="res://script/WaveManager.cs" id="2_6hu13"]
@@ -103,7 +103,7 @@ spawnAreaMin = Vector2(0, 0)
 spawnAreaMax = Vector2(480, 100)
 
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(1766, 707)
+position = Vector2(0, 707)
 script = ExtResource("2_5rovc")
 
 [node name="Health" type="Node2D" parent="Player"]
@@ -135,3 +135,4 @@ scale = Vector2(3.03516, 1058.25)
 texture = SubResource("GradientTexture1D_id6q8")
 
 [node name="Crab" parent="." instance=ExtResource("9_vhyqv")]
+Capturable = false

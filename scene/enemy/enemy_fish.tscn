@@ -23,6 +23,7 @@ Capturable = true
 [node name="EnemyAI" type="Node2D" parent="."]
 script = ExtResource("2_cwq5i")
 speed = 20.0
+pathfindingInterval = 0.3
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="EnemyAI"]
 avoidance_enabled = true
