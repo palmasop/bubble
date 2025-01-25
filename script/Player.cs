@@ -31,8 +31,9 @@ public partial class Player : CharacterBody2D, IDamageable
 
     public void GetInput()
     {
-        Vector2 inputDirection = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-        Velocity = inputDirection * Speed;
+        // Make the player follow the cursor location on the x-axis
+        Vector2 mousePosition = GetGlobalMousePosition();
+        this.GlobalPosition = new Vector2(mousePosition.X, this.GlobalPosition.Y);
     }
 
     public override void _PhysicsProcess(double delta)
