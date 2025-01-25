@@ -1,18 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://cxb2m2lhpht5d"]
+[gd_scene load_steps=15 format=3 uid="uid://cxb2m2lhpht5d"]
 
-[ext_resource type="PackedScene" uid="uid://o62p1vrfchcy" path="res://scene/bubble_gun.tscn" id="1_p25kd"]
 [ext_resource type="PackedScene" path="res://scene/enemy_spawner.tscn" id="1_qj3xk"]
 [ext_resource type="Texture2D" uid="uid://bhj536j86ygrj" path="res://assets/Bubble_Art/Background.png" id="1_v8qlt"]
-[ext_resource type="Script" path="res://script/Player.cs" id="2_5rovc"]
 [ext_resource type="Script" path="res://script/WaveManager.cs" id="2_6hu13"]
-[ext_resource type="Script" path="res://script/util/health/Health.cs" id="3_bgevy"]
 [ext_resource type="PackedScene" uid="uid://dlaij1u1hsolb" path="res://scene/enemy/enemy_swimp.tscn" id="4_50k2g"]
 [ext_resource type="Shader" path="res://shader/dizzy.gdshader" id="6_7a2kq"]
 [ext_resource type="PackedScene" uid="uid://btimebe4h0gdl" path="res://scene/enemy/enemy_fish.tscn" id="6_lmx5n"]
 [ext_resource type="PackedScene" uid="uid://c5r784i7765bd" path="res://scene/enemy/enemy_prince.tscn" id="7_fvuwg"]
+[ext_resource type="PackedScene" uid="uid://bwi28b4qavp5e" path="res://scene/player.tscn" id="8_bhipn"]
 [ext_resource type="PackedScene" uid="uid://43q5ci3tvt4p" path="res://scene/enemy/enemy_crab.tscn" id="9_vhyqv"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ljdc"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_nbcjd"]
 vertices = PackedVector2Array(1231.01, 2689.87, -3.96875, 2675.11, 2.96875, 8, 1233.99, 8)
@@ -102,19 +98,8 @@ maxEnemies = 1
 spawnAreaMin = Vector2(0, 0)
 spawnAreaMax = Vector2(480, 100)
 
-[node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(1056, 602)
-script = ExtResource("2_5rovc")
-
-[node name="Health" type="Node2D" parent="Player"]
-script = ExtResource("3_bgevy")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource("RectangleShape2D_3ljdc")
-disabled = true
-
-[node name="Bubble Gun" parent="Player" instance=ExtResource("1_p25kd")]
-position = Vector2(1, 0)
+[node name="Player" parent="." instance=ExtResource("8_bhipn")]
+position = Vector2(0, 602)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 visible = false

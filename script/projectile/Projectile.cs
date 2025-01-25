@@ -52,7 +52,7 @@ public partial class Projectile : Area2D
         GetTree().CurrentScene.AddChild(node);
     }
 
-    protected virtual void Explode()
+    public virtual void Explode()
     {
         DieEffect();
         QueueFree();

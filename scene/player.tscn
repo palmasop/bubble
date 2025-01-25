@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://bwi28b4qavp5e"]
+
+[ext_resource type="Script" path="res://script/Player.cs" id="1_rxkbi"]
+[ext_resource type="Script" path="res://script/util/health/Health.cs" id="2_ye5d2"]
+[ext_resource type="PackedScene" uid="uid://o62p1vrfchcy" path="res://scene/bubble_gun.tscn" id="3_6xrxp"]
+[ext_resource type="Script" path="res://script/util/health/HealthBar.cs" id="4_srf7l"]
+[ext_resource type="Script" path="res://script/util/health/DamageFlash.cs" id="5_jgi4y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ljdc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xksay"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qi5ak"]
+bg_color = Color(0.0544532, 0.933673, 0.789182, 1)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(814.185, 602)
+script = ExtResource("1_rxkbi")
+
+[node name="Health" type="Node2D" parent="."]
+script = ExtResource("2_ye5d2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3ljdc")
+disabled = true
+
+[node name="Bubble Gun" parent="." instance=ExtResource("3_6xrxp")]
+position = Vector2(1, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("health")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = -50.0
+offset_right = 262.0
+offset_bottom = -23.0
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_xksay")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qi5ak")
+show_percentage = false
+script = ExtResource("4_srf7l")
+health = NodePath("../../Health")
+
+[node name="Damage Flash" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("health", "flashOverlay")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_jgi4y")
+health = NodePath("../../Health")
+flashOverlay = NodePath("ColorRect")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Damage Flash"]
+modulate = Color(1, 0.054902, 0.054902, 0.101961)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

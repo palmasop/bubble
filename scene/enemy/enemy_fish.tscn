@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://btimebe4h0gdl"]
+[gd_scene load_steps=11 format=3 uid="uid://btimebe4h0gdl"]
 
 [ext_resource type="Script" path="res://script/Enemy.cs" id="1_4nj5t"]
 [ext_resource type="PackedScene" uid="uid://flxsagfb8nq8" path="res://scene/particles/explosion.tscn" id="2_06n6e"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://script/util/health/Health.cs" id="3_wytvs"]
 [ext_resource type="PackedScene" uid="uid://rwu50pt7owu" path="res://scene/enemy/gfx/fish_gfx.tscn" id="5_7f43x"]
 [ext_resource type="Script" path="res://script/EnemyGFXAnimation.cs" id="6_8acrt"]
+[ext_resource type="Script" path="res://script/util/health/DamageNumberAnimation.cs" id="7_feewr"]
+[ext_resource type="PackedScene" uid="uid://1xinxumcen0r" path="res://scene/damageLabel.tscn" id="8_m7nl3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1jgi"]
 size = Vector2(15, 15)
@@ -18,7 +20,6 @@ script = ExtResource("1_4nj5t")
 type = 2
 attackDamage = 1
 dieEffect = ExtResource("2_06n6e")
-Capturable = true
 
 [node name="EnemyAI" type="Node2D" parent="."]
 script = ExtResource("2_cwq5i")
@@ -34,6 +35,7 @@ maxHealth = 125
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_a1jgi")
+disabled = true
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -42,3 +44,10 @@ shape = SubResource("CircleShape2D_xi1ap")
 
 [node name="Fish GFX" parent="." instance=ExtResource("5_7f43x")]
 script = ExtResource("6_8acrt")
+
+[node name="TakeDamageNumber" type="Node2D" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("7_feewr")
+health = NodePath("../Health")
+spawnAreaMin = Vector2(-5, -5)
+spawnAreaMax = Vector2(5, 5)
+label = ExtResource("8_m7nl3")

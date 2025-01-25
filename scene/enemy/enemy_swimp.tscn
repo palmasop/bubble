@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dlaij1u1hsolb"]
+[gd_scene load_steps=11 format=3 uid="uid://dlaij1u1hsolb"]
 
 [ext_resource type="Script" path="res://script/Enemy.cs" id="1_qeyyc"]
 [ext_resource type="Script" path="res://script/util/EnemyAI.cs" id="2_5w4ai"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://script/util/health/Health.cs" id="3_xnl4k"]
 [ext_resource type="PackedScene" uid="uid://c220da5dkvpkr" path="res://scene/enemy/gfx/swimp_gfx.tscn" id="5_p68tj"]
 [ext_resource type="Script" path="res://script/EnemyGFXAnimation.cs" id="6_pmrlh"]
+[ext_resource type="Script" path="res://script/util/health/DamageNumberAnimation.cs" id="7_4b4o0"]
+[ext_resource type="PackedScene" uid="uid://1xinxumcen0r" path="res://scene/damageLabel.tscn" id="8_qdync"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1jgi"]
 
@@ -32,6 +34,7 @@ maxHealth = 50
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_a1jgi")
+disabled = true
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -40,3 +43,9 @@ shape = SubResource("CircleShape2D_xi1ap")
 
 [node name="Swimp GFX" parent="." instance=ExtResource("5_p68tj")]
 script = ExtResource("6_pmrlh")
+
+[node name="TakeDamageNumber" type="Node2D" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("7_4b4o0")
+health = NodePath("../Health")
+fadeDuration = 20.0
+label = ExtResource("8_qdync")

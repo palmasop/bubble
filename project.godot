@@ -18,7 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 BulletManager="*res://scene/bullet_manager.tscn"
-SoundManager="*res://scene/manager/sound/sound_manager.tscn"
+SoundManager="*res://script/manager/sound/sound_manager.tscn"
+DialogueSystem="*res://scene/dialogue_system.tscn"
 
 [display]
 
@@ -34,6 +35,11 @@ project/assembly_name="Bubble"
 [input]
 
 shoot={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)
+]
+}
+action={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)
 ]

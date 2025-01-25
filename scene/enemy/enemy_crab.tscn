@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://43q5ci3tvt4p"]
+[gd_scene load_steps=11 format=3 uid="uid://43q5ci3tvt4p"]
 
 [ext_resource type="Script" path="res://script/Enemy.cs" id="1_0iyj6"]
 [ext_resource type="PackedScene" uid="uid://flxsagfb8nq8" path="res://scene/particles/explosion.tscn" id="2_hgfqf"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://script/util/health/Health.cs" id="3_kssaj"]
 [ext_resource type="PackedScene" uid="uid://bjeo4oki3kbsq" path="res://scene/enemy/gfx/crab_gfx.tscn" id="5_canp3"]
 [ext_resource type="Script" path="res://script/EnemyGFXAnimation.cs" id="6_by2c4"]
+[ext_resource type="Script" path="res://script/util/health/DamageNumberAnimation.cs" id="7_mqige"]
+[ext_resource type="PackedScene" uid="uid://1xinxumcen0r" path="res://scene/damageLabel.tscn" id="8_evp5l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1jgi"]
 size = Vector2(35, 34)
@@ -33,6 +35,7 @@ maxHealth = 150
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_a1jgi")
+disabled = true
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -41,3 +44,9 @@ shape = SubResource("CircleShape2D_xi1ap")
 
 [node name="Crab GFX" parent="." instance=ExtResource("5_canp3")]
 script = ExtResource("6_by2c4")
+
+[node name="TakeDamageNumber" type="Node2D" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("7_mqige")
+health = NodePath("../Health")
+fontSize = 1.2
+label = ExtResource("8_evp5l")

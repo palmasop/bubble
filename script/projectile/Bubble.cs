@@ -9,7 +9,11 @@ public partial class Bubble : Projectile
     [Export] float slowTime = 1;
     Vector2 targetV;
 
+    bool captureAble = true;
+
     Node2D captured = null;
+
+    public void EnableCapture(bool enable) => captureAble = enable;
 
     public override void Init(float lifetime, float speed, float scale, int damage, PackedScene display)
     {
@@ -26,7 +30,7 @@ public partial class Bubble : Projectile
         velocity = velocity.Slerp(targetV, slowTime * (float)delta);
     }
 
-    protected override void Explode()
+    public override void Explode()
     {
         ReleaseCaptured();
         base.Explode();
@@ -59,12 +63,14 @@ public partial class Bubble : Projectile
     {
         var node = area.GetParent<Node2D>();
 
-        if (node == null || captured == null)
+        if (node == null)
             return;
+
+        var knockback = captured == null && captureAble ? 200 : 500;
 
         if (node is IKnockbackable knockbackable)
         {
-            Vector2 knockbackForce = (node.GlobalPosition - captured.GlobalPosition).Normalized() * 500;
+            Vector2 knockbackForce = (node.GlobalPosition - GlobalPosition).Normalized() * knockback;
             knockbackable.Knockback(knockbackForce);
         }
     }
@@ -78,7 +84,7 @@ public partial class Bubble : Projectile
 
         base.HandleOnHit(area);
 
-        if (captured != null)
+        if (captured != null || !captureAble)
             return;
 
         if (node is ICapturable capturable && capturable.Capturable && Scale.X > capturable.minCaptureSize)

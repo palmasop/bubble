@@ -1,7 +1,7 @@
 using Godot;
 
 [Tool]
-[GlobalClass] 
+[GlobalClass]
 public partial class Health : Node2D
 {
     [Export] public int maxHealth { get; private set; } = 100;
@@ -11,7 +11,7 @@ public partial class Health : Node2D
 
     [Signal] public delegate void OnChangeHealthEventHandler(int currentHealth);
 
-    [Signal] public delegate void OnTakeDamageEventHandler();
+    [Signal] public delegate void OnTakeDamageEventHandler(int damage);
 
     [Signal] public delegate void OnHealEventHandler();
 
@@ -19,30 +19,34 @@ public partial class Health : Node2D
 
     bool died;
 
-    public override void _Ready() {
+    public override void _Ready()
+    {
         base._Ready();
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(int damage) {
-        if(invincible)
+    public void TakeDamage(int damage)
+    {
+        if (invincible)
             return;
-        
+
         currentHealth = Mathf.Max(0, currentHealth - damage);
-        EmitSignal(SignalName.OnTakeDamage);
+        EmitSignal(SignalName.OnTakeDamage, damage);
         EmitSignal(SignalName.OnChangeHealth, currentHealth);
 
         if (currentHealth == 0)
             Die();
     }
 
-    public void Heal(int amount) {
+    public void Heal(int amount)
+    {
         currentHealth = Mathf.Min(maxHealth, currentHealth + amount);
         EmitSignal(SignalName.OnHeal);
         EmitSignal(SignalName.OnChangeHealth, currentHealth);
     }
 
-    public void Die() {
+    public void Die()
+    {
         if (died)
             return;
         died = true;

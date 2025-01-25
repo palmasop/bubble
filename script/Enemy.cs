@@ -57,10 +57,11 @@ public partial class Enemy : CharacterBody2D, IDamageable, IKnockbackable, ICapt
     {
         if (Engine.IsEditorHint()) return;
         Player player = Player.GetClosetPlayer(this.GlobalPosition);
-        if (this.GlobalPosition.DistanceTo(player.GlobalPosition) < 10)
+        if (GlobalPosition.DistanceTo(player.GlobalPosition) < 10)
         {
             player.TakeDamage(attackDamage);
-            this.Die();
+            Knockback(Vector2.Up * 1000);
+            // Die();
         }
         KnockbackUpdate(delta);
     }

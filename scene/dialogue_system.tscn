@@ -1,0 +1,123 @@
+[gd_scene load_steps=14 format=3 uid="uid://bo05xtgxki6v4"]
+
+[ext_resource type="Script" path="res://script/manager/dialogue/DialogueSystem.cs" id="1_krup5"]
+[ext_resource type="Script" path="res://script/manager/dialogue/InitialDialog.cs" id="2_pt0yx"]
+[ext_resource type="Texture2D" uid="uid://ct6b3o5j00e4t" path="res://assets/Bubble_Art/BubbleGun.png" id="3_gqmp5"]
+[ext_resource type="Script" path="res://script/manager/dialogue/Resources/Conversion.cs" id="4_f0hu2"]
+[ext_resource type="Texture2D" uid="uid://rn7gywc23qwh" path="res://assets/Bubble_Art/Enemies.png" id="5_rkpif"]
+[ext_resource type="Texture2D" uid="uid://c51pmph146i36" path="res://assets/Bubble_Art/EnemiesWalkingSprites.png" id="6_fuf2n"]
+[ext_resource type="Script" path="res://script/manager/dialogue/Resources/ConversionGroup.cs" id="7_bn4j4"]
+[ext_resource type="Script" path="res://script/manager/dialogue/Resources/DialogueData.cs" id="8_l7eqi"]
+
+[sub_resource type="Resource" id="Resource_jajb2"]
+script = ExtResource("4_f0hu2")
+_type = 0
+character = 1
+text = "Sample Text"
+backgroundImage = ExtResource("3_gqmp5")
+options = []
+action = ""
+jumpTo = ""
+
+[sub_resource type="Resource" id="Resource_wqfhl"]
+script = ExtResource("4_f0hu2")
+_type = 0
+character = 1
+text = "Sample Text"
+backgroundImage = ExtResource("5_rkpif")
+options = []
+action = ""
+jumpTo = ""
+
+[sub_resource type="Resource" id="Resource_oj7a4"]
+script = ExtResource("4_f0hu2")
+_type = 0
+character = 1
+text = "Sample Text"
+backgroundImage = ExtResource("6_fuf2n")
+options = []
+action = ""
+jumpTo = ""
+
+[sub_resource type="Resource" id="Resource_2giqe"]
+script = ExtResource("7_bn4j4")
+id = "Fake Name"
+conversions = [SubResource("Resource_jajb2"), SubResource("Resource_wqfhl"), SubResource("Resource_oj7a4")]
+
+[sub_resource type="Resource" id="Resource_kwtyx"]
+script = ExtResource("8_l7eqi")
+conversionGroups = [SubResource("Resource_2giqe")]
+
+[node name="Dialogue System" type="Node" node_paths=PackedStringArray("dialogueUI", "conversionLabel", "charImage", "optionContainer", "backgroundImageRect")]
+script = ExtResource("1_krup5")
+dialogueUI = NodePath("CanvasLayer")
+conversionLabel = NodePath("CanvasLayer/Control/Control/Panel/MarginContainer/VBoxContainer/Conversion")
+charImage = NodePath("CanvasLayer/Control/Character Image")
+optionContainer = NodePath("CanvasLayer/Control/Control/Panel/MarginContainer/VBoxContainer/Option")
+backgroundImageRect = NodePath("CanvasLayer/Control/Background Image")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background Image" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Character Image" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control/Control"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 595.0
+offset_right = 479.0
+offset_bottom = 847.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Control/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Conversion" type="Label" parent="CanvasLayer/Control/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "wqw"
+autowrap_mode = 3
+
+[node name="Option" type="GridContainer" parent="CanvasLayer/Control/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("2_pt0yx")
+dialogueData = SubResource("Resource_kwtyx")

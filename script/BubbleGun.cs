@@ -99,22 +99,24 @@ public partial class BubbleGun : Node2D
 	{
 		if (BulletScene == null || Settings == null) return;
 
-		bulletLeft--;
-		UpdateBulletDisplay();
-		if (bulletLeft == 0)
-			ChangeGun(defaultSettings);
-
 		var bullet = BulletScene.Instantiate<Bubble>();
-		bullet.OnCapture += BubbleOnCapture;
+		bullet.OnCapture += (node) => BubbleOnCapture(node, bullet);
+		bullet.EnableCapture(Settings.isCapturable);
+
 		GetTree().Root.AddChild(bullet);
 		bullet.GlobalPosition = shootPoint.GlobalPosition;
 
 		if (bullet is Bubble bubbleScript)
 			bubbleScript.Init(Settings.BulletLifetime, Settings.ShootSpeed, _currentCharge, Settings.damage, Settings.displayGFX);
+
+		bulletLeft--;
+		UpdateBulletDisplay();
+		if (bulletLeft == 0)
+			ChangeGun(defaultSettings);
 	}
 
 
-	void BubbleOnCapture(Node2D node)
+	void BubbleOnCapture(Node2D node, Bubble bullet)
 	{
 		if (bulletLeft > 0)
 			return;
@@ -122,10 +124,10 @@ public partial class BubbleGun : Node2D
 		if (node is Enemy enemy)
 		{
 			var changeToSetting = BulletManager.Instance.GetBubbleSettingsByEnemey(enemy.type);
-			GD.Print("change " + enemy.type);
 			ChangeGun(changeToSetting);
 		}
-		// area2D.QueueFree();
+		node.QueueFree();
+		bullet.Explode();
 	}
 
 	void ChangeGun(BubbleSettings bubbleSettings)
