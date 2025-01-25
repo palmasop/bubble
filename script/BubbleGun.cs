@@ -22,6 +22,8 @@ public partial class BubbleGun : Node2D
 	bool _isCharging = false;
 	BubbleSettings defaultSettings;
 
+	bool disableTilNextShoot;
+
 	int bulletLeft;
 
 	public override void _Ready()
@@ -47,38 +49,46 @@ public partial class BubbleGun : Node2D
 
 		_timeSinceLastShoot += (float)delta;
 
+		if(Input.IsActionJustPressed("shoot"))
+			disableTilNextShoot = false;
+
+		if(disableTilNextShoot)
+			return;
+
+		if(_isCharging)
+			ChargeShot(delta);
+		else
+			NormalShot(delta);
+	}
+
+	void ChargeShot(double delta){
 		if (Input.IsActionPressed("shoot") && _timeSinceLastShoot >= ShootInterval)
 		{
 			if (!_isCharging)
 			{
 				_isCharging = Settings.isChargable;
 				_currentCharge = Settings.MinBulletScale;
-				if (Settings.isChargable)
-				{
-					BubblePreview?.Show();
-				}
-				else
-				{
-					Shoot();
-					_timeSinceLastShoot = 0.0f; // Reset the shoot timer
-				}
+				BubblePreview?.Show();
 			}
 
-			if (Settings.isChargable)
-			{
-				_currentCharge = Mathf.Min(_currentCharge + Settings.ChargeRate * (float)delta, Settings.MaxBulletScale);
-				BubblePreview?.UpdatePreview(_currentCharge);
-			}
+			_currentCharge = Mathf.Min(_currentCharge + Settings.ChargeRate * (float)delta, Settings.MaxBulletScale);
+			BubblePreview?.UpdatePreview(_currentCharge);
 		}
 		else if (Input.IsActionJustReleased("shoot") && _isCharging)
 		{
-			if (Settings.isChargable)
-			{
-				BubblePreview?.Hide();
-				Shoot();
-				_timeSinceLastShoot = 0.0f; // Reset the shoot timer
-			}
+			BubblePreview?.Hide();
+			Shoot();
+			_timeSinceLastShoot = 0.0f; 
 			_isCharging = false;
+		}
+	}
+
+	void NormalShot(double delta){
+		if (Input.IsActionPressed("shoot") && _timeSinceLastShoot >= ShootInterval)
+		{				
+				_currentCharge = Settings.MinBulletScale;
+			Shoot();
+			_timeSinceLastShoot = 0.0f; 
 		}
 	}
 

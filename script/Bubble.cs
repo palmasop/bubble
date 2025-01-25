@@ -84,10 +84,8 @@ public partial class Bubble : Area2D
 
     bool HandleHitBubble(Area2D area)
     {
-        GD.Print(area.Name);
         if (area is not Bubble bubble)
             return false;
-        GD.Print("is bubble");
 
         bubble.Explode();
         Explode();
@@ -115,7 +113,6 @@ public partial class Bubble : Area2D
         if (capturedEnemy != null)
         {
             Vector2 knockbackForce = (enemy.GlobalPosition - capturedEnemy.GlobalPosition).Normalized() * 1000;
-            GD.Print(knockbackForce);
             enemy.Knockback(knockbackForce);
         }
 
