@@ -1,11 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://bo05xtgxki6v4"]
+[gd_scene load_steps=12 format=3 uid="uid://bo05xtgxki6v4"]
 
 [ext_resource type="Script" path="res://script/manager/dialogue/DialogueSystem.cs" id="1_krup5"]
 [ext_resource type="Script" path="res://script/manager/dialogue/InitialDialog.cs" id="2_pt0yx"]
 [ext_resource type="Texture2D" uid="uid://c5capxw3rabpq" path="res://assets/Bubble_Art/GameCG.png" id="3_b4qlm"]
 [ext_resource type="Script" path="res://script/manager/dialogue/Resources/Conversion.cs" id="4_f0hu2"]
-[ext_resource type="Texture2D" uid="uid://dv7id6nwalkpa" path="res://assets/Bubble_Art/Enemies.png" id="5_rkpif"]
-[ext_resource type="Texture2D" uid="uid://bbt4wx47o6pnh" path="res://assets/Bubble_Art/EnemiesWalkingSprites.png" id="6_fuf2n"]
 [ext_resource type="Script" path="res://script/manager/dialogue/Resources/ConversionGroup.cs" id="7_bn4j4"]
 [ext_resource type="Script" path="res://script/manager/dialogue/Resources/DialogueData.cs" id="8_l7eqi"]
 
@@ -15,6 +13,7 @@ _type = 0
 character = 1
 text = "Sample Text"
 backgroundImage = ExtResource("3_b4qlm")
+backgroundImageRect = Rect2(0, 0, 240, 136)
 options = []
 action = ""
 jumpTo = ""
@@ -24,7 +23,8 @@ script = ExtResource("4_f0hu2")
 _type = 0
 character = 1
 text = "Sample Text"
-backgroundImage = ExtResource("5_rkpif")
+backgroundImage = ExtResource("3_b4qlm")
+backgroundImageRect = Rect2(240, 0, 240, 136)
 options = []
 action = ""
 jumpTo = ""
@@ -34,7 +34,8 @@ script = ExtResource("4_f0hu2")
 _type = 0
 character = 1
 text = "Sample Text"
-backgroundImage = ExtResource("6_fuf2n")
+backgroundImage = ExtResource("3_b4qlm")
+backgroundImageRect = Rect2(480, 0, 240, 136)
 options = []
 action = ""
 jumpTo = ""
@@ -54,7 +55,11 @@ dialogueUI = NodePath("CanvasLayer")
 conversionLabel = NodePath("CanvasLayer/Control/Control/Panel/MarginContainer/VBoxContainer/Conversion")
 charImage = NodePath("CanvasLayer/Control/Character Image")
 optionContainer = NodePath("CanvasLayer/Control/Control/Panel/MarginContainer/VBoxContainer/Option")
-backgroundImageRect = NodePath("CanvasLayer/Control/Background Image")
+backgroundImageRect = NodePath("CanvasLayer/Control/Sprite2D")
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("2_pt0yx")
+dialogueData = SubResource("Resource_kwtyx")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -81,14 +86,14 @@ expand_mode = 4
 stretch_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control"]
-visible = false
 position = Vector2(240, 305)
 scale = Vector2(2.05147, 2.05147)
 texture = ExtResource("3_b4qlm")
 region_enabled = true
-region_rect = Rect2(-2, -1, 242, 136)
+region_rect = Rect2(0, 0, 240, 136)
 
 [node name="Character Image" type="TextureRect" parent="CanvasLayer/Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -131,7 +136,3 @@ autowrap_mode = 3
 
 [node name="Option" type="GridContainer" parent="CanvasLayer/Control/Control/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="Node" type="Node" parent="."]
-script = ExtResource("2_pt0yx")
-dialogueData = SubResource("Resource_kwtyx")

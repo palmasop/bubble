@@ -10,7 +10,7 @@ public partial class DialogueSystem : Singleton<DialogueSystem>
     [Export] Label conversionLabel;
     [Export] TextureRect charImage;
     [Export] GridContainer optionContainer;
-    [Export] TextureRect backgroundImageRect;
+    [Export] Sprite2D backgroundImageRect;
 
     [ExportGroup("Data")]
     [Export] Character[] characters = { new("Player") };
@@ -341,16 +341,18 @@ public partial class DialogueSystem : Singleton<DialogueSystem>
         charImage.Texture = character.image;
 
         if (curConversion.backgroundImage != null)
-            updateBackgroundImage(curConversion.backgroundImage);
+            updateBackgroundImage(curConversion.backgroundImage, false, curConversion.backgroundImageRect);
     }
 
     public Character GetCharacter(CharacterT type) { return charactersMap.TryGetValue(type, out var character) ? character : new Character("Player"); }
 
-    void updateBackgroundImage(Texture2D image, bool overrideVisible = false)
+    void updateBackgroundImage(Texture2D image, bool overrideVisible = false, Rect2? regionRect = null)
     {
         if (backgroundImageRect == null || (image == null && !overrideVisible))
             return;
         backgroundImageRect.Texture = image;
+        if (regionRect != null)
+            backgroundImageRect.RegionRect = regionRect.Value;
         backgroundImageRect.Visible = image != null;
     }
     #endregion

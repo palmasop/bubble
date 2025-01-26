@@ -29,8 +29,8 @@ public partial class Conversion : Resource
     [Export] ConversionType _type = ConversionType.Default;
     [Export] public CharacterT character = CharacterT.Player;
     [Export] public string text = "Sample Text";
-    [Export] public Texture2D backgroundImage;  // Add this line
-
+    [Export] public Texture2D backgroundImage;
+    [Export] public Rect2 backgroundImageRect;
     [Export] public ConversionOption[] options;
     [Export] public string action;
     [Export] public string jumpTo;
