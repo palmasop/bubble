@@ -1,9 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://bo05xtgxki6v4"]
+[gd_scene load_steps=20 format=3 uid="uid://bo05xtgxki6v4"]
 
 [ext_resource type="Script" path="res://script/manager/dialogue/DialogueSystem.cs" id="1_krup5"]
 [ext_resource type="Script" path="res://script/manager/dialogue/InitialDialog.cs" id="2_pt0yx"]
 [ext_resource type="Script" path="res://script/manager/dialogue/Resources/Character.cs" id="2_xbjlp"]
-[ext_resource type="Texture2D" uid="uid://c5capxw3rabpq" path="res://assets/Bubble_Art/GameCG.png" id="3_b4qlm"]
+[ext_resource type="Texture2D" uid="uid://duej2c0n4ljhq" path="res://assets/Bubble_Art/GameCG.png" id="3_b4qlm"]
 [ext_resource type="Script" path="res://script/manager/dialogue/Resources/Conversion.cs" id="4_f0hu2"]
 [ext_resource type="Script" path="res://script/manager/dialogue/Resources/ConversionGroup.cs" id="7_bn4j4"]
 [ext_resource type="Script" path="res://script/manager/dialogue/Resources/DialogueData.cs" id="8_l7eqi"]
@@ -22,7 +22,7 @@ name = ""
 script = ExtResource("4_f0hu2")
 _type = 0
 character = 0
-text = "..."
+text = "......"
 backgroundImage = ExtResource("3_b4qlm")
 backgroundImageRect = Rect2(0, 0, 240, 136)
 options = []
@@ -44,17 +44,72 @@ jumpTo = ""
 script = ExtResource("4_f0hu2")
 _type = 0
 character = 0
-text = "..."
+text = "......"
 backgroundImage = ExtResource("3_b4qlm")
 backgroundImageRect = Rect2(480, 0, 240, 136)
 options = []
 action = ""
 jumpTo = ""
 
+[sub_resource type="Resource" id="Resource_rn4x5"]
+script = ExtResource("4_f0hu2")
+_type = 0
+character = 1
+text = "......"
+backgroundImage = ExtResource("3_b4qlm")
+backgroundImageRect = Rect2(720, 0, 240, 136)
+options = null
+action = ""
+jumpTo = ""
+
+[sub_resource type="Resource" id="Resource_b8guu"]
+script = ExtResource("4_f0hu2")
+_type = 0
+character = 1
+text = "......"
+backgroundImage = ExtResource("3_b4qlm")
+backgroundImageRect = Rect2(960, 0, 240, 136)
+options = null
+action = ""
+jumpTo = ""
+
+[sub_resource type="Resource" id="Resource_hbwxf"]
+script = ExtResource("4_f0hu2")
+_type = 0
+character = 1
+text = "......"
+backgroundImage = ExtResource("3_b4qlm")
+backgroundImageRect = Rect2(1200, 0, 240, 136)
+options = null
+action = ""
+jumpTo = ""
+
+[sub_resource type="Resource" id="Resource_ahi4e"]
+script = ExtResource("4_f0hu2")
+_type = 0
+character = 1
+text = "......"
+backgroundImage = ExtResource("3_b4qlm")
+backgroundImageRect = Rect2(1480, 0, 240, 136)
+options = null
+action = ""
+jumpTo = ""
+
+[sub_resource type="Resource" id="Resource_cqixj"]
+script = ExtResource("4_f0hu2")
+_type = 0
+character = 1
+text = "......"
+backgroundImage = ExtResource("3_b4qlm")
+backgroundImageRect = Rect2(1680, 0, 240, 136)
+options = null
+action = ""
+jumpTo = ""
+
 [sub_resource type="Resource" id="Resource_2giqe"]
 script = ExtResource("7_bn4j4")
 id = "Fake Name"
-conversions = [SubResource("Resource_jajb2"), SubResource("Resource_wqfhl"), SubResource("Resource_oj7a4")]
+conversions = [SubResource("Resource_jajb2"), SubResource("Resource_wqfhl"), SubResource("Resource_oj7a4"), SubResource("Resource_rn4x5"), SubResource("Resource_b8guu"), SubResource("Resource_hbwxf"), SubResource("Resource_ahi4e"), SubResource("Resource_cqixj")]
 
 [sub_resource type="Resource" id="Resource_kwtyx"]
 script = ExtResource("8_l7eqi")
