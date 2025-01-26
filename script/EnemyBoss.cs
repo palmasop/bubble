@@ -4,12 +4,18 @@ public partial class EnemyBoss : Enemy
 {
     [Export] PackedScene bullet;
     [Export] float offset = 200;
-
+    [Export] GameOverMenu gameOverMenu;
     [Export] float ability1Cooldown = 5;
     [Export] float ability2Cooldown = 3;
 
     float _ability1Cooldown = 0;
     float _ability2Cooldown = 0;
+
+    public override void _Ready()
+    {
+        base._Ready();
+        health.OnDie += () => gameOverMenu.Show();
+    }
 
     public override void _Process(double delta)
     {
@@ -47,7 +53,7 @@ public partial class EnemyBoss : Enemy
         if (player == null)
             return;
 
-        var bulletCount = GD.RandRange(3, 5);
+        var bulletCount = GD.RandRange(1, 3);
 
         for (int i = 0; i < bulletCount; i++)
         {
@@ -74,7 +80,7 @@ public partial class EnemyBoss : Enemy
         if (player == null)
             return;
 
-        var bulletCount = GD.RandRange(3, 5);
+        var bulletCount = GD.RandRange(2, 4);
 
         for (int i = 0; i < bulletCount; i++)
         {

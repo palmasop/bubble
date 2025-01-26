@@ -13,9 +13,9 @@ load_path = "res://.godot/imported/Bubbles.png-7536505f5caf3a0e98700f5aea923bb6.
 [node name="Bubble" type="Area2D" node_paths=PackedStringArray("GFX", "GFX")]
 script = ExtResource("1_4iq8p")
 DelayTime = 1.0
-GFX = NodePath("Sprite2D")
+GFX = NodePath("Node2D")
 explodeEffect = ExtResource("2_md45m")
-GFX = NodePath("Sprite2D")
+GFX = NodePath("Node2D")
 
 [node name="Bubble GFX" parent="." instance=ExtResource("3_nn3a8")]
 visible = false
@@ -24,8 +24,46 @@ visible = false
 position = Vector2(-1, 4)
 shape = SubResource("RectangleShape2D_o4v0u")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+modulate = Color(0.576471, 0.0352941, 0.780392, 1)
+texture_filter = 1
 position = Vector2(-1.43051e-06, -2.98023e-08)
-rotation = 1.5708
+scale = Vector2(1.42969, 1.60372)
+texture = SubResource("CompressedTexture2D_0dxeb")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
+modulate = Color(0.576471, 0.0352941, 0.780392, 1)
+texture_filter = 1
+position = Vector2(4, -4)
+scale = Vector2(1.42969, 1.60372)
+texture = SubResource("CompressedTexture2D_0dxeb")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Node2D"]
+modulate = Color(0.576471, 0.0352941, 0.780392, 1)
+texture_filter = 1
+position = Vector2(-6, -5)
+scale = Vector2(1.42969, 1.60372)
+texture = SubResource("CompressedTexture2D_0dxeb")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Node2D"]
+modulate = Color(0.576471, 0.0352941, 0.780392, 1)
+texture_filter = 1
+position = Vector2(-6, -7)
+scale = Vector2(1.42969, 1.60372)
+texture = SubResource("CompressedTexture2D_0dxeb")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Node2D"]
+modulate = Color(0.576471, 0.0352941, 0.780392, 1)
+texture_filter = 1
+position = Vector2(-6, -7)
+scale = Vector2(1.42969, 1.60372)
+texture = SubResource("CompressedTexture2D_0dxeb")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Node2D"]
+modulate = Color(0.576471, 0.0352941, 0.780392, 1)
+texture_filter = 1
+position = Vector2(-6, -7)
 scale = Vector2(1.42969, 1.60372)
 texture = SubResource("CompressedTexture2D_0dxeb")

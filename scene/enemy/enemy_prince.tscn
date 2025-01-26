@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5r784i7765bd"]
+[gd_scene load_steps=15 format=3 uid="uid://c5r784i7765bd"]
 
 [ext_resource type="Script" path="res://script/EnemyBoss.cs" id="1_i0qhw"]
 [ext_resource type="PackedScene" uid="uid://dmak238llt3yl" path="res://scene/damage_bullet.tscn" id="2_xdsdd"]
@@ -7,12 +7,26 @@
 [ext_resource type="PackedScene" uid="uid://bqjuoi4k5du4e" path="res://scene/enemy/gfx/prince_gfx.tscn" id="5_uaxar"]
 [ext_resource type="Script" path="res://script/util/health/DamageNumberAnimation.cs" id="6_jx0fc"]
 [ext_resource type="PackedScene" uid="uid://1xinxumcen0r" path="res://scene/damageLabel.tscn" id="7_espmg"]
+[ext_resource type="Script" path="res://script/util/health/HealthBar.cs" id="8_eui72"]
+[ext_resource type="Script" path="res://script/ui/GameOverMenu.cs" id="10_65g08"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1jgi"]
 size = Vector2(35, 34)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xi1ap"]
 radius = 22.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rmwuv"]
+load_path = "res://.godot/imported/HealthBarUI.png-4f79f27c3f33915208003ceb2329e478.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3wmes"]
+texture = SubResource("CompressedTexture2D_rmwuv")
+region_rect = Rect2(0, 18, 160, 12)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2q73f"]
+texture = SubResource("CompressedTexture2D_rmwuv")
+texture_margin_top = 2.61155
+region_rect = Rect2(0, 0, 160, 15)
 
 [node name="Prince" type="CharacterBody2D"]
 scale = Vector2(1.91, 1.91)
@@ -51,3 +65,89 @@ script = ExtResource("6_jx0fc")
 health = NodePath("../Health")
 fontSize = 2.0
 label = ExtResource("7_espmg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("health")]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 40.0
+offset_top = 16.0
+offset_right = -40.0
+offset_bottom = 62.0
+grow_horizontal = 2
+pivot_offset = Vector2(200, 0)
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxTexture_3wmes")
+theme_override_styles/fill = SubResource("StyleBoxTexture_2q73f")
+show_percentage = false
+script = ExtResource("8_eui72")
+health = NodePath("../../Health")
+
+[node name="Game Win" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("restartButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_65g08")
+restartButton = NodePath("Button")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Game Win"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.206329, 0.176784, 0.486597, 0.407843)
+
+[node name="Label2" type="Label" parent="CanvasLayer/Game Win"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -151.0
+offset_top = 156.0
+offset_right = 153.0
+offset_bottom = 233.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 56
+text = "You Win!
+"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/Game Win"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -151.0
+offset_top = 233.0
+offset_right = 153.0
+offset_bottom = 404.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "
+Thank you for playing!"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="CanvasLayer/Game Win"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -175.0
+offset_right = 33.0
+offset_bottom = -144.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 36
+text = "Restart
+"

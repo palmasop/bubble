@@ -12,15 +12,15 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ljdc"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rmwuv"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kp220"]
 load_path = "res://.godot/imported/HealthBarUI.png-4f79f27c3f33915208003ceb2329e478.ctex"
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h27ai"]
-texture = SubResource("CompressedTexture2D_rmwuv")
+texture = SubResource("CompressedTexture2D_kp220")
 region_rect = Rect2(0, 18, 160, 12)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ebpum"]
-texture = SubResource("CompressedTexture2D_rmwuv")
+texture = SubResource("CompressedTexture2D_kp220")
 texture_margin_top = 2.61155
 region_rect = Rect2(0, 0, 160, 15)
 
