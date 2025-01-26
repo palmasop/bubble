@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://script/util/health/Health.cs" id="4_q26mm"]
 [ext_resource type="PackedScene" uid="uid://bqjuoi4k5du4e" path="res://scene/enemy/gfx/prince_gfx.tscn" id="5_uaxar"]
 [ext_resource type="Script" path="res://script/util/health/DamageNumberAnimation.cs" id="6_jx0fc"]
-[ext_resource type="PackedScene" uid="uid://1xinxumcen0r" path="res://scene/damageLabel.tscn" id="7_espmg"]
+[ext_resource type="PackedScene" path="res://scene/damageLabel.tscn" id="7_espmg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1jgi"]
 size = Vector2(35, 34)
@@ -24,6 +24,7 @@ ability1Cooldown = 2.0
 [node name="EnemyAI" type="Node2D" parent="."]
 script = ExtResource("3_hyrcp")
 speed = 8.0
+stayAwayDistance = 480.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="EnemyAI"]
 avoidance_enabled = true
