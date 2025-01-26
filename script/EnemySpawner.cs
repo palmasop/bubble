@@ -9,7 +9,8 @@ public partial class EnemySpawner : Node2D
 	[Export] public float spawnInterval = 2.0f; // Time between spawns
 	[Export] public int maxEnemies = 10; // Maximum number of enemies to spawn
 
-	[Export] public Vector2 spawnAreaMin
+	[Export]
+	public Vector2 spawnAreaMin
 	{
 		get => _spawnAreaMin;
 		set
@@ -20,7 +21,8 @@ public partial class EnemySpawner : Node2D
 	}
 	private Vector2 _spawnAreaMin = new Vector2(0, 0); // Minimum corner of the spawn area
 
-	[Export] public Vector2 spawnAreaMax
+	[Export]
+	public Vector2 spawnAreaMax
 	{
 		get => _spawnAreaMax;
 		set
@@ -83,7 +85,7 @@ public partial class EnemySpawner : Node2D
 
 	public override void _Draw()
 	{
-				if(!Engine.IsEditorHint()) return;
+		if (!Engine.IsEditorHint()) return;
 
 		DrawRect(new Rect2(spawnAreaMin, spawnAreaMax - spawnAreaMin), new Color(1, 0, 0, 0.5f)); // Semi-transparent red
 	}

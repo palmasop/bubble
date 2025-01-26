@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bwi28b4qavp5e"]
+[gd_scene load_steps=15 format=3 uid="uid://bwi28b4qavp5e"]
 
 [ext_resource type="Script" path="res://script/Player.cs" id="1_rxkbi"]
 [ext_resource type="PackedScene" uid="uid://flxsagfb8nq8" path="res://scene/particles/explosion.tscn" id="2_cbgdb"]
@@ -21,6 +21,9 @@ region_rect = Rect2(0, 18, 160, 12)
 texture = ExtResource("7_lqk75")
 texture_margin_top = 2.61155
 region_rect = Rect2(0, 0, 160, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xu6mh"]
+size = Vector2(61, 43)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gameOverMenu")]
 position = Vector2(225, 666)
@@ -135,3 +138,9 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 36
 text = "Restart
 "
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(45.5, -3.5)
+shape = SubResource("RectangleShape2D_xu6mh")

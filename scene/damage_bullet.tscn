@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmak238llt3yl"]
+
+[ext_resource type="Script" path="res://script/projectile/DamageBullet.cs" id="1_4iq8p"]
+[ext_resource type="PackedScene" uid="uid://flxsagfb8nq8" path="res://scene/particles/explosion.tscn" id="2_md45m"]
+[ext_resource type="PackedScene" uid="uid://c746yoyx6jq0r" path="res://scene/bubble_gfx.tscn" id="3_nn3a8"]
+[ext_resource type="Texture2D" uid="uid://b44o6fonb27a1" path="res://assets/Bubble_Art/Bubbles.png" id="4_82ppc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o4v0u"]
+size = Vector2(30, 84)
+
+[node name="Bubble" type="Area2D" node_paths=PackedStringArray("GFX", "GFX")]
+script = ExtResource("1_4iq8p")
+DelayTime = 1.0
+GFX = NodePath("Sprite2D")
+explodeEffect = ExtResource("2_md45m")
+GFX = NodePath("Sprite2D")
+
+[node name="Bubble GFX" parent="." instance=ExtResource("3_nn3a8")]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 4)
+shape = SubResource("RectangleShape2D_o4v0u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.43051e-06, -2.98023e-08)
+rotation = 1.5708
+scale = Vector2(1.42969, 1.60372)
+texture = ExtResource("4_82ppc")

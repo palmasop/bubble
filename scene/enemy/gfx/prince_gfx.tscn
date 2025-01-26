@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bqjuoi4k5du4e"]
 
-[ext_resource type="Texture2D" uid="uid://rn7gywc23qwh" path="res://assets/Bubble_Art/Enemies.png" id="1_6bwbm"]
+[ext_resource type="Texture2D" uid="uid://bdsj6quenj0f7" path="res://assets/Bubble_Art/Enemies.png" id="1_6bwbm"]
 
 [node name="Swimp GFX" type="Node2D"]
 

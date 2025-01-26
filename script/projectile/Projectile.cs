@@ -21,18 +21,27 @@ public partial class Projectile : Area2D
         AreaEntered += HandleOnHit;
     }
 
-    public virtual void Init(float lifetime, float speed, float scale, int damage, PackedScene display)
+    public virtual void Init(float lifetime, float speed, float scale, int damage, PackedScene display, Vector2 direction)
     {
-        velocity = Vector2.Up * speed;
+        velocity = direction * speed;
         Scale = Vector2.One * scale;
         this.lifetime = lifetime;
         this.damage = damage;
 
-        foreach (var child in GFX.GetChildren())
-            child.QueueFree();
-        var displayGFX = display.Instantiate<Node2D>();
-        GFX.AddChild(displayGFX);
-        displayGFX.GlobalPosition = GFX.GlobalPosition;
+        if (display != null)
+        {
+            foreach (var child in GFX.GetChildren())
+                child.QueueFree();
+
+            var displayGFX = display.Instantiate<Node2D>();
+            GFX.AddChild(displayGFX);
+            displayGFX.GlobalPosition = GFX.GlobalPosition;
+        }
+    }
+
+    public virtual void Init(float lifetime, float speed, float scale, int damage, PackedScene display)
+    {
+        Init(lifetime, speed, scale, damage, display, Vector2.Up);
     }
 
     public override void _Process(double delta)

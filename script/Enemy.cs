@@ -77,6 +77,9 @@ public partial class Enemy : CharacterBody2D, IDamageable, IKnockbackable, ICapt
 
     void DieEffect()
     {
+        if (dieEffect == null)
+            return;
+
         var node = (Node2D)dieEffect.Instantiate();
         node.GlobalPosition = GlobalPosition;
         GetTree().CurrentScene.AddChild(node);

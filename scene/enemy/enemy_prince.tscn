@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://c5r784i7765bd"]
 
-[ext_resource type="Script" path="res://script/Enemy.cs" id="1_1m6ky"]
-[ext_resource type="PackedScene" uid="uid://flxsagfb8nq8" path="res://scene/particles/explosion.tscn" id="2_sxp55"]
+[ext_resource type="Script" path="res://script/EnemyBoss.cs" id="1_i0qhw"]
+[ext_resource type="PackedScene" uid="uid://dmak238llt3yl" path="res://scene/damage_bullet.tscn" id="2_xdsdd"]
 [ext_resource type="Script" path="res://script/util/EnemyAI.cs" id="3_hyrcp"]
 [ext_resource type="Script" path="res://script/util/health/Health.cs" id="4_q26mm"]
 [ext_resource type="PackedScene" uid="uid://bqjuoi4k5du4e" path="res://scene/enemy/gfx/prince_gfx.tscn" id="5_uaxar"]
@@ -17,12 +17,9 @@ radius = 22.0
 [node name="Prince" type="CharacterBody2D"]
 scale = Vector2(1.91, 1.91)
 motion_mode = 1
-script = ExtResource("1_1m6ky")
-type = 3
-attackDamage = 2
-dieEffect = ExtResource("2_sxp55")
-knockbackDecay = 5000.0
-knockbackForce = 0.0
+script = ExtResource("1_i0qhw")
+bullet = ExtResource("2_xdsdd")
+ability1Cooldown = 2.0
 
 [node name="EnemyAI" type="Node2D" parent="."]
 script = ExtResource("3_hyrcp")
