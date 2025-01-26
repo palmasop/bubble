@@ -56,7 +56,7 @@ rotation = -1.5708
 scale = Vector2(4.10654, 4.15082)
 texture = SubResource("CompressedTexture2D_2yi1l")
 region_enabled = true
-region_rect = Rect2(0, 16, 16, 16)
+region_rect = Rect2(0, 0, 16, 16)
 
 [node name="ShootPoint" type="Node2D" parent="."]
 position = Vector2(39, 1)
