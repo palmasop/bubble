@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhpctgt53n1ha"
-path="res://.godot/imported/BubbleGun.png-9de662da6276c26b6f3e1611bcca79e1.ctex"
+uid="uid://c5capxw3rabpq"
+path="res://.godot/imported/GameCG.png-c904e5dac77abe7ef70c347fa7bb4cf1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Bubble_Art/BubbleGun.png"
-dest_files=["res://.godot/imported/BubbleGun.png-9de662da6276c26b6f3e1611bcca79e1.ctex"]
+source_file="res://assets/Bubble_Art/GameCG.png"
+dest_files=["res://.godot/imported/GameCG.png-c904e5dac77abe7ef70c347fa7bb4cf1.ctex"]
 
 [params]
 

@@ -15,9 +15,9 @@ public partial class Bubble : Projectile
 
     public void EnableCapture(bool enable) => captureAble = enable;
 
-    public override void Init(float lifetime, float speed, float scale, int damage, PackedScene display)
+    public override void Init(Node2D owner, float lifetime, float speed, float scale, int damage, PackedScene display)
     {
-        base.Init(lifetime, speed, scale, damage, display);
+        base.Init(owner, lifetime, speed, scale, damage, display);
         targetV = velocity / 10;
     }
 
@@ -38,6 +38,9 @@ public partial class Bubble : Projectile
 
     protected override void HandleOnHit(Area2D area)
     {
+        if (IsHitOwner(area))
+            return;
+
         base.HandleOnHit(area);
         if (area == captured)
             return;

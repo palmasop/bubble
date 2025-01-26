@@ -61,7 +61,7 @@ public partial class EnemyBoss : Enemy
             var targetPos = player.GlobalPosition + randomOffset;
             var direction = (targetPos - GlobalPosition).Normalized();
 
-            bulletInstance.Init(10, 800, 1, 10, null, direction);
+            bulletInstance.Init(this, 10, 800, 1, 10, null, direction);
             bulletInstance.GlobalPosition = GlobalPosition;
             GetTree().Root.AddChild(bulletInstance);
         }
@@ -88,7 +88,7 @@ public partial class EnemyBoss : Enemy
             var targetPos = player.GlobalPosition + randomOffset;
             var direction = (targetPos - GlobalPosition).Normalized();
 
-            bulletInstance.Init(10, 800, 1, 10, null, Vector2.Down);
+            bulletInstance.Init(this, 10, 800, 1, 10, null, Vector2.Down);
             bulletInstance.GlobalPosition = GlobalPosition + randomOffset;
             GetTree().Root.AddChild(bulletInstance);
         }

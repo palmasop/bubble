@@ -14,15 +14,16 @@ public partial class Projectile : Area2D
 
     float timeAlive = 0.0f;
     protected Vector2 velocity = Vector2.Zero;
-
+    protected Node2D owner;
 
     public override void _Ready()
     {
         AreaEntered += HandleOnHit;
     }
 
-    public virtual void Init(float lifetime, float speed, float scale, int damage, PackedScene display, Vector2 direction)
+    public virtual void Init(Node2D owner, float lifetime, float speed, float scale, int damage, PackedScene display, Vector2 direction)
     {
+        this.owner = owner;
         velocity = direction * speed;
         Scale = Vector2.One * scale;
         this.lifetime = lifetime;
@@ -39,9 +40,9 @@ public partial class Projectile : Area2D
         }
     }
 
-    public virtual void Init(float lifetime, float speed, float scale, int damage, PackedScene display)
+    public virtual void Init(Node2D owner, float lifetime, float speed, float scale, int damage, PackedScene display)
     {
-        Init(lifetime, speed, scale, damage, display, Vector2.Up);
+        Init(owner, lifetime, speed, scale, damage, display, Vector2.Up);
     }
 
     public override void _Process(double delta)
@@ -75,5 +76,11 @@ public partial class Projectile : Area2D
     protected virtual void HandleOnHit(Area2D area)
     {
         EmitSignal(SignalName.OnHit, area);
+    }
+
+    protected virtual bool IsHitOwner(Area2D area)
+    {
+        GD.Print(area.Name + " " + area.GetParent().Name + " " + owner.Name + " " + owner.GetParent().Name);
+        return area == owner || area.GetParent() == owner || owner.GetParent() == area || owner.GetParent() == area.GetParent();
     }
 }

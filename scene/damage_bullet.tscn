@@ -3,10 +3,12 @@
 [ext_resource type="Script" path="res://script/projectile/DamageBullet.cs" id="1_4iq8p"]
 [ext_resource type="PackedScene" uid="uid://flxsagfb8nq8" path="res://scene/particles/explosion.tscn" id="2_md45m"]
 [ext_resource type="PackedScene" uid="uid://c746yoyx6jq0r" path="res://scene/bubble_gfx.tscn" id="3_nn3a8"]
-[ext_resource type="Texture2D" uid="uid://b44o6fonb27a1" path="res://assets/Bubble_Art/Bubbles.png" id="4_82ppc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o4v0u"]
 size = Vector2(30, 84)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0dxeb"]
+load_path = "res://.godot/imported/Bubbles.png-7536505f5caf3a0e98700f5aea923bb6.ctex"
 
 [node name="Bubble" type="Area2D" node_paths=PackedStringArray("GFX", "GFX")]
 script = ExtResource("1_4iq8p")
@@ -26,4 +28,4 @@ shape = SubResource("RectangleShape2D_o4v0u")
 position = Vector2(-1.43051e-06, -2.98023e-08)
 rotation = 1.5708
 scale = Vector2(1.42969, 1.60372)
-texture = ExtResource("4_82ppc")
+texture = SubResource("CompressedTexture2D_0dxeb")

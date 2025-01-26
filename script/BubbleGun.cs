@@ -120,7 +120,7 @@ public partial class BubbleGun : Node2D
 
 		// Calculate damage based on charge time, starting from 100%
 		int damage = (int)(Settings.damage * (1 + (_currentCharge - Settings.MinBulletScale) / (Settings.MaxBulletScale - Settings.MinBulletScale)));
-		bullet.Init(Settings.BulletLifetime, Settings.ShootSpeed, _currentCharge, damage, Settings.displayGFX);
+		bullet.Init(this, Settings.BulletLifetime, Settings.ShootSpeed, _currentCharge, damage, Settings.displayGFX);
 
 		bulletLeft--;
 		UpdateBulletDisplay();

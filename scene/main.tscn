@@ -1,15 +1,19 @@
 [gd_scene load_steps=16 format=3 uid="uid://cxb2m2lhpht5d"]
 
 [ext_resource type="PackedScene" path="res://scene/enemy_spawner.tscn" id="1_qj3xk"]
-[ext_resource type="Texture2D" uid="uid://bygr1g8nclmbt" path="res://assets/Bubble_Art/Background.png" id="1_v8qlt"]
 [ext_resource type="Script" path="res://script/WaveManager.cs" id="2_6hu13"]
-[ext_resource type="Texture2D" uid="uid://cskpd4mkyd6rr" path="res://assets/Bubble_Art/Props.png" id="2_xhdbt"]
 [ext_resource type="PackedScene" uid="uid://dlaij1u1hsolb" path="res://scene/enemy/enemy_swimp.tscn" id="4_50k2g"]
 [ext_resource type="Shader" path="res://shader/dizzy.gdshader" id="6_7a2kq"]
 [ext_resource type="PackedScene" uid="uid://btimebe4h0gdl" path="res://scene/enemy/enemy_fish.tscn" id="6_lmx5n"]
 [ext_resource type="PackedScene" uid="uid://c5r784i7765bd" path="res://scene/enemy/enemy_prince.tscn" id="7_fvuwg"]
 [ext_resource type="PackedScene" uid="uid://bwi28b4qavp5e" path="res://scene/player.tscn" id="8_bhipn"]
 [ext_resource type="PackedScene" uid="uid://43q5ci3tvt4p" path="res://scene/enemy/enemy_crab.tscn" id="9_vhyqv"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_80cbr"]
+load_path = "res://.godot/imported/Background.png-f89a97733e038f40a792636c10c4b542.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sp0qi"]
+load_path = "res://.godot/imported/Props.png-45ce32424467d2636bb6ba396031e67f.ctex"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_nbcjd"]
 vertices = PackedVector2Array(1231.01, 2689.87, -3.96875, 2675.11, 2.96875, 8, 1233.99, 8)
@@ -48,7 +52,7 @@ offset_left = -7.0
 offset_top = 1.0
 offset_right = 4153.0
 offset_bottom = 3532.0
-texture = ExtResource("1_v8qlt")
+texture = SubResource("CompressedTexture2D_80cbr")
 stretch_mode = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D"]
@@ -58,7 +62,7 @@ texture_filter = 2
 position = Vector2(-9.00003, 348)
 rotation = 0.791499
 scale = Vector2(6.66667, 6.55556)
-texture = ExtResource("2_xhdbt")
+texture = SubResource("CompressedTexture2D_sp0qi")
 region_enabled = true
 region_rect = Rect2(0, 0, 18.9456, 18.1231)
 
@@ -69,7 +73,7 @@ texture_filter = 2
 position = Vector2(618, 1073)
 rotation = -0.915228
 scale = Vector2(33.0581, 22.7042)
-texture = ExtResource("2_xhdbt")
+texture = SubResource("CompressedTexture2D_sp0qi")
 region_enabled = true
 region_rect = Rect2(0, 0, 18.9456, 18.1231)
 
@@ -81,7 +85,7 @@ texture_filter = 2
 position = Vector2(-125, 954)
 rotation = -0.117724
 scale = Vector2(34.1775, 13.24)
-texture = ExtResource("2_xhdbt")
+texture = SubResource("CompressedTexture2D_sp0qi")
 region_enabled = true
 region_rect = Rect2(0, 0, 18.9456, 18.1231)
 
@@ -92,7 +96,7 @@ texture_filter = 2
 position = Vector2(-629, 1100)
 rotation = -2.46232
 scale = Vector2(33.0581, 22.7042)
-texture = ExtResource("2_xhdbt")
+texture = SubResource("CompressedTexture2D_sp0qi")
 region_enabled = true
 region_rect = Rect2(0, 0, 18.9456, 18.1231)
 
@@ -103,7 +107,7 @@ texture_filter = 2
 position = Vector2(513, 546)
 rotation = -0.755698
 scale = Vector2(6.66667, 6.55556)
-texture = ExtResource("2_xhdbt")
+texture = SubResource("CompressedTexture2D_sp0qi")
 region_enabled = true
 region_rect = Rect2(27.8468, 1.37755, 36.3239, 46.8387)
 
@@ -114,7 +118,7 @@ texture_filter = 2
 position = Vector2(-130, 2338)
 rotation = -2.20106
 scale = Vector2(17.39, 21.0305)
-texture = ExtResource("2_xhdbt")
+texture = SubResource("CompressedTexture2D_sp0qi")
 region_enabled = true
 region_rect = Rect2(27.8468, 1.37755, 36.3239, 46.8387)
 
@@ -125,7 +129,7 @@ texture_filter = 2
 position = Vector2(574, 930)
 rotation = -0.755698
 scale = Vector2(16.0789, 15.8109)
-texture = ExtResource("2_xhdbt")
+texture = SubResource("CompressedTexture2D_sp0qi")
 region_enabled = true
 region_rect = Rect2(140.642, 7.22091, 26.765, 21.9855)
 
@@ -136,7 +140,7 @@ texture_filter = 2
 position = Vector2(529, 1958)
 rotation = -0.755698
 scale = Vector2(16.0789, 15.8109)
-texture = ExtResource("2_xhdbt")
+texture = SubResource("CompressedTexture2D_sp0qi")
 region_enabled = true
 region_rect = Rect2(140.642, 7.22091, 26.765, 21.9855)
 
@@ -147,7 +151,7 @@ texture_filter = 2
 position = Vector2(514, 2759)
 rotation = -0.755698
 scale = Vector2(16.0789, 15.8109)
-texture = ExtResource("2_xhdbt")
+texture = SubResource("CompressedTexture2D_sp0qi")
 region_enabled = true
 region_rect = Rect2(140.642, 7.22091, 26.765, 21.9855)
 
@@ -158,7 +162,7 @@ texture_filter = 2
 position = Vector2(-20, 1745)
 rotation = 0.695136
 scale = Vector2(16.0789, 15.8109)
-texture = ExtResource("2_xhdbt")
+texture = SubResource("CompressedTexture2D_sp0qi")
 region_enabled = true
 region_rect = Rect2(140.642, 7.22091, 26.765, 21.9855)
 
@@ -170,7 +174,7 @@ texture_filter = 2
 position = Vector2(-74.0001, 1543)
 rotation = -0.349868
 scale = Vector2(16.0789, 15.8109)
-texture = ExtResource("2_xhdbt")
+texture = SubResource("CompressedTexture2D_sp0qi")
 region_enabled = true
 region_rect = Rect2(140.642, 7.22091, 26.765, 21.9855)
 
@@ -181,7 +185,7 @@ texture_filter = 2
 position = Vector2(36.5403, 658.405)
 rotation = 0.975715
 scale = Vector2(11.086, 10.9012)
-texture = ExtResource("2_xhdbt")
+texture = SubResource("CompressedTexture2D_sp0qi")
 region_enabled = true
 region_rect = Rect2(193.216, 11.8924, 15.2943, 21.0296)
 
@@ -192,7 +196,7 @@ texture_filter = 2
 position = Vector2(-0.999977, 1150)
 rotation = 2.46698
 scale = Vector2(11.086, 10.9012)
-texture = ExtResource("2_xhdbt")
+texture = SubResource("CompressedTexture2D_sp0qi")
 region_enabled = true
 region_rect = Rect2(193.216, 11.8924, 15.2943, 21.0296)
 
@@ -203,7 +207,7 @@ texture_filter = 2
 position = Vector2(490, 1724)
 rotation = 2.46698
 scale = Vector2(11.086, 10.9012)
-texture = ExtResource("2_xhdbt")
+texture = SubResource("CompressedTexture2D_sp0qi")
 region_enabled = true
 region_rect = Rect2(193.216, 11.8924, 15.2943, 21.0296)
 
@@ -214,7 +218,7 @@ texture_filter = 2
 position = Vector2(36, 2571)
 rotation = 2.46698
 scale = Vector2(11.086, 10.9012)
-texture = ExtResource("2_xhdbt")
+texture = SubResource("CompressedTexture2D_sp0qi")
 region_enabled = true
 region_rect = Rect2(193.216, 11.8924, 15.2943, 21.0296)
 
@@ -225,7 +229,7 @@ texture_filter = 2
 position = Vector2(13.0001, 3040)
 rotation = 1.59989
 scale = Vector2(11.086, 10.9012)
-texture = ExtResource("2_xhdbt")
+texture = SubResource("CompressedTexture2D_sp0qi")
 region_enabled = true
 region_rect = Rect2(193.216, 11.8924, 15.2943, 21.0296)
 

@@ -1,7 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://c746yoyx6jq0r"]
 
 [ext_resource type="Script" path="res://script/BubblePreview.cs" id="1_unplw"]
-[ext_resource type="Texture2D" uid="uid://6fekkndiarxm" path="res://assets/Bubble_Art/Bubble.png" id="2_m5fmm"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hw1r3"]
+load_path = "res://.godot/imported/Bubble.png-0330ed860b3136bddfa148a42bb9312a.ctex"
 
 [node name="Bubble GFX" type="Node2D"]
 script = ExtResource("1_unplw")
@@ -12,5 +14,5 @@ offset_left = -10.0
 offset_top = -10.0
 offset_right = 10.0
 offset_bottom = 10.0
-texture = ExtResource("2_m5fmm")
+texture = SubResource("CompressedTexture2D_hw1r3")
 expand_mode = 2

@@ -9,16 +9,18 @@
 [ext_resource type="Script" path="res://script/util/health/DamageFlash.cs" id="5_jgi4y"]
 [ext_resource type="Script" path="res://script/ui/GameOverMenu.cs" id="6_7mltj"]
 [ext_resource type="PackedScene" uid="uid://1xinxumcen0r" path="res://scene/damageLabel.tscn" id="6_d8bhv"]
-[ext_resource type="Texture2D" uid="uid://cstmlkh5ys63j" path="res://assets/Bubble_Art/HealthBarUI.png" id="7_lqk75"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ljdc"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rmwuv"]
+load_path = "res://.godot/imported/HealthBarUI.png-4f79f27c3f33915208003ceb2329e478.ctex"
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h27ai"]
-texture = ExtResource("7_lqk75")
+texture = SubResource("CompressedTexture2D_rmwuv")
 region_rect = Rect2(0, 18, 160, 12)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ebpum"]
-texture = ExtResource("7_lqk75")
+texture = SubResource("CompressedTexture2D_rmwuv")
 texture_margin_top = 2.61155
 region_rect = Rect2(0, 0, 160, 15)
 

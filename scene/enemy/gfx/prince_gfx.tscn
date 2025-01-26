@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://bqjuoi4k5du4e"]
 
-[ext_resource type="Texture2D" uid="uid://bdsj6quenj0f7" path="res://assets/Bubble_Art/Enemies.png" id="1_6bwbm"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_71lb4"]
+load_path = "res://.godot/imported/Enemies.png-7654e8f999e142970abf5727d4e8ea6b.ctex"
 
 [node name="Swimp GFX" type="Node2D"]
 
@@ -8,6 +9,6 @@
 texture_filter = 1
 position = Vector2(-1, -1)
 scale = Vector2(1.61192, 1.65012)
-texture = ExtResource("1_6bwbm")
+texture = SubResource("CompressedTexture2D_71lb4")
 region_enabled = true
 region_rect = Rect2(48.5926, 16.2842, 14.3238, 15.7427)

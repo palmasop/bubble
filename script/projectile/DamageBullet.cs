@@ -17,9 +17,9 @@ public partial class DamageBullet : Projectile
 
     private float _delayTimer = 0f;
 
-    public override void Init(float lifetime, float speed, float scale, int damage, PackedScene display, Vector2 direction)
+    public override void Init(Node2D owner, float lifetime, float speed, float scale, int damage, PackedScene display, Vector2 direction)
     {
-        base.Init(lifetime, speed, scale, damage, display, direction);
+        base.Init(owner, lifetime, speed, scale, damage, display, direction);
         initialV = direction * speed;
         velocity = Vector2.Zero;
         _delayTimer = 0f;
@@ -27,9 +27,9 @@ public partial class DamageBullet : Projectile
     }
 
 
-    public override void Init(float lifetime, float speed, float scale, int damage, PackedScene display)
+    public override void Init(Node2D owner, float lifetime, float speed, float scale, int damage, PackedScene display)
     {
-        base.Init(lifetime, speed, scale, damage, display);
+        base.Init(owner, lifetime, speed, scale, damage, display);
     }
 
     private void OnDelayComplete()
@@ -40,6 +40,9 @@ public partial class DamageBullet : Projectile
 
     protected override void HandleOnHit(Area2D area)
     {
+        if (IsHitOwner(area))
+            return;
+
         if (area.GetParent() is not IDamageable damageable)
             return;
 
