@@ -14,6 +14,7 @@ public partial class EnemyAI : Node2D
 	[Export] public float pathfindingInterval = 0.1f;
 	[Export] public float minDistanceToPlayer = 20.0f;
 	[Export] public float awayDistance = 20.0f;
+	[Export] public float stayAwayDistance = 0.0f; // Distance to stay away from the player
 	NavigationAgent2D navigationAgent;
 	Player targetPlayer;
 	bool isNavigationReady;
@@ -112,12 +113,17 @@ public partial class EnemyAI : Node2D
 		Vector2 directionToPlayer = (targetPlayer.GlobalPosition - GlobalPosition).Normalized();
 		float distanceToPlayer = GlobalPosition.DistanceTo(targetPlayer.GlobalPosition);
 
-		if (distanceToPlayer < awayDistance)
-			MoveToTarget_Circular();
+		if (distanceToPlayer < stayAwayDistance)
+		{
+			// Move away from the player
+			Vector2 awayDirection = (GlobalPosition - targetPlayer.GlobalPosition).Normalized();
+			navigationAgent.TargetPosition = GlobalPosition + awayDirection * stayAwayDistance;
+		}
 		else if (distanceToPlayer > minDistanceToPlayer)
+		{
+			// Move towards the player
 			navigationAgent.TargetPosition = targetPlayer.GlobalPosition;
-		else
-			MoveToTarget_Circular();
+		}
 
 		Vector2 nextPathPosition = navigationAgent.GetNextPathPosition();
 		Vector2 direction = (nextPathPosition - GlobalPosition).Normalized();
