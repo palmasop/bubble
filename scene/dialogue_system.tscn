@@ -1,16 +1,27 @@
-[gd_scene load_steps=12 format=3 uid="uid://bo05xtgxki6v4"]
+[gd_scene load_steps=15 format=3 uid="uid://bo05xtgxki6v4"]
 
 [ext_resource type="Script" path="res://script/manager/dialogue/DialogueSystem.cs" id="1_krup5"]
 [ext_resource type="Script" path="res://script/manager/dialogue/InitialDialog.cs" id="2_pt0yx"]
+[ext_resource type="Script" path="res://script/manager/dialogue/Resources/Character.cs" id="2_xbjlp"]
 [ext_resource type="Texture2D" uid="uid://c5capxw3rabpq" path="res://assets/Bubble_Art/GameCG.png" id="3_b4qlm"]
 [ext_resource type="Script" path="res://script/manager/dialogue/Resources/Conversion.cs" id="4_f0hu2"]
 [ext_resource type="Script" path="res://script/manager/dialogue/Resources/ConversionGroup.cs" id="7_bn4j4"]
 [ext_resource type="Script" path="res://script/manager/dialogue/Resources/DialogueData.cs" id="8_l7eqi"]
 
+[sub_resource type="Resource" id="Resource_qceks"]
+script = ExtResource("2_xbjlp")
+type = 0
+name = ""
+
+[sub_resource type="Resource" id="Resource_ovvcr"]
+script = ExtResource("2_xbjlp")
+type = 1
+name = ""
+
 [sub_resource type="Resource" id="Resource_jajb2"]
 script = ExtResource("4_f0hu2")
 _type = 0
-character = 1
+character = 0
 text = "..."
 backgroundImage = ExtResource("3_b4qlm")
 backgroundImageRect = Rect2(0, 0, 240, 136)
@@ -21,7 +32,7 @@ jumpTo = ""
 [sub_resource type="Resource" id="Resource_wqfhl"]
 script = ExtResource("4_f0hu2")
 _type = 0
-character = 1
+character = 0
 text = "..."
 backgroundImage = ExtResource("3_b4qlm")
 backgroundImageRect = Rect2(240, 0, 240, 136)
@@ -32,7 +43,7 @@ jumpTo = ""
 [sub_resource type="Resource" id="Resource_oj7a4"]
 script = ExtResource("4_f0hu2")
 _type = 0
-character = 1
+character = 0
 text = "..."
 backgroundImage = ExtResource("3_b4qlm")
 backgroundImageRect = Rect2(480, 0, 240, 136)
@@ -56,6 +67,7 @@ conversionLabel = NodePath("CanvasLayer/Control/Control/Panel/MarginContainer/VB
 charImage = NodePath("CanvasLayer/Control/Character Image")
 optionContainer = NodePath("CanvasLayer/Control/Control/Panel/MarginContainer/VBoxContainer/Option")
 backgroundImageRect = NodePath("CanvasLayer/Control/Sprite2D")
+characters = [SubResource("Resource_qceks"), SubResource("Resource_ovvcr")]
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource("2_pt0yx")
