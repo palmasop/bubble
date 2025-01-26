@@ -25,6 +25,8 @@ public partial class BubbleGun : Node2D
 	bool isLastChargeShot;
 	int bulletLeft;
 
+	private float _chargeTime = 0.0f;
+
 	public override void _Ready()
 	{
 		if (Settings == null)
@@ -68,10 +70,12 @@ public partial class BubbleGun : Node2D
 			{
 				_isCharging = true;
 				_currentCharge = Settings.MinBulletScale;
+				_chargeTime = 0.0f; // Reset charge time
 				BubblePreview?.Show();
 			}
 
-			_currentCharge = Mathf.Min(_currentCharge + Settings.ChargeRate * (float)delta, Settings.MaxBulletScale);
+			_chargeTime += (float)delta;
+			_currentCharge = Mathf.Min(Settings.MinBulletScale + Settings.ChargeRate * _chargeTime, Settings.MaxBulletScale);
 			BubblePreview?.UpdatePreview(_currentCharge);
 		}
 		else if (Input.IsActionJustReleased("shoot") && _isCharging)
@@ -114,7 +118,9 @@ public partial class BubbleGun : Node2D
 		GetTree().Root.AddChild(bullet);
 		bullet.GlobalPosition = shootPoint.GlobalPosition;
 
-		bullet.Init(Settings.BulletLifetime, Settings.ShootSpeed, _currentCharge, Settings.damage, Settings.displayGFX);
+		// Calculate damage based on charge time, starting from 100%
+		int damage = (int)(Settings.damage * (1 + (_currentCharge - Settings.MinBulletScale) / (Settings.MaxBulletScale - Settings.MinBulletScale)));
+		bullet.Init(Settings.BulletLifetime, Settings.ShootSpeed, _currentCharge, damage, Settings.displayGFX);
 
 		bulletLeft--;
 		UpdateBulletDisplay();
