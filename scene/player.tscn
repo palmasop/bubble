@@ -25,7 +25,7 @@ texture_margin_top = 2.61155
 region_rect = Rect2(0, 0, 160, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xu6mh"]
-size = Vector2(61, 43)
+size = Vector2(29, 65.5)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gameOverMenu")]
 position = Vector2(225, 666)
@@ -41,8 +41,9 @@ script = ExtResource("2_ye5d2")
 shape = SubResource("RectangleShape2D_3ljdc")
 disabled = true
 
-[node name="Bubble Gun" parent="." instance=ExtResource("3_6xrxp")]
+[node name="Bubble Gun" parent="." node_paths=PackedStringArray("owner") instance=ExtResource("3_6xrxp")]
 position = Vector2(1, 0)
+owner = NodePath("..")
 
 [node name="TakeDamageNumber" type="Node2D" parent="." node_paths=PackedStringArray("health")]
 position = Vector2(33.6184, 0)
@@ -141,8 +142,9 @@ theme_override_font_sizes/font_size = 36
 text = "Restart
 "
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Player Hitbox" type="Area2D" parent="."]
+position = Vector2(-46, -48)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(45.5, -3.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Hitbox"]
+position = Vector2(48, 92)
 shape = SubResource("RectangleShape2D_xu6mh")

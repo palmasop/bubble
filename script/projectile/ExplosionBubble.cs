@@ -71,6 +71,9 @@ public partial class ExplosionBubble : Projectile
 
     protected override void HandleOnHit(Area2D area)
     {
+        if (IsHitOwner(area))
+            return;
+
         if (area.GetParent() is not IDamageable damageable)
             return;
 

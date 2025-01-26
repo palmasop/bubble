@@ -233,6 +233,9 @@ texture = SubResource("CompressedTexture2D_sp0qi")
 region_enabled = true
 region_rect = Rect2(193.216, 11.8924, 15.2943, 21.0296)
 
+[node name="Swimp" parent="Node2D" instance=ExtResource("4_50k2g")]
+position = Vector2(211, 2855)
+
 [node name="Wave Spawner" type="Node2D" parent="." node_paths=PackedStringArray("waveBackground")]
 script = ExtResource("2_6hu13")
 waveBackground = NodePath("../Node2D")

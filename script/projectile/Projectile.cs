@@ -80,7 +80,9 @@ public partial class Projectile : Area2D
 
     protected virtual bool IsHitOwner(Area2D area)
     {
-        GD.Print(area.Name + " " + area.GetParent().Name + " " + owner.Name + " " + owner.GetParent().Name);
+        GD.Print("IsHitOwner ", owner.Name, " ", area.Name, " ", area.GetParent().Name);
+        if (owner is Player && area.GetParent() is Player)
+            return true;
         return area == owner || area.GetParent() == owner || owner.GetParent() == area || owner.GetParent() == area.GetParent();
     }
 }

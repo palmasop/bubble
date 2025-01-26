@@ -3,7 +3,7 @@ using System;
 
 public partial class BubbleGun : Node2D
 {
-
+	[Export] Node2D owner;
 	[Export] Node2D shootPoint;
 
 	[Export] public BubblePreview BubblePreview { get; set; }
@@ -118,9 +118,8 @@ public partial class BubbleGun : Node2D
 		GetTree().Root.AddChild(bullet);
 		bullet.GlobalPosition = shootPoint.GlobalPosition;
 
-		// Calculate damage based on charge time, starting from 100%
 		int damage = (int)(Settings.damage * (1 + (_currentCharge - Settings.MinBulletScale) / (Settings.MaxBulletScale - Settings.MinBulletScale)));
-		bullet.Init(this, Settings.BulletLifetime, Settings.ShootSpeed, _currentCharge, damage, Settings.displayGFX);
+		bullet.Init(owner, Settings.BulletLifetime, Settings.ShootSpeed, _currentCharge, damage, Settings.displayGFX);
 
 		bulletLeft--;
 		UpdateBulletDisplay();
