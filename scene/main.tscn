@@ -1,12 +1,12 @@
 [gd_scene load_steps=16 format=3 uid="uid://cxb2m2lhpht5d"]
 
-[ext_resource type="PackedScene" path="res://scene/enemy_spawner.tscn" id="1_qj3xk"]
+[ext_resource type="PackedScene" uid="uid://q364g8ve7vdu" path="res://scene/enemy_spawner.tscn" id="1_qj3xk"]
 [ext_resource type="Script" path="res://script/WaveManager.cs" id="2_6hu13"]
 [ext_resource type="PackedScene" uid="uid://dlaij1u1hsolb" path="res://scene/enemy/enemy_swimp.tscn" id="4_50k2g"]
 [ext_resource type="Shader" path="res://shader/dizzy.gdshader" id="6_7a2kq"]
 [ext_resource type="PackedScene" uid="uid://btimebe4h0gdl" path="res://scene/enemy/enemy_fish.tscn" id="6_lmx5n"]
-[ext_resource type="PackedScene" uid="uid://c5r784i7765bd" path="res://scene/enemy/enemy_prince.tscn" id="7_fvuwg"]
-[ext_resource type="PackedScene" uid="uid://bwi28b4qavp5e" path="res://scene/player.tscn" id="8_bhipn"]
+[ext_resource type="PackedScene" uid="uid://dsr25u2n41fxv" path="res://scene/enemy/enemy_prince.tscn" id="7_fvuwg"]
+[ext_resource type="PackedScene" path="res://scene/player.tscn" id="8_bhipn"]
 [ext_resource type="PackedScene" uid="uid://43q5ci3tvt4p" path="res://scene/enemy/enemy_crab.tscn" id="9_vhyqv"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_80cbr"]
@@ -239,52 +239,52 @@ waveBackground = NodePath("../Node2D")
 waveSpawners = [NodePath("../Enemy Spawner"), NodePath("../Enemy Spawner2"), NodePath("../Enemy Spawner3"), NodePath("../Enemy Spawner4"), NodePath("../Enemy Spawner5"), NodePath("../Enemy Spawner6")]
 
 [node name="Enemy Spawner" parent="." instance=ExtResource("1_qj3xk")]
-position = Vector2(0, -94)
-enemyScenes = [ExtResource("4_50k2g")]
-spawnInterval = 1.0
-maxEnemies = 1
-spawnAreaMin = Vector2(0, 0)
-spawnAreaMax = Vector2(480, 100)
-
-[node name="Enemy Spawner2" parent="." instance=ExtResource("1_qj3xk")]
-position = Vector2(0, -94)
+position = Vector2(-2, -9)
 enemyScenes = [ExtResource("4_50k2g")]
 spawnInterval = 1.0
 maxEnemies = 5
 spawnAreaMin = Vector2(0, 0)
-spawnAreaMax = Vector2(480, 100)
+spawnAreaMax = Vector2(480, 10)
+
+[node name="Enemy Spawner2" parent="." instance=ExtResource("1_qj3xk")]
+position = Vector2(-2, -9)
+enemyScenes = [ExtResource("4_50k2g")]
+spawnInterval = 1.0
+maxEnemies = 5
+spawnAreaMin = Vector2(0, 0)
+spawnAreaMax = Vector2(480, 10)
 
 [node name="Enemy Spawner3" parent="." instance=ExtResource("1_qj3xk")]
-position = Vector2(0, -94)
+position = Vector2(-2, -9)
 enemyScenes = [ExtResource("9_vhyqv")]
 spawnInterval = 1.0
 maxEnemies = 1
 spawnAreaMin = Vector2(0, 0)
-spawnAreaMax = Vector2(480, 100)
+spawnAreaMax = Vector2(480, 10)
 
 [node name="Enemy Spawner4" parent="." instance=ExtResource("1_qj3xk")]
-position = Vector2(0, -188)
-enemyScenes = [ExtResource("9_vhyqv"), ExtResource("6_lmx5n")]
-spawnInterval = 1.0
-maxEnemies = 3
+position = Vector2(-2, -15)
+enemyScenes = [ExtResource("4_50k2g")]
+spawnInterval = 3.0
+maxEnemies = -1
 spawnAreaMin = Vector2(0, 0)
-spawnAreaMax = Vector2(480, 100)
+spawnAreaMax = Vector2(480, 10)
 
 [node name="Enemy Spawner5" parent="." instance=ExtResource("1_qj3xk")]
-position = Vector2(0, -376)
-enemyScenes = [ExtResource("6_lmx5n")]
-spawnInterval = 1.0
-maxEnemies = 3
+position = Vector2(-2, -9)
+enemyScenes = [ExtResource("6_lmx5n"), ExtResource("9_vhyqv")]
+spawnInterval = 6.0
+maxEnemies = -1
 spawnAreaMin = Vector2(0, 0)
-spawnAreaMax = Vector2(480, 100)
+spawnAreaMax = Vector2(480, 10)
 
 [node name="Enemy Spawner6" parent="." instance=ExtResource("1_qj3xk")]
-position = Vector2(0, -376)
+position = Vector2(-2, -8)
 enemyScenes = [ExtResource("7_fvuwg")]
 spawnInterval = 1.0
 maxEnemies = 1
 spawnAreaMin = Vector2(0, 0)
-spawnAreaMax = Vector2(480, 100)
+spawnAreaMax = Vector2(480, 10)
 
 [node name="Player" parent="." instance=ExtResource("8_bhipn")]
 position = Vector2(1056, 638)
@@ -306,10 +306,6 @@ material = SubResource("ShaderMaterial_ifxdj")
 position = Vector2(261.5, 455.875)
 scale = Vector2(3.03516, 1058.25)
 texture = SubResource("GradientTexture1D_id6q8")
-
-[node name="Crab" parent="." instance=ExtResource("9_vhyqv")]
-position = Vector2(216, 30)
-Capturable = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(240, 424)

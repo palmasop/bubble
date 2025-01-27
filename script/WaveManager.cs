@@ -15,6 +15,7 @@ public partial class WaveManager : Node2D
 	public override void _Ready()
 	{
 		viewportHeight = GetViewportRect().Size.Y;
+		StartNextWave();
 	}
 
 	public override void _Process(double delta)
@@ -39,6 +40,7 @@ public partial class WaveManager : Node2D
 
 	private void StartNextWave()
 	{
+		GD.Print("StartNextWave");
 		if (_currentWave >= waveSpawners.Length) return; // No more waves
 
 		var spawner = GetNode<EnemySpawner>(waveSpawners[_currentWave]);

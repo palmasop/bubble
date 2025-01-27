@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://rwu50pt7owu" path="res://scene/enemy/gfx/fish_gfx.tscn" id="5_7f43x"]
 [ext_resource type="Script" path="res://script/EnemyGFXAnimation.cs" id="6_8acrt"]
 [ext_resource type="Script" path="res://script/util/health/DamageNumberAnimation.cs" id="7_feewr"]
-[ext_resource type="PackedScene" uid="uid://1xinxumcen0r" path="res://scene/damageLabel.tscn" id="8_m7nl3"]
+[ext_resource type="PackedScene" path="res://scene/damageLabel.tscn" id="8_m7nl3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1jgi"]
 size = Vector2(15, 15)
@@ -50,4 +50,5 @@ script = ExtResource("7_feewr")
 health = NodePath("../Health")
 spawnAreaMin = Vector2(-5, -5)
 spawnAreaMax = Vector2(5, 5)
+fadeDuration = 1.0
 label = ExtResource("8_m7nl3")

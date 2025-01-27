@@ -1,9 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://bo05xtgxki6v4"]
+[gd_scene load_steps=20 format=3 uid="uid://vvpxvr3idqog"]
 
 [ext_resource type="Script" path="res://script/manager/dialogue/DialogueSystem.cs" id="1_krup5"]
 [ext_resource type="Script" path="res://script/manager/dialogue/InitialDialog.cs" id="2_pt0yx"]
 [ext_resource type="Script" path="res://script/manager/dialogue/Resources/Character.cs" id="2_xbjlp"]
-[ext_resource type="Texture2D" uid="uid://duej2c0n4ljhq" path="res://assets/Bubble_Art/GameCG.png" id="3_b4qlm"]
+[ext_resource type="Texture2D" uid="uid://dvwhhh558ps5r" path="res://assets/Bubble_Art/GameCG.png" id="3_b4qlm"]
 [ext_resource type="Script" path="res://script/manager/dialogue/Resources/Conversion.cs" id="4_f0hu2"]
 [ext_resource type="Script" path="res://script/manager/dialogue/Resources/ConversionGroup.cs" id="7_bn4j4"]
 [ext_resource type="Script" path="res://script/manager/dialogue/Resources/DialogueData.cs" id="8_l7eqi"]

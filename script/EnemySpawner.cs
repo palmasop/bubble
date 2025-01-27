@@ -37,6 +37,8 @@ public partial class EnemySpawner : Node2D
 	private bool _isSpawning = false;
 	private int _spawnedEnemiesCount = 0;
 
+	bool SpawnAble () => _spawnedEnemiesCount < maxEnemies || maxEnemies == -1;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -49,7 +51,7 @@ public partial class EnemySpawner : Node2D
 
 		_timer += (float)delta;
 
-		if (_timer >= spawnInterval && _spawnedEnemiesCount < maxEnemies)
+		if (_timer >= spawnInterval && SpawnAble())
 		{
 			SpawnEnemy();
 			_timer = 0.0f; // Reset the timer
@@ -59,11 +61,12 @@ public partial class EnemySpawner : Node2D
 	public void StartSpawning()
 	{
 		_isSpawning = true;
+			_timer = 0.0f; // Reset the timer
 	}
 
 	private void SpawnEnemy()
 	{
-		if (enemyScenes.Length == 0 || _spawnedEnemiesCount >= maxEnemies) return; // Ensure there are enemy scenes to spawn and maxEnemies is not reached
+		if (enemyScenes.Length == 0 || !SpawnAble()) return; // Ensure there are enemy scenes to spawn and maxEnemies is not reached
 
 		// Randomly select an enemy scene from the list
 		var randomIndex = GD.Randi() % (int)enemyScenes.Length; // Get a random index

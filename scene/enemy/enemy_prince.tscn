@@ -1,12 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://c5r784i7765bd"]
+[gd_scene load_steps=15 format=3 uid="uid://dsr25u2n41fxv"]
 
 [ext_resource type="Script" path="res://script/EnemyBoss.cs" id="1_i0qhw"]
-[ext_resource type="PackedScene" uid="uid://dmak238llt3yl" path="res://scene/damage_bullet.tscn" id="2_xdsdd"]
+[ext_resource type="PackedScene" path="res://scene/damage_bullet.tscn" id="2_xdsdd"]
 [ext_resource type="Script" path="res://script/util/EnemyAI.cs" id="3_hyrcp"]
 [ext_resource type="Script" path="res://script/util/health/Health.cs" id="4_q26mm"]
-[ext_resource type="PackedScene" uid="uid://bqjuoi4k5du4e" path="res://scene/enemy/gfx/prince_gfx.tscn" id="5_uaxar"]
+[ext_resource type="PackedScene" path="res://scene/enemy/gfx/prince_gfx.tscn" id="5_uaxar"]
 [ext_resource type="Script" path="res://script/util/health/DamageNumberAnimation.cs" id="6_jx0fc"]
-[ext_resource type="PackedScene" uid="uid://1xinxumcen0r" path="res://scene/damageLabel.tscn" id="7_espmg"]
+[ext_resource type="PackedScene" path="res://scene/damageLabel.tscn" id="7_espmg"]
 [ext_resource type="Script" path="res://script/util/health/HealthBar.cs" id="8_eui72"]
 [ext_resource type="Script" path="res://script/ui/GameOverMenu.cs" id="10_65g08"]
 
@@ -63,6 +63,7 @@ scale = Vector2(1.53, 1.53)
 [node name="TakeDamageNumber" type="Node2D" parent="." node_paths=PackedStringArray("health")]
 script = ExtResource("6_jx0fc")
 health = NodePath("../Health")
+fadeDuration = 1.0
 fontSize = 2.0
 label = ExtResource("7_espmg")
 

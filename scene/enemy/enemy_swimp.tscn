@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c220da5dkvpkr" path="res://scene/enemy/gfx/swimp_gfx.tscn" id="5_p68tj"]
 [ext_resource type="Script" path="res://script/EnemyGFXAnimation.cs" id="6_pmrlh"]
 [ext_resource type="Script" path="res://script/util/health/DamageNumberAnimation.cs" id="7_4b4o0"]
-[ext_resource type="PackedScene" uid="uid://1xinxumcen0r" path="res://scene/damageLabel.tscn" id="8_qdync"]
+[ext_resource type="PackedScene" path="res://scene/damageLabel.tscn" id="8_qdync"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1jgi"]
 
@@ -30,7 +30,7 @@ avoidance_enabled = true
 
 [node name="Health" type="Node2D" parent="."]
 script = ExtResource("3_xnl4k")
-maxHealth = 50
+maxHealth = 150
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_a1jgi")
@@ -47,5 +47,5 @@ script = ExtResource("6_pmrlh")
 [node name="TakeDamageNumber" type="Node2D" parent="." node_paths=PackedStringArray("health")]
 script = ExtResource("7_4b4o0")
 health = NodePath("../Health")
-fadeDuration = 20.0
+fadeDuration = 1.0
 label = ExtResource("8_qdync")

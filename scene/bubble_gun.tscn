@@ -15,7 +15,7 @@ BulletLifetime = 10.0
 MinBulletScale = 0.5
 MaxBulletScale = 3.0
 ChargeRate = 2.0
-damage = 10
+damage = 25
 isChargable = true
 isCapturable = true
 

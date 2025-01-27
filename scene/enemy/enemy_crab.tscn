@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bjeo4oki3kbsq" path="res://scene/enemy/gfx/crab_gfx.tscn" id="5_canp3"]
 [ext_resource type="Script" path="res://script/EnemyGFXAnimation.cs" id="6_by2c4"]
 [ext_resource type="Script" path="res://script/util/health/DamageNumberAnimation.cs" id="7_mqige"]
-[ext_resource type="PackedScene" uid="uid://1xinxumcen0r" path="res://scene/damageLabel.tscn" id="8_evp5l"]
+[ext_resource type="PackedScene" path="res://scene/damageLabel.tscn" id="8_evp5l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1jgi"]
 size = Vector2(35, 34)
@@ -48,5 +48,6 @@ script = ExtResource("6_by2c4")
 [node name="TakeDamageNumber" type="Node2D" parent="." node_paths=PackedStringArray("health")]
 script = ExtResource("7_mqige")
 health = NodePath("../Health")
+fadeDuration = 1.0
 fontSize = 1.2
 label = ExtResource("8_evp5l")
