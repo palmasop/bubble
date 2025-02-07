@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public partial class WaveManager : Node2D
 {
 	[Export] Node2D waveBackground;
-	[Export] public NodePath[] waveSpawners; // Array of paths to EnemySpawner nodes
-	[Export] public float waveInterval = 10.0f; // Time between waves
+	[Export] public NodePath[] enemySpawners; // Array of paths to EnemySpawner nodes
+	private float waveInterval = 0.0f; // Default time between waves
 
 	private int _currentWave = 0;
 	private float _waveTimer = 0.0f;
@@ -22,12 +22,12 @@ public partial class WaveManager : Node2D
 	{
 		if (Engine.IsEditorHint()) return;
 
-		if (waveBackground.Position.Y <= viewportHeight)
-		{
-			Vector2 currentPos = waveBackground.Position;
-			currentPos.Y = Mathf.Lerp(currentPos.Y, 0, (float)delta / (waveInterval * waveSpawners.Length));
-			waveBackground.Position = currentPos;
-		}
+		// if (waveBackground.Position.Y <= viewportHeight)
+		// {
+		// 	Vector2 currentPos = waveBackground.Position;
+		// 	currentPos.Y = Mathf.Lerp(currentPos.Y, 0, (float)delta / (waveInterval * enemySpawners.Length));
+		// 	waveBackground.Position = currentPos;
+		// }
 
 		_waveTimer += (float)delta;
 
@@ -40,11 +40,11 @@ public partial class WaveManager : Node2D
 
 	private void StartNextWave()
 	{
-		GD.Print("StartNextWave");
-		if (_currentWave >= waveSpawners.Length) return; // No more waves
+		if (_currentWave >= enemySpawners.Length) return; // No more waves
 
-		var spawner = GetNode<EnemySpawner>(waveSpawners[_currentWave]);
+		var spawner = GetNode<EnemySpawner>(enemySpawners[_currentWave]);
 		spawner.StartSpawning();
+		waveInterval = spawner.nextInterval; // Set the wave interval to the spawner's interval
 		_currentWave++;
 	}
 }
